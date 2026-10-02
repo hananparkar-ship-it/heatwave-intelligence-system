@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Media and Awareness</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header><main class="page-shell">
+    <h1>Heatwave Awareness</h1>
+    <hr>
+    <p>Watch the short awareness clip and listen to the audio advisory for reminders about preparing for periods of extreme heat.</p>
+
+    <section class="media-section" aria-labelledby="video-title"><h2 id="video-title">Heatwave Awareness Video</h2>
+    <video width="500" controls>
+        <source src="heatwave.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video></section>
+    <section class="media-section" aria-labelledby="audio-title"><h2 id="audio-title">Audio Advisory</h2>
+
+    <audio controls>
+        <source src="advisory.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio></section>
+
+    <section class="media-section" aria-labelledby="mumbai-map-title"><h2 id="mumbai-map-title">Mumbai reference map</h2><p>This embedded map shows a general location reference. It is separate from the official weather forecast.</p><p><a href="https://mausam.imd.gov.in/">Visit the India Meteorological Department for official weather information</a>.</p>
+
+    <iframe
+        src="https://www.google.com/maps?q=Mumbai&output=embed"
+        width="700"
+        height="400" title="Map showing Mumbai" loading="lazy">
+    </iframe></section>
+    <noscript>
+        <p>
+            JavaScript is disabled in your browser.
+            Please enable JavaScript for a better experience.
+        </p>
+    </noscript>
+</main><footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+
+<script>const currentPage=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('nav a').forEach(link=>{if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current','page')});</script>
+</body>
+</html>
+
+
+
+
+

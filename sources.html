@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Data Sources and Stakeholders</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header><main class="page-shell">
+    <h1>Data Sources and Stakeholders</h1>
+
+    <hr>
+
+    <p>Climate information systems bring observations and forecasts together so people can see what is happening, where conditions may worsen, and what guidance is available. Different sources update at different times and may report conditions at different scales.</p><p>Use the source organization and issue time when reviewing a forecast. This student portal uses illustrative content; consult official advisories for current warnings.</p>
+<h2>Forecast and Alert Workflow</h2>
+
+    <ol>
+        <li>Collect weather data</li>
+        <li>Analyse temperature records</li>
+        <li>Predict heatwave conditions</li>
+        <li>Issue alerts</li>
+        <li>Send public advisories</li>
+    </ol>
+
+    <hr>
+
+    <div class="sources-columns">
+    <section class="sources-group"><h2>Data Sources</h2>
+
+    <ul>
+        <li>AWS Sensors</li>
+        <li>IMD Database</li>
+        <li>Satellite Feeds</li>
+    </ul>
+
+    </section>
+    <section class="sources-group"><h2>Stakeholders</h2>
+
+    <ul>
+
+        <li>Meteorologist
+            <ul>
+                <li>Monitor weather</li>
+                <li>Generate forecasts</li>
+            </ul>
+        </li>
+
+        <li>Disaster Management Officer
+            <ul>
+                <li>Issue alerts</li>
+                <li>Coordinate emergency response</li>
+            </ul>
+        </li>
+
+        <li>Citizen
+            <ul>
+                <li>View advisories</li>
+                <li>Follow safety measures</li>
+            </ul>
+        </li>
+
+    </ul></section>
+    </div>
+
+    <h2>Official updates</h2><ul><li><a href="https://mausam.imd.gov.in/">India Meteorological Department forecasts and warnings</a></li><li><a href="https://ncdc.mohfw.gov.in/">National Centre for Disease Control public health advisories</a></li></ul>
+<h2>Abbreviations</h2>
+
+    <dl>
+
+        <dt>AWS</dt>
+        <dd>Automatic Weather Station</dd>
+
+        <dt>IMD</dt>
+        <dd>India Meteorological Department</dd>
+
+        <dt>HW</dt>
+        <dd>Heatwave</dd>
+
+        <dt>SHW</dt>
+        <dd>Severe Heatwave</dd>
+
+    </dl>
+</main><footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+
+<script>const currentPage=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('nav a').forEach(link=>{if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current','page')});</script>
+</body>
+</html>
+
+
+
+
+
+

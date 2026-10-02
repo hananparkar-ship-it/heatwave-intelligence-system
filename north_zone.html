@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>North Zone</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header><main class="page-shell">
+    <h1>North Zone</h1>
+    <hr><p><strong>Example scenario date:</strong> 15 June 2026.</p><p>This map groups the northern states, Bihar, West Bengal, Sikkim and the seven northeastern states under the North Zone page. Check the location and issue time of any official forecast before making plans.</p>
+    <p>
+        Region : North Zone
+    </p>
+    <p>
+        Maximum Temperature : 46&deg;C
+    </p>
+    <p>
+        Severity Level : Severe Heatwave
+    </p>
+    <p>
+        Citizens are advised to stay hydrated and avoid going outdoors during the afternoon.
+    </p>
+    <p>
+        <a href="hotspot_map.html">Back to Hotspot Map</a>
+    </p>
+</main><footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+
+<script>const currentPage=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('nav a').forEach(link=>{if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current','page')});</script>
+</body>
+</html>
+
+
+
+
+
+

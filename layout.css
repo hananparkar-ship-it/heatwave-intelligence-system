@@ -1,0 +1,80 @@
+/* Task 9: Page Layout */
+
+.layout {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 25px;
+    margin: 30px auto;
+    width: 100%;
+}
+
+
+/* Left Sidebar */
+
+.sidebar {
+    width: 220px;
+    flex: 0 0 220px;
+}
+
+
+/* Right Content beside sidebar */
+
+.top-content {
+    width: 700px;
+}
+
+
+/* Cards */
+
+.top-content .card-container {
+    text-align: center;
+}
+
+
+/* Gallery */
+
+.gallery {
+    width: 100%;
+    max-width: 1100px;
+    margin: 25px auto;
+    text-align: center;
+}
+
+
+/* Table */
+
+table {
+    width: 95%;
+    max-width: 1200px;
+    margin: 25px auto;
+}
+
+
+/* Registration Form */
+
+.registration-form {
+    width: 95%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+
+/* Main information */
+
+body > h2,
+body > p {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Footer */
+
+footer {
+    width: 100%;
+    margin-top: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}

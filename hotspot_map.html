@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Heatwave Hotspot Map</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header><main class="page-shell">
+    <h1>Heatwave Hotspot Map</h1>
+    <p class="page-intro">
+        Click anywhere on the map to open one of the three zone summaries. The example scenario is dated 15 June 2026.
+    </p>
+    <div class="map-meta" aria-label="Map details"><p><strong>Example data date:</strong> 15 June 2026</p><div><span class="map-legend-label">Example severity labels in zone summaries</span><ul class="map-legend" aria-label="Risk categories"><li><span class="legend-swatch legend-severe"></span>Severe Heatwave</li><li><span class="legend-swatch legend-heatwave"></span>Heatwave</li></ul></div></div>
+    <section class="hotspot-map-layout" aria-label="Interactive regional heatwave map">
+        <div class="hotspot-map-visual">
+            <img class="hotspot-map-image" src="india_map.jpg"
+                 alt="Interactive map of India divided into North, Central and South Zone click areas"
+                 usemap="#heatmap" width="740" height="493">
+            <map name="heatmap" id="heatmap">
+                <area shape="poly" coords="240,27,305,27,336,45,339,65,322,91,339,106,352,121,359,141,383,154,391,171,386,190,371,199,347,198,329,194,310,190,297,191,294,204,288,217,278,229,266,236,245,231,223,220,203,208,192,193,195,169,218,159,242,150,258,143,265,132,252,116,257,97,246,76,240,27" href="north_zone.html" alt="North Zone — northern states, Bihar and West Bengal" title="North Zone">
+                <area shape="poly" coords="372,182,384,180,399,181,413,185,420,194,418,204,410,212,398,216,386,215,378,209,371,199" href="north_zone.html" alt="North Zone — Bihar" title="North Zone">
+                <area shape="poly" coords="407,215,418,212,426,220,426,232,420,244,413,253,406,246,403,235" href="north_zone.html" alt="North Zone — West Bengal" title="North Zone">
+                <area shape="poly" coords="440,142,562,142,562,256,438,256" href="north_zone.html" alt="North Zone — Sikkim and the seven northeastern states" title="North Zone">
+                <area shape="poly" coords="236,267,252,262,273,259,293,251,309,261,327,268,341,278,352,294,357,312,369,326,365,349,352,370,336,386,328,411,315,439,300,458,285,443,274,417,261,392,250,369,242,343,237,319,232,297" href="south_zone.html" alt="South Zone — southern and peninsular states" title="South Zone">
+                <area shape="default" href="central_zone.html" alt="Central Zone — all remaining map areas" title="Central Zone">
+            </map>
+        </div>
+    </section>
+    <nav class="map-region-links" aria-label="Region detail pages">
+        <span>Region details:</span>
+        <a href="north_zone.html">North Zone</a>
+        <a href="central_zone.html">Central Zone</a>
+        <a href="south_zone.html">South Zone</a>
+    </nav>
+</main><footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+
+<script>const currentPage=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('nav a').forEach(link=>{if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current','page')});</script>
+<script>const image=document.querySelector('img[usemap]');const areas=[...document.querySelectorAll('map area')];function resizeMapAreas(){if(!image||!image.naturalWidth)return;const scale=image.clientWidth/image.naturalWidth;areas.forEach(area=>{if(area.shape==='default')return;if(!area.dataset.originalCoords)area.dataset.originalCoords=area.coords;area.coords=area.dataset.originalCoords.split(',').map(value=>Math.round(Number(value)*scale)).join(',')})}image.addEventListener('load',resizeMapAreas);window.addEventListener('resize',resizeMapAreas);resizeMapAreas();</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

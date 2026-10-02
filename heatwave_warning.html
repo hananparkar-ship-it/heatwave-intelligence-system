@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>
+            Heatwave Risk and Early Warning
+        </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="warning-page">
+        <header class="site-header">
+            <div class="header-inner">
+                <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">
+                        Alerts
+                    </a><a href="forecast.html">
+                        Forecast
+                    </a><a href="hotspot_map.html">
+                        Hotspot map
+                    </a><a href="sources.html">Resources</a><a href="subscribe.html">
+                        Subscribe
+                    </a><a href="media.html">
+                        Media
+                    </a></nav>
+            </div>
+        </header>
+        <main class="page-shell">
+            <h1>
+                Heatwave Risk and Early Warning
+            </h1>
+            <p class="page-intro">
+                Adjust the sample temperature, humidity and forecast to see how the demonstration assigns a warning level.
+            </p>
+            <form id="f">
+                <label>
+                    Location
+                    <input id="l" value="Pune" required>
+                </label>
+                <label>
+                    Temperature °C
+                    <input id="t" type="number" value="39" required>
+                </label>
+                <label>
+                    Humidity %
+                    <input id="h" type="number" value="65" required>
+                </label>
+                <label>
+                    Forecast temperature °C
+                    <input id="fc" type="number" value="41" required>
+                </label>
+                <label>
+                    <input id="hw" type="checkbox" checked>
+                    Heatwave condition
+                </label>
+                <label>
+                    <input id="vp" type="checkbox">
+                    Vulnerable population alert
+                </label>
+                <button>
+                    Get recommendation
+                </button>
+            </form>
+            <pre id="o">
+            </pre>
+            <script>
+                document.querySelector('#f').onsubmit=e=> {
+                    e.preventDefault();
+                    let l=document.querySelector('#l').value;
+                    let t=Number(document.querySelector('#t').value);
+                    let h=Number(document.querySelector('#h').value);
+                    let f=Number(document.querySelector('#fc').value);
+                    let hw=document.querySelector('#hw').checked;
+                    let v=document.querySelector('#vp').checked;
+                    let r, a;
+
+                    // Apply the assignment's decision rules from highest priority to lowest.
+                    if (t >= 40) {
+                        r='SEVERE';
+                        a='Severe Heatwave Warning';
+                    } else if (t >= 38 && h >= 60) {
+                        r='HIGH';
+                        a='Issue Heatwave Warning';
+                    } else if (f >= 40) {
+                        r='EARLY WARNING';
+                        a='Prepare for Heatwave';
+                    } else if (t >= 35 && t < 38) {
+                        r='MODERATE';
+                        a='Monitor Conditions';
+                    } else {
+                        r='NORMAL';
+                        a='Continue Monitoring';
+                    }
+
+                    let m=`Location: ${l}\nTemperature: ${t}°C\nHumidity: ${h}%\nForecast: ${f}°C\nHeatwave condition: ${hw ? 'Yes' : 'No'}\nVulnerable population alert: ${v ? 'Yes' : 'No'}\n\nRisk Level: ${r}\nRecommendation: ${a}`;
+                    document.querySelector('#o').textContent=m;
+                    console.log(m)
+                }
+            </script>
+        </main>
+        <footer class="site-footer">
+            <div class="footer-inner">
+                Heatwave Intelligence · Community safety through timely information
+                <span>
+                    <a href="https://mausam.imd.gov.in/">
+                        India Meteorological Department
+                    </a>
+                    ·
+                    <a href="tel:1078">
+                        Disaster helpline 1078
+                    </a>
+                </span>
+            </div>
+        </footer>
+        <script>
+            const currentPage=location.pathname.split('/').pop()||'index.html';
+            document.querySelectorAll('nav a').forEach(link=> {
+                if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current', 'page')
+            });
+        </script>
+    </body>
+</html>
