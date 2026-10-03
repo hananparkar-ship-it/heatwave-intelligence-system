@@ -1669,3 +1669,18 @@ body > footer {
     margin-left: auto;
     margin-right: auto;
 }
+
+
+/* Center the subscription page's content column and form. */
+.subscribe-page {
+    max-width: 1000px;
+}
+.subscribe-page > .section-kicker,
+.subscribe-page > h1,
+.subscribe-page > p:not(.success) {
+    text-align: center;
+}
+.subscribe-page > form {
+    width: min(100%, 760px);
+    margin-inline: auto;
+}
