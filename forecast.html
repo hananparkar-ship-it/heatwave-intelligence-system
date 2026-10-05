@@ -33,16 +33,32 @@
 
         <section id="regionalForecast" class="forecast-summary" aria-labelledby="forecastZoneName" aria-live="polite">
             <div class="forecast-summary-heading">
-                <p class="section-kicker">Saved regional information</p>
-                <h2 id="forecastZoneName">North Zone</h2>
+                <div>
+                    <p class="section-kicker">General regional climate</p>
+                    <h2 id="forecastZoneName">North Zone</h2>
+                </div>
+                <span id="climateCharacter" class="climate-character">Hot &amp; Dry</span>
             </div>
-            <dl class="forecast-metrics">
-                <div><dt>Temperature</dt><dd>No saved regional reading</dd></div>
-                <div><dt>Humidity</dt><dd>No saved regional reading</dd></div>
-                <div><dt>Forecast conditions</dt><dd>No saved regional forecast</dd></div>
-                <div><dt>Heat-risk level</dt><dd>Not assessed without local readings</dd></div>
-            </dl>
-            <p id="regionalContext" class="forecast-context">Temperature, duration of heat and overnight recovery are relevant across the North Zone.</p>
+            <div class="climate-profile" role="group" aria-label="Typical climate profile">
+                <ul id="climateIndicators" class="climate-indicators">
+                    <li><span aria-hidden="true">☀️</span> Hot summers</li>
+                    <li><span aria-hidden="true">💧</span> Low–moderate humidity</li>
+                    <li><span aria-hidden="true">🌡️</span> Large day/night temperature variation</li>
+                    <li><span aria-hidden="true">🔥</span> Prolonged summer heat</li>
+                </ul>
+                <p class="climate-profile-label">Regional characteristics</p>
+                <p id="regionalCharacteristics" class="climate-description">Known for intense summer heat, generally drier conditions and significant differences between daytime and nighttime temperatures.</p>
+            </div>
+            <div class="forecast-saved-data" role="group" aria-label="Current and saved conditions">
+                <p class="section-kicker forecast-data-heading">Current / saved conditions</p>
+                <dl class="forecast-metrics">
+                    <div><dt>Temperature</dt><dd>No saved regional reading</dd></div>
+                    <div><dt>Humidity</dt><dd>No saved regional reading</dd></div>
+                    <div><dt>Forecast conditions</dt><dd>No saved regional forecast</dd></div>
+                    <div><dt>Heat-risk level</dt><dd>Not assessed without local readings</dd></div>
+                </dl>
+                <p id="regionalContext" class="forecast-context">Temperature, duration of heat and overnight recovery are relevant across the North Zone.</p>
+            </div>
         </section>
 
         <section class="forecast-factors" aria-labelledby="factorsHeading">
@@ -66,26 +82,66 @@
         const regionalForecastData = {
             north: {
                 name: 'North Zone',
+                climateCharacter: 'Hot & Dry',
+                climateIndicators: [
+                    ['☀️', 'Hot summers'],
+                    ['💧', 'Low–moderate humidity'],
+                    ['🌡️', 'Large day/night temperature variation'],
+                    ['🔥', 'Prolonged summer heat']
+                ],
+                characteristics: 'Known for intense summer heat, generally drier conditions and significant differences between daytime and nighttime temperatures.',
                 context: 'Temperature, duration of heat and overnight recovery are relevant across the North Zone.',
                 factors: ['Temperature and duration of heat', 'Overnight recovery', 'Forecast trend', 'Differences between plains and hill areas']
             },
             northeast: {
                 name: 'Northeast Zone',
+                climateCharacter: 'Humid & Rainy',
+                climateIndicators: [
+                    ['🌧️', 'Heavy rainfall influence'],
+                    ['💧', 'High humidity'],
+                    ['🌡️', 'Warm conditions'],
+                    ['☁️', 'Strong monsoon influence']
+                ],
+                characteristics: 'Heat conditions are strongly influenced by humidity, rainfall and monsoon patterns, so heat stress may differ from the drier northern regions.',
                 context: 'Review temperature and humidity alongside rainfall and monsoon conditions in the Northeast Zone.',
                 factors: ['Temperature and humidity together', 'Rainfall and monsoon conditions', 'Forecast trend', 'Differences between hill and valley locations']
             },
             west: {
                 name: 'West Zone',
+                climateCharacter: 'Coastal & Dry',
+                climateIndicators: [
+                    ['☀️', 'Hot inland areas'],
+                    ['🌊', 'Coastal influence'],
+                    ['💧', 'Higher coastal humidity'],
+                    ['🌡️', 'Strong regional variation']
+                ],
+                characteristics: 'Conditions vary considerably between hot, drier inland areas and more humid coastal locations.',
                 context: 'Heat conditions can differ between inland and coastal parts of the West Zone.',
                 factors: ['Temperature and humidity', 'Inland, desert, urban and coastal conditions', 'Duration of heat', 'Forecast trend and overnight recovery']
             },
             central: {
                 name: 'Central Zone',
+                climateCharacter: 'Intense Summer Heat',
+                climateIndicators: [
+                    ['🔥', 'Very hot summers'],
+                    ['☀️', 'Predominantly dry heat'],
+                    ['🌡️', 'High daytime temperatures'],
+                    ['⏱️', 'Prolonged heat periods']
+                ],
+                characteristics: 'Central regions can experience prolonged periods of intense summer heat, particularly during the pre-monsoon season.',
                 context: 'Daytime heat, overnight conditions and forecast changes are relevant across the Central Zone.',
                 factors: ['Daytime temperature', 'Humidity', 'Overnight recovery', 'Forecast changes and heat duration']
             },
             south: {
                 name: 'South Zone',
+                climateCharacter: 'Warm & Humid',
+                climateIndicators: [
+                    ['🌡️', 'Warm conditions'],
+                    ['💧', 'Higher humidity'],
+                    ['🌧️', 'Monsoon influence'],
+                    ['🌊', 'Coastal influence in many areas']
+                ],
+                characteristics: 'Heat conditions are often shaped by humidity, coastal influence and seasonal monsoon patterns.',
                 context: 'Temperature and humidity should be considered alongside local coastal, inland and elevated conditions.',
                 factors: ['Temperature and humidity', 'Coastal, inland and elevated conditions', 'Duration of heat', 'Forecast trend and overnight recovery']
             }
@@ -93,12 +149,25 @@
 
         const regionSelector = document.querySelector('#forecastRegion');
         const zoneName = document.querySelector('#forecastZoneName');
+        const climateCharacter = document.querySelector('#climateCharacter');
+        const climateIndicators = document.querySelector('#climateIndicators');
+        const regionalCharacteristics = document.querySelector('#regionalCharacteristics');
         const zoneContext = document.querySelector('#regionalContext');
         const factorsList = document.querySelector('#regionalFactors');
 
         function showRegionForecast() {
             const region = regionalForecastData[regionSelector.value];
             zoneName.textContent = region.name;
+            climateCharacter.textContent = region.climateCharacter;
+            climateIndicators.replaceChildren(...region.climateIndicators.map(function ([icon, label]) {
+                const item = document.createElement('li');
+                const symbol = document.createElement('span');
+                symbol.setAttribute('aria-hidden', 'true');
+                symbol.textContent = icon;
+                item.append(symbol, document.createTextNode(` ${label}`));
+                return item;
+            }));
+            regionalCharacteristics.textContent = region.characteristics;
             zoneContext.textContent = region.context;
             factorsList.replaceChildren(...region.factors.map(function (factor) {
                 const item = document.createElement('li');
