@@ -1,79 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<title>Data Sources and Stakeholders</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resources</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header><main class="page-shell">
-    <h1>Data Sources and Stakeholders</h1>
+    <header class="site-header">
+        <div class="header-inner">
+            <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
+            <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
+            </nav>
+        </div>
+    </header>
+    <main class="page-shell resources-page">
+        <p class="section-kicker">Reference and guidance</p>
+        <h1>Resources</h1>
+        <p class="page-intro">Heat monitoring uses observations, forecasts and satellite information. Sources update at different times and cover different areas, so check the issuing organization and publication time. This portal links to official resources but does not ingest current observations or issue official warnings. Use the source pages below for current conditions.</p>
 
-    <hr>
-
-    <p>Heat monitoring can draw on weather-station observations, forecasts and satellite data. Sources update at different times and may report conditions at different scales, so check the issuing organization and publication time.</p><p>This portal links to official resources but does not ingest current observations or issue official warnings. Use the source pages below for current conditions.</p>
-<h2>Forecast and Alert Workflow</h2>
-
-    <ol>
-        <li>Collect weather data</li>
-        <li>Analyse temperature records</li>
-        <li>Assess heatwave risk</li>
-        <li>Review warning criteria</li>
-        <li>Share public safety guidance</li>
-    </ol>
-
-    <hr>
-
-    <div class="sources-columns">
-    <section class="sources-group"><h2>Data Sources</h2>
-
-    <ul>
-        <li>Automatic Weather Station observations</li>
-        <li>India Meteorological Department forecasts and warnings</li>
-        <li>Satellite observations</li>
-    </ul>
-
-    </section>
-    <section class="sources-group"><h2>Stakeholders</h2>
-
-    <ul>
-
-        <li>Meteorologist
+        <section class="resource-section" aria-labelledby="data-sources-heading">
+            <h2 id="data-sources-heading">Data Sources</h2>
             <ul>
-                <li>Monitor weather</li>
-                <li>Generate forecasts</li>
+                <li>Automatic Weather Station observations</li>
+                <li>India Meteorological Department forecasts and warnings</li>
+                <li>Satellite observations</li>
             </ul>
-        </li>
+        </section>
 
-        <li>Disaster Management Officer
+        <section class="resource-section" aria-labelledby="workflow-heading">
+            <h2 id="workflow-heading">System Workflow</h2>
+            <ol class="workflow-list">
+                <li>Collect weather data</li>
+                <li>Analyse temperature records</li>
+                <li>Assess heatwave risk</li>
+                <li>Review warning criteria</li>
+                <li>Share public safety guidance</li>
+            </ol>
+        </section>
+
+        <section class="resource-section" aria-labelledby="stakeholders-heading">
+            <h2 id="stakeholders-heading">Stakeholders</h2>
+            <div class="stakeholder-list">
+                <section class="stakeholder-role">
+                    <h3>Meteorologists</h3>
+                    <ul><li>Monitor weather</li><li>Generate forecasts</li></ul>
+                </section>
+                <section class="stakeholder-role">
+                    <h3>Disaster Management Officers</h3>
+                    <ul><li>Issue alerts</li><li>Coordinate emergency response</li></ul>
+                </section>
+                <section class="stakeholder-role">
+                    <h3>Citizens</h3>
+                    <ul><li>View advisories</li><li>Follow safety measures</li></ul>
+                </section>
+            </div>
+        </section>
+
+        <section class="resource-section official-updates" aria-labelledby="official-updates-heading">
+            <h2 id="official-updates-heading">Official Updates</h2>
             <ul>
-                <li>Issue alerts</li>
-                <li>Coordinate emergency response</li>
+                <li><a href="https://mausam.imd.gov.in/">India Meteorological Department forecasts and warnings</a></li>
+                <li><a href="https://ncdc.mohfw.gov.in/">National Centre for Disease Control public health advisories</a></li>
             </ul>
-        </li>
-
-        <li>Citizen
-            <ul>
-                <li>View advisories</li>
-                <li>Follow safety measures</li>
-            </ul>
-        </li>
-
-    </ul></section>
-    </div>
-
-    <h2>Official updates</h2><ul><li><a href="https://mausam.imd.gov.in/">India Meteorological Department forecasts and warnings</a></li><li><a href="https://ncdc.mohfw.gov.in/">National Centre for Disease Control public health advisories</a></li></ul>
-
-</main><footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
-
-<script>const currentPage=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('nav a').forEach(link=>{if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current','page')});</script>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">Heatwave Intelligence · Community safety through timely information
+            <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span>
+        </div>
+    </footer>
+    <script>
+        const currentPage = location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('nav a').forEach(link => {
+            if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-

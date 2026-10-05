@@ -1,39 +1,117 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<title>Forecast Summary</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Regional Forecast &amp; Risk</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header><main class="page-shell">
-    <p class="section-kicker">Regional conditions</p>
-    <h1>Regional Forecast Guidance</h1>
-    <p class="page-intro">Compare the factors that shape heat stress across the portal’s five zones. Current forecasts and warning levels should be taken from the official issuing authority.</p>
-    <div class="table-scroll" role="region" aria-label="Regional heat forecast factors" tabindex="0">
-        <table>
-            <caption>Regional factors to review alongside an official forecast</caption>
-            <thead><tr><th scope="col">Region</th><th scope="col">Factors to review</th><th scope="col">Zone summary</th></tr></thead>
-            <tbody>
-                <tr><th scope="row">North Zone</th><td>Temperature, duration of heat and overnight recovery</td><td><a href="north_zone.html">Open North Zone</a></td></tr>
-                <tr><th scope="row">Northeast Zone</th><td>Temperature and humidity, with rainfall and monsoon conditions in context</td><td><a href="northeast_zone.html">Open Northeast Zone</a></td></tr>
-                <tr><th scope="row">West Zone</th><td>Temperature and humidity, including differences between inland and coastal areas</td><td><a href="west_zone.html">Open West Zone</a></td></tr>
-                <tr><th scope="row">Central Zone</th><td>Daytime heat, overnight conditions and forecast changes</td><td><a href="central_zone.html">Open Central Zone</a></td></tr>
-                <tr><th scope="row">South Zone</th><td>Temperature and humidity alongside the local forecast</td><td><a href="south_zone.html">Open South Zone</a></td></tr>
-            </tbody>
-        </table>
-    </div>
-    <p class="forecast-note">Heat risk depends on local temperature, humidity and forecast conditions. For current readings and alerts, check the <a href="https://mausam.imd.gov.in/">India Meteorological Department</a>.</p>
-</main><footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+    <header class="site-header">
+        <div class="header-inner">
+            <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
+            <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
+            </nav>
+        </div>
+    </header>
+    <main class="page-shell forecast-page">
+        <p class="section-kicker">Regional conditions</p>
+        <h1>Regional Forecast &amp; Risk</h1>
+        <p class="page-intro">Select a region to review its available forecast information, local heat-risk factors and guidance.</p>
 
-<script>const currentPage=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('nav a').forEach(link=>{if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current','page')});</script>
+        <div class="forecast-region-picker">
+            <label for="forecastRegion">Select Region</label>
+            <select id="forecastRegion" aria-controls="regionalForecast">
+                <option value="north" selected>North Zone</option>
+                <option value="northeast">Northeast Zone</option>
+                <option value="west">West Zone</option>
+                <option value="central">Central Zone</option>
+                <option value="south">South Zone</option>
+            </select>
+        </div>
+
+        <section id="regionalForecast" class="forecast-summary" aria-labelledby="forecastZoneName" aria-live="polite">
+            <div class="forecast-summary-heading">
+                <p class="section-kicker">Saved regional information</p>
+                <h2 id="forecastZoneName">North Zone</h2>
+            </div>
+            <dl class="forecast-metrics">
+                <div><dt>Temperature</dt><dd>No saved regional reading</dd></div>
+                <div><dt>Humidity</dt><dd>No saved regional reading</dd></div>
+                <div><dt>Forecast conditions</dt><dd>No saved regional forecast</dd></div>
+                <div><dt>Heat-risk level</dt><dd>Not assessed without local readings</dd></div>
+            </dl>
+            <p id="regionalContext" class="forecast-context">Temperature, duration of heat and overnight recovery are relevant across the North Zone.</p>
+        </section>
+
+        <section class="forecast-factors" aria-labelledby="factorsHeading">
+            <h2 id="factorsHeading">What affects heat risk in this region?</h2>
+            <ul id="regionalFactors">
+                <li>Temperature and duration of heat</li>
+                <li>Overnight recovery</li>
+                <li>Forecast trend</li>
+                <li>Differences between plains and hill areas</li>
+            </ul>
+        </section>
+
+        <p class="forecast-note">This site does not ingest current observations or forecasts. Check the <a href="https://mausam.imd.gov.in/">India Meteorological Department</a> for current conditions, or enter local readings in the <a href="heatwave_warning.html">Heat Conditions &amp; Risk tool</a> for an assessment.</p>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">Heatwave Intelligence · Community safety through timely information
+            <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span>
+        </div>
+    </footer>
+    <script>
+        const regionalForecastData = {
+            north: {
+                name: 'North Zone',
+                context: 'Temperature, duration of heat and overnight recovery are relevant across the North Zone.',
+                factors: ['Temperature and duration of heat', 'Overnight recovery', 'Forecast trend', 'Differences between plains and hill areas']
+            },
+            northeast: {
+                name: 'Northeast Zone',
+                context: 'Review temperature and humidity alongside rainfall and monsoon conditions in the Northeast Zone.',
+                factors: ['Temperature and humidity together', 'Rainfall and monsoon conditions', 'Forecast trend', 'Differences between hill and valley locations']
+            },
+            west: {
+                name: 'West Zone',
+                context: 'Heat conditions can differ between inland and coastal parts of the West Zone.',
+                factors: ['Temperature and humidity', 'Inland, desert, urban and coastal conditions', 'Duration of heat', 'Forecast trend and overnight recovery']
+            },
+            central: {
+                name: 'Central Zone',
+                context: 'Daytime heat, overnight conditions and forecast changes are relevant across the Central Zone.',
+                factors: ['Daytime temperature', 'Humidity', 'Overnight recovery', 'Forecast changes and heat duration']
+            },
+            south: {
+                name: 'South Zone',
+                context: 'Temperature and humidity should be considered alongside local coastal, inland and elevated conditions.',
+                factors: ['Temperature and humidity', 'Coastal, inland and elevated conditions', 'Duration of heat', 'Forecast trend and overnight recovery']
+            }
+        };
+
+        const regionSelector = document.querySelector('#forecastRegion');
+        const zoneName = document.querySelector('#forecastZoneName');
+        const zoneContext = document.querySelector('#regionalContext');
+        const factorsList = document.querySelector('#regionalFactors');
+
+        function showRegionForecast() {
+            const region = regionalForecastData[regionSelector.value];
+            zoneName.textContent = region.name;
+            zoneContext.textContent = region.context;
+            factorsList.replaceChildren(...region.factors.map(function (factor) {
+                const item = document.createElement('li');
+                item.textContent = factor;
+                return item;
+            }));
+        }
+
+        regionSelector.addEventListener('change', showRegionForecast);
+        const currentPage = location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('nav a').forEach(link => {
+            if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-

@@ -1,102 +1,26 @@
 <!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>
-            Heatwave Temperature Analysis
-        </title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header class="site-header">
-            <div class="header-inner">
-                <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">
-                        Alerts
-                    </a><a href="forecast.html">
-                        Forecast
-                    </a><a href="hotspot_map.html">
-                        Hotspot map
-                    </a><a href="sources.html">Resources</a><a href="subscribe.html">
-                        Subscribe
-                    </a><a href="media.html">
-                        Media
-                    </a></nav>
-            </div>
-        </header>
-        <main class="page-shell">
-            <h1>
-                Heatwave Temperature Analysis
-            </h1>
-            <p class="page-intro">
-                Enter local temperature and humidity readings to compare them with a heatwave threshold.
-            </p>
-            <form id="f">
-                <label>
-                    Location
-                    <input id="l" placeholder="City or town" required>
-                </label>
-                <label>
-                    Region
-                    <select id="r" required>
-                        <option value="">Choose a region</option>
-                        <option>North Zone</option><option>Northeast Zone</option><option>West Zone</option><option>Central Zone</option><option>South Zone</option>
-                    </select>
-                </label>
-                <label>
-                    Current temperature °C
-                    <input id="t" type="number" step="any" placeholder="Enter temperature" required>
-                </label>
-                <label>
-                    Heatwave threshold °C
-                    <input id="h" type="number" step="any" placeholder="Enter threshold" required>
-                </label>
-                <label>
-                    Humidity %
-                    <input id="u" type="number" min="0" max="100" step="any" placeholder="Enter relative humidity" required>
-                </label>
-                <label>
-                    Monitoring date
-                    <input id="d" type="date" required>
-                </label>
-                <button>
-                    Analyze
-                </button>
-            </form>
-            <pre id="o">
-            </pre>
-            <script>
-                document.querySelector('#d').valueAsDate=new Date;
-                document.querySelector('#f').onsubmit=e=> {
-                    e.preventDefault();
-                    let l=document.querySelector('#l').value, r=document.querySelector('#r').value, t=+document.querySelector('#t').value, h=+document.querySelector('#h').value, u=+document.querySelector('#u').value, d=document.querySelector('#d').value;
-                    let s=t>=h&&u>=60?'Threshold met; humidity may add to heat stress':t>=h?'Temperature threshold met':'Below the entered temperature threshold';
-                    let m=`Location: ${l}\nRegion: ${r}\nCurrent Temperature: ${t}°C\nHeatwave Threshold: ${h}°C\nTemperature Difference: ${t-h}°C\nRelative Humidity: ${u}%\nMonitoring Date: ${d}\n\nAssessment: ${s}`;
-                    document.querySelector('#o').textContent=m;
-                    console.log(m);
-                    alert(s)
-                }
-            </script>
-        </main>
-        <footer class="site-footer">
-            <div class="footer-inner">
-                Heatwave Intelligence · Community safety through timely information
-                <span>
-                    <a href="https://mausam.imd.gov.in/">
-                        India Meteorological Department
-                    </a>
-                    ·
-                    <a href="tel:1078">
-                        Disaster helpline 1078
-                    </a>
-                </span>
-            </div>
-        </footer>
-        <script>
-            const currentPage=location.pathname.split('/').pop()||'index.html';
-            document.querySelectorAll('nav a').forEach(link=> {
-                if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current', 'page')
-            });
-        </script>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="0; url=heatwave_warning.html">
+    <title>Heat Conditions &amp; Risk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
+            <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
+            </nav>
+        </div>
+    </header>
+    <main class="page-shell">
+        <h1>Opening Heat Conditions &amp; Risk</h1>
+        <p class="page-intro">Temperature, humidity, region and forecast are assessed together in the combined tool.</p>
+        <p><a class="button-link" href="heatwave_warning.html">Open the combined tool</a></p>
+    </main>
+    <script>window.location.replace('heatwave_warning.html');</script>
+</body>
 </html>

@@ -1732,3 +1732,124 @@ body > footer {
     .alert-page .alert-status { padding: 14px 16px; }
 }
 
+
+/* Regional forecast and vertically structured resource pages */
+.forecast-region-picker {
+    max-width: 420px;
+    margin: 24px 0;
+}
+.forecast-region-picker label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--navy);
+    font-weight: 700;
+}
+.forecast-region-picker select {
+    width: 100%;
+    max-width: 420px;
+}
+.forecast-summary {
+    margin: 24px 0 34px;
+    padding: 24px 28px;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: var(--shadow);
+}
+.forecast-summary-heading {
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+}
+.forecast-summary-heading .section-kicker {
+    margin: 0 0 4px;
+}
+.forecast-summary-heading h2 {
+    margin: 0;
+}
+.forecast-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 28px;
+    margin: 10px 0 16px;
+}
+.forecast-metrics > div {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+}
+.forecast-metrics dt {
+    color: #52667a;
+    font-size: .92rem;
+    font-weight: 650;
+}
+.forecast-metrics dd {
+    margin: 4px 0 0;
+    color: var(--navy);
+    font-weight: 700;
+}
+.forecast-context {
+    margin: 16px 0 0;
+}
+.forecast-factors {
+    max-width: 820px;
+    margin-block: 28px;
+}
+.forecast-factors h2 {
+    margin-bottom: 12px;
+}
+.forecast-factors ul {
+    columns: 2;
+    column-gap: 42px;
+    padding-left: 22px;
+}
+.forecast-factors li {
+    break-inside: avoid;
+    margin: 0 0 9px;
+}
+.forecast-note {
+    max-width: 850px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+.resource-section {
+    padding-block: 20px;
+    border-top: 1px solid var(--line);
+}
+.resource-section h2 {
+    margin: 0 0 12px;
+}
+.resource-section ul,
+.resource-section ol {
+    padding-left: 24px;
+    line-height: 1.8;
+}
+.workflow-list li,
+.resource-section > ul > li {
+    margin-block: 5px;
+}
+.stakeholder-role + .stakeholder-role {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+.stakeholder-role h3 {
+    margin: 0 0 4px;
+    font-size: 1.12rem;
+}
+.stakeholder-role ul {
+    margin-block: 4px 0;
+}
+.resource-section.official-updates {
+    border-bottom: 1px solid var(--line);
+}
+@media (max-width: 600px) {
+    .forecast-summary {
+        padding: 18px;
+    }
+    .forecast-metrics {
+        grid-template-columns: 1fr;
+    }
+    .forecast-factors ul {
+        columns: 1;
+    }
+}
