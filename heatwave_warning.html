@@ -29,7 +29,7 @@
                 Heat Conditions &amp; Risk
             </h1>
             <p class="page-intro">
-                Assess temperature, humidity and forecast conditions to determine the corresponding heat-risk level.
+                Enter observations and an expected maximum temperature for a specific location to assess heat-risk conditions. The result uses this page’s rule-based criteria and is not an official IMD warning.
             </p>
             <form id="f">
                 <label>
@@ -44,16 +44,16 @@
                     </select>
                 </label>
                 <label>
-                    Temperature °C
-                    <input id="t" type="number" step="any" placeholder="Enter temperature" required>
+                    Observed maximum temperature °C
+                    <input id="t" type="number" step="any" placeholder="Enter a local observed maximum" required>
                 </label>
                 <label>
                     Humidity %
                     <input id="h" type="number" min="0" max="100" step="any" placeholder="Enter relative humidity" required>
                 </label>
                 <label>
-                    Forecast temperature °C
-                    <input id="fc" type="number" step="any" placeholder="Enter forecast temperature" required>
+                    Expected maximum temperature °C
+                    <input id="fc" type="number" step="any" placeholder="Enter an expected maximum" required>
                 </label>
                 <label>
                     <input id="hw" type="checkbox">
@@ -81,7 +81,7 @@
                     let v=document.querySelector('#vp').checked;
                     let r, a;
 
-                    // Apply the assignment's decision rules from highest priority to lowest.
+                    // Apply the rule-based decision criteria from highest priority to lowest.
                     if (t >= 40) {
                         r='SEVERE';
                         a='Severe Heatwave Warning';
@@ -107,7 +107,7 @@
                         'South Zone': 'Regional context: consider temperature, humidity and local coastal or inland conditions.'
                     }[region] || '';
                     regionalContext = regionalContext ? '\n' + regionalContext : '';
-                    let m=`Location: ${l}\nRegion: ${region}\nTemperature: ${t}°C\nHumidity: ${h}%\nForecast: ${f}°C\nHeatwave condition: ${hw ? 'Yes' : 'No'}\nVulnerable population alert: ${v ? 'Yes' : 'No'}\n\nRisk Level: ${r}\nRecommendation: ${a}${regionalContext}`;
+                    let m=`Location: ${l}\nRegion: ${region}\nObserved maximum temperature: ${t}°C\nHumidity: ${h}%\nExpected maximum temperature: ${f}°C\nUser-indicated heatwave condition: ${hw ? 'Yes' : 'No'}\nVulnerable population alert: ${v ? 'Yes' : 'No'}\n\nCalculated risk level (rule-based): ${r}\nRecommendation: ${a}${regionalContext}\n\nThis assessment uses the values entered here; it is not an official warning.`;
                     document.querySelector('#o').textContent=m;
                     console.log(m)
                 }

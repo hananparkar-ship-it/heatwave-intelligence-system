@@ -1,46 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<title>Heatwave Alert Bulletin</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Heatwave Alerts</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header>
+<header class="site-header">
+    <div class="header-inner">
+        <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
+        <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
+        </nav>
+    </div>
+</header>
 <main class="page-shell alert-page">
     <p class="section-kicker">Public heat information</p>
-    <h1>Heatwave Alert Bulletin</h1>
-    <p class="page-intro">Review practical precautions and use official sources for current warning levels and affected areas.</p>
+    <h1>Heatwave Alerts</h1>
+    <p class="page-intro">Check the latest official warning for your location and follow the precautions recommended for its level and valid period.</p>
 
-    <p class="alert-status"><strong>Current warnings:</strong> Check the India Meteorological Department for official updates. This page provides general safety guidance.</p>
-
-    <section class="alert-advisory" aria-labelledby="advisory-title">
-        <h2 id="advisory-title">Advisory</h2>
-        <p>Drink water regularly, use shaded or cooler places when possible, and limit strenuous outdoor activity during the hottest part of the day. Check on people who may need extra support. Seek urgent medical help if someone becomes confused, collapses or appears seriously unwell.</p>
+    <section class="alert-status" aria-labelledby="bulletin-heading">
+        <p class="section-kicker">Latest bulletin</p>
+        <h2 id="bulletin-heading">No verified regional bulletin is available on this page</h2>
+        <dl class="alert-summary-list">
+            <div><dt>Alert level</dt><dd>Not available</dd></div>
+            <div><dt>Region</dt><dd><label class="alert-region-label" for="alertRegion">Select a region</label><select id="alertRegion" aria-controls="alertRegionStatus"><option value="">Choose a region</option><option>North Zone</option><option>Northeast Zone</option><option>West Zone</option><option>Central Zone</option><option>South Zone</option></select></dd></div>
+            <div><dt>Maximum temperature</dt><dd>Not available</dd></div>
+            <div><dt>Date</dt><dd>Not available</dd></div>
+            <div class="alert-advisory-row"><dt>Advisory</dt><dd>Check the official IMD bulletin for current conditions, affected areas and validity.</dd></div>
+        </dl>
+        <p id="alertRegionStatus" class="source-note" role="status" aria-live="polite">Select a region to view its bulletin availability.</p>
+        <p><a class="button-link" href="https://mausam.imd.gov.in/">Check official IMD updates</a></p>
     </section>
 
-    <h2>How to use this bulletin</h2>
-    <ol class="bulletin-steps">
-        <li>Check the issuing authority, region and bulletin time.</li>
-        <li>Follow the listed precautions and recheck for updated advice.</li>
-        <li>Use local authority guidance for travel, work and emergency decisions.</li>
-    </ol>
+    <section aria-labelledby="alert-meaning-heading">
+        <h2 id="alert-meaning-heading">What this alert means</h2>
+        <p>No location-specific alert level or maximum temperature is published here, so this page cannot confirm whether a heatwave warning is active in your area. Use the current IMD bulletin for the official region, issue date and valid period.</p>
+    </section>
 
-    <h2>Official resources</h2>
-    <p>For current forecasts, warnings and health guidance, check:</p>
-    <ul><li><a href="https://mausam.imd.gov.in/imd_latest/contents/do%27s.php">India Meteorological Department heat-wave safety guidance</a></li><li><a href="https://www.ncdc.mohfw.gov.in/uploads/pdf/heat2.pdf">National Centre for Disease Control advisory on extreme heat</a></li></ul>
-</main><footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+    <section aria-labelledby="alert-actions-heading">
+        <h2 id="alert-actions-heading">What should you do?</h2>
+        <div class="cards alert-action-cards">
+            <article class="card"><h3>Stay cool</h3><p>Use shade or a cooler place and plan outdoor activity for cooler hours.</p></article>
+            <article class="card"><h3>Stay hydrated</h3><p>Drink water regularly and follow advice from your healthcare provider.</p></article>
+            <article class="card"><h3>Limit outdoor exposure</h3><p>Avoid unnecessary time in direct sun and take breaks if you must work outdoors.</p></article>
+            <article class="card"><h3>Check on others</h3><p>Contact older adults, young children and anyone who may need extra support.</p></article>
+        </div>
+    </section>
 
-<script>const currentPage=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('nav a').forEach(link=>{if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current','page')});</script>
+    <section class="alert-emergency" aria-labelledby="emergency-heading">
+        <p class="section-kicker">Urgent help</p>
+        <h2 id="emergency-heading">Emergency information</h2>
+        <p>Confusion, collapse or severe weakness during extreme heat may require urgent medical care. Move the person to a cooler place and get help.</p>
+        <p><a class="emergency-contact" href="tel:1078">Call Disaster Helpline 1078</a></p>
+    </section>
+
+    <section aria-labelledby="official-alert-resources">
+        <h2 id="official-alert-resources">Official heat and health guidance</h2>
+        <ul>
+            <li><a href="https://mausam.imd.gov.in/imd_latest/contents/do%27s.php">India Meteorological Department heat-safety guidance</a></li>
+            <li><a href="https://www.ncdc.mohfw.gov.in/uploads/pdf/heat2.pdf">National Centre for Disease Control heat-health advisory</a></li>
+        </ul>
+    </section>
+</main>
+<footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+<script>
+    const alertRegion = document.querySelector('#alertRegion');
+    const alertRegionStatus = document.querySelector('#alertRegionStatus');
+    alertRegion.addEventListener('change', () => {
+        alertRegionStatus.textContent = alertRegion.value
+            ? `No verified bulletin is available for ${alertRegion.value} on this page.`
+            : 'Select a region to view its bulletin availability.';
+    });
+    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('#main-navigation a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');
+    });
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-

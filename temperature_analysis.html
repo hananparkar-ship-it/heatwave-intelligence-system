@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Temperature Reading Analysis</title>
+    <title>Daily Maximum Temperature Analysis</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,13 +16,13 @@
         </div>
     </header>
     <main class="page-shell temperature-analysis-page">
-        <h1>Temperature Reading Analysis</h1>
-        <p class="page-intro">Enter temperature readings and a threshold to calculate a concise summary. Separate readings with commas or spaces.</p>
+        <h1>Daily Maximum Temperature Analysis</h1>
+        <p class="page-intro">Enter daily maximum-temperature observations from one location and period to summarize their range and compare them with a threshold. The tool analyzes values you enter; it does not load IMD records or predict future conditions.</p>
         <form id="readingForm" class="reading-form" novalidate>
-            <label for="readings">Temperature readings (°C) <span class="required-mark" aria-hidden="true">*</span></label>
+            <label for="readings">Daily maximum-temperature readings (°C) <span class="required-mark" aria-hidden="true">*</span></label>
             <textarea id="readings" name="readings" rows="4" placeholder="Enter readings separated by commas or spaces" required aria-describedby="readingsError"></textarea>
             <small class="task-feedback" id="readingsError" aria-live="polite"></small>
-            <label for="threshold">Heat threshold (°C) <span class="required-mark" aria-hidden="true">*</span></label>
+            <label for="threshold">Comparison threshold (°C) <span class="required-mark" aria-hidden="true">*</span></label>
             <input id="threshold" name="threshold" type="number" step="any" placeholder="Enter a threshold" required aria-describedby="thresholdError">
             <small class="task-feedback" id="thresholdError" aria-live="polite"></small>
             <button type="submit">Analyze readings</button>
@@ -68,7 +68,7 @@
             const average = readings.reduce((total, value) => total + value, 0) / readings.length;
             const atOrAbove = readings.filter(value => value >= threshold).length;
             analysisOutput.textContent = [
-                `Readings analyzed: ${readings.length}`,
+                `Daily maximum-temperature values analyzed: ${readings.length}`,
                 `Minimum: ${minimum}°C`,
                 `Maximum: ${maximum}°C`,
                 `Average: ${average.toFixed(1)}°C`,

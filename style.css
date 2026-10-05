@@ -1463,7 +1463,7 @@ body > footer {
     gap: 10px 16px;
 }
 
-/* Hotspot map: let the image lead and keep alternate links in one row. */
+/* Hotspot map: let the image lead and keep regional links easy to scan. */
 .hotspot-map-layout {
     display: block;
     margin: 28px 0 38px;
@@ -1823,32 +1823,6 @@ body > footer {
     color: #52667a;
     line-height: 1.65;
 }
-.forecast-data-heading {
-    margin: 18px 0 0;
-}
-.forecast-metrics {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 28px;
-    margin: 2px 0 16px;
-}
-.forecast-metrics > div {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--line);
-}
-.forecast-metrics dt {
-    color: #52667a;
-    font-size: .92rem;
-    font-weight: 650;
-}
-.forecast-metrics dd {
-    margin: 4px 0 0;
-    color: var(--navy);
-    font-weight: 700;
-}
-.forecast-context {
-    margin: 16px 0 0;
-}
 .forecast-factors {
     max-width: 820px;
     margin-block: 28px;
@@ -1920,10 +1894,80 @@ body > footer {
         max-width: 100%;
         border-radius: 12px;
     }
-    .forecast-metrics {
-        grid-template-columns: 1fr;
-    }
     .forecast-factors ul {
         columns: 1;
     }
+}
+
+/* Compact information blocks for the final heat-safety and outlook content. */
+.heat-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 34px;
+    margin: 18px 0 30px;
+}
+.heat-info-item {
+    min-width: 0;
+    padding: 2px 0 4px 18px;
+    border-left: 3px solid var(--gold);
+}
+.heat-info-item h3 { margin: 0 0 8px; font-size: 1.12rem; }
+.heat-info-item p { margin: 0 0 9px; }
+.criteria-list { margin: 14px 0; }
+.criteria-list > div { padding: 9px 0; border-bottom: 1px solid var(--line); }
+.criteria-list dt { color: var(--navy); font-weight: 750; }
+.criteria-list dd { margin: 2px 0 0; color: #52667a; }
+.heat-safety-section { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); }
+.heat-safety-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 32px; padding-left: 22px; }
+.heat-safety-list li { padding: 4px 0 7px 3px; }
+.source-note { color: #5a6c7e; font-size: .92rem; }
+
+.alert-summary-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 28px;
+    margin: 12px 0 18px;
+}
+.alert-summary-list > div { padding: 9px 0; border-bottom: 1px solid rgba(16,36,58,.12); }
+.alert-summary-list dt { color: #52667a; font-size: .92rem; font-weight: 700; }
+.alert-summary-list dd { margin: 2px 0 0; color: var(--navy); font-weight: 750; }
+.alert-summary-list .alert-advisory-row { grid-column: 1 / -1; }
+.alert-emergency {
+    margin: 30px 0;
+    padding: 20px 22px;
+    border: 1px solid #f2c7b9;
+    border-left: 4px solid var(--gold);
+    border-radius: 12px;
+    background: #fff6ed;
+}
+.alert-emergency h2 { margin: 0 0 8px; }
+.alert-emergency p:last-child { margin-bottom: 0; }
+
+.forecast-availability {
+    max-width: 900px;
+    margin: 18px 0;
+    padding: 13px 16px;
+    border-left: 4px solid var(--gold);
+    border-radius: 0 9px 9px 0;
+    background: #fff4e2;
+    color: #354b61;
+}
+.forecast-outlook { margin: 28px 0; }
+.forecast-table-wrap { overflow-x: auto; overscroll-behavior-inline: contain; }
+.forecast-table-wrap:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.forecast-table-wrap table { min-width: 720px; }
+.prediction-summary { max-width: 900px; margin: 32px 0; padding: 2px 0 2px 20px; border-left: 3px solid var(--gold); }
+.prediction-summary h2 { margin-top: 0; }
+.prediction-summary-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 28px; margin: 14px 0; }
+.prediction-summary-list dt { color: #52667a; font-weight: 700; }
+.prediction-summary-list dd { margin: 2px 0 0; color: var(--navy); font-weight: 750; }
+.classification-note { max-width: 900px; margin: 28px 0; padding-left: 18px; border-left: 3px solid var(--teal); }
+.classification-note h2 { margin-top: 0; }
+.audio-play-button { display: inline-flex; align-items: center; gap: 8px; margin: 8px 0 12px; }
+.media-video { max-width: 760px; }
+
+@media (max-width: 680px) {
+    .heat-info-grid, .heat-safety-list { grid-template-columns: 1fr; }
+    .alert-summary-list, .prediction-summary-list { grid-template-columns: 1fr; }
+    .alert-summary-list .alert-advisory-row { grid-column: auto; }
 }

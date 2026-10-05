@@ -1,75 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <title>About Heatwave Intelligence System</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Heatwave Information</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header><main class="page-shell">
-
-    <h1>About the Heatwave Intelligence System</h1>
-
-    <hr>
-
-    <div class="about-highlights">
-
-    <section class="about-highlight">
-
-        <h2>Objective</h2>
-
-        <p>
-            The portal brings together regional heat guidance, safety information and interactive tools for reviewing readings that visitors enter. It does not monitor live weather or issue official warnings.
-        </p>
-
-    </section>
-
-    <section class="about-highlight">
-
-        <h2>Data Sources</h2>
-
-        <p>
-            Operational heat monitoring can combine
-            <strong>Automatic Weather Station readings</strong>,
-            <em>IMD forecasts</em>,
-            satellite observations and other weather sensors.
-        </p>
-
-    </section>
-
-    <section class="about-highlight">
-
-        <h2>Stakeholders</h2>
-
-        <p>
-            Meteorologists, disaster management teams, public health services and residents use weather information to plan precautions and respond to heat risks.
-        </p>
-
-    </section>
-
+<header class="site-header">
+    <div class="header-inner">
+        <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
+        <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
+        </nav>
     </div>
-    <h2>How to use the portal</h2><p>Review the alert guidance, compare regional heat-risk factors and use the hotspot map to open a zone summary. The forecast page explains which local conditions to consider. For current warnings and observations, use official weather updates.</p>
-    <h2>Regional coverage</h2><p>The portal groups locations into North, Northeast, West, Central and South zones. The Northeast has its own regional summary because humidity and monsoon rainfall can shape heat stress alongside temperature. No zone has a fixed risk level; local conditions and forecasts determine risk.</p>
-    <h2>From observations to public guidance</h2><p>Weather observations can be reviewed alongside forecasts and local conditions. Clear messages help residents, outdoor workers, healthcare teams and emergency planners decide when to take precautions and where to find additional support.</p>
-<blockquote>
-        Timely weather information helps communities prepare for periods of extreme heat and choose appropriate precautions.
-    </blockquote>
+</header>
+<main class="page-shell heatwave-info-page">
+    <p class="section-kicker">Understand heat risk</p>
+    <h1>Heatwave Information</h1>
+    <p class="page-intro">Heatwaves are assessed from high daily maximum temperatures in relation to local climate. Humidity, how long heat lasts and overnight conditions also shape the strain people experience.</p>
 
-</main><footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+    <section aria-labelledby="understanding-heatwaves">
+        <h2 id="understanding-heatwaves">Understanding Heatwaves</h2>
+        <div class="heat-info-grid">
+            <article class="heat-info-item">
+                <h3>What is a heatwave?</h3>
+                <p>A heatwave is a period of unusually high temperature that can affect health and daily life. Its assessment depends on observations from a specific location and the usual climate there; a broad zone name alone cannot determine risk.</p>
+            </article>
+            <article class="heat-info-item">
+                <h3>How heatwaves are identified</h3>
+                <p>IMD criteria primarily consider a station’s daily maximum temperature and its departure from normal. The reference thresholds below vary for plains, hills and coastal stations.</p>
+                <dl class="criteria-list">
+                    <div><dt>Threshold for considering a heatwave</dt><dd>Maximum temperature reaches at least 40°C in plains or 30°C in hilly regions.</dd></div>
+                    <div><dt>Heatwave</dt><dd>Departure of 4.5–6.4°C from normal, or actual maximum temperature of at least 45°C.</dd></div>
+                    <div><dt>Severe heatwave</dt><dd>Departure of at least 6.5°C from normal, or actual maximum temperature of at least 47°C.</dd></div>
+                    <div><dt>Coastal stations</dt><dd>Maximum temperature of at least 37°C with a departure of at least 4.5°C.</dd></div>
+                </dl>
+                <p class="source-note">Criteria summary: <a href="https://mausam.imd.gov.in/imd_latest/contents/pdf/pubbrochures/Heat%20Wave%20Warning%20Services.pdf">India Meteorological Department heatwave guidance</a>.</p>
+            </article>
+            <article class="heat-info-item">
+                <h3>Humidity and duration</h3>
+                <p>Humidity can make it harder for the body to cool itself, while repeated hot days and warm nights can limit recovery. These conditions affect heat stress, but humidity alone is not an IMD heatwave classification criterion.</p>
+            </article>
+            <article class="heat-info-item">
+                <h3>During extreme heat</h3>
+                <p>Plan outdoor activities for cooler hours, drink water regularly and follow local health and weather advisories. Seek medical help promptly if someone shows signs of serious heat illness.</p>
+            </article>
+        </div>
+    </section>
 
-<script>const currentPage=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('nav a').forEach(link=>{if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current','page')});</script>
+    <section class="heat-safety-section" aria-labelledby="heat-safety-heading">
+        <h2 id="heat-safety-heading">Heat Safety</h2>
+        <ul class="heat-safety-list">
+            <li><strong>Stay out of peak heat.</strong> Schedule essential outdoor activity for cooler hours and use shade.</li>
+            <li><strong>Stay hydrated.</strong> Drink water regularly and follow health advice about fluid intake.</li>
+            <li><strong>Keep your home cool.</strong> Close blinds during direct sun and use a cooler room where possible.</li>
+            <li><strong>Avoid strenuous activity</strong> during the hottest part of the day; take frequent breaks if work outdoors cannot be postponed.</li>
+            <li><strong>Check on people at greater risk,</strong> including older adults, young children and people with health conditions.</li>
+            <li><strong>Know the warning signs.</strong> Confusion, collapse or severe weakness needs urgent medical attention.</li>
+        </ul>
+        <p class="source-note">More guidance: <a href="https://mausam.imd.gov.in/imd_latest/contents/do%27s.php">IMD heat-safety advice</a> and <a href="https://www.ncdc.mohfw.gov.in/uploads/pdf/heat2.pdf">National Centre for Disease Control heat-health advisory</a>.</p>
+    </section>
+</main>
+<footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+<script>
+    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('#main-navigation a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');
+    });
+</script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-

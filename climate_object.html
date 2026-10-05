@@ -17,7 +17,7 @@
     </header>
     <main class="page-shell">
         <h1>Climate Data Explorer</h1>
-        <p class="page-intro">Inspect weather readings, compare a temperature with a threshold and review the entered data properties.</p>
+        <p class="page-intro">Enter local conditions to compare an observed maximum temperature with a chosen threshold and review the entered values. Current IMD observations and forecasts are not loaded automatically.</p>
         <form id="explorerForm">
             <label for="region">Region</label>
             <select id="region" required>
@@ -26,14 +26,14 @@
             </select>
             <label for="location">Location</label>
             <input id="location" required placeholder="City or town">
-            <label for="temperature">Temperature °C</label>
-            <input id="temperature" type="number" step="any" required placeholder="Enter temperature">
+            <label for="temperature">Observed maximum temperature °C</label>
+            <input id="temperature" type="number" step="any" required placeholder="Enter a local observed maximum">
             <label for="humidity">Humidity %</label>
             <input id="humidity" type="number" min="0" max="100" step="any" required placeholder="Enter relative humidity">
             <label for="windSpeed">Wind speed km/h (optional)</label>
             <input id="windSpeed" type="number" min="0" step="any" placeholder="Enter wind speed">
-            <label for="forecastTemperature">Forecast temperature °C</label>
-            <input id="forecastTemperature" type="number" step="any" required placeholder="Enter forecast temperature">
+            <label for="forecastTemperature">Expected maximum temperature °C</label>
+            <input id="forecastTemperature" type="number" step="any" required placeholder="Enter an expected maximum">
             <label for="threshold">Comparison threshold °C</label>
             <input id="threshold" type="number" step="any" required placeholder="Enter comparison threshold">
             <button type="button" onclick="runAction('display')">Display information</button>
@@ -68,18 +68,19 @@
                 }
                 const wind = data.windSpeed === '' ? 'Not entered' : data.windSpeed + ' km/h';
                 if (action === 'difference') {
-                    output.textContent = 'Temperature difference from threshold: ' + data.temperatureDifference().toFixed(1) + '°C';
+                    output.textContent = 'Observed maximum temperature difference from threshold: ' + data.temperatureDifference().toFixed(1) + '°C';
                     return;
                 }
                 output.textContent =
                     'Region: ' + data.region +
                     '\nLocation: ' + data.location +
-                    '\nTemperature: ' + data.temperature + '°C' +
+                    '\nObserved maximum temperature: ' + data.temperature + '°C' +
                     '\nHumidity: ' + data.humidity + '%' +
                     '\nWind speed: ' + wind +
-                    '\nForecast temperature: ' + data.forecastTemperature + '°C' +
+                    '\nExpected maximum temperature: ' + data.forecastTemperature + '°C' +
                     '\nThreshold difference: ' + data.temperatureDifference().toFixed(1) + '°C' +
-                    '\nLocal review: ' + data.localReview;
+                    '\nLocal review flag: ' + data.localReview +
+                    '\n\nValues are entered manually; this page does not load current IMD observations or predictions.';
             }
         </script>
     </main>
