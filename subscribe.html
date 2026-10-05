@@ -10,8 +10,8 @@
 <header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header>
 <main class="page-shell subscribe-page">
   <p class="section-kicker">Stay informed</p>
-  <h1>Get heatwave alerts</h1>
-  <p>Choose your region and how you would like to receive local heat advisories.</p>
+  <h1>Set alert preferences</h1>
+  <p>Choose a region and review alert preferences. This website does not store your details or send alerts; use official weather updates for current warnings.</p>
   <form id="subscribeForm" autocomplete="off" novalidate>
     <p class="required-note"><span aria-hidden="true">*</span> Required fields</p>
     <fieldset>
@@ -20,13 +20,13 @@
       <input id="citizenName" name="name" autocomplete="off" placeholder="Enter your full name" aria-describedby="citizenNameError" required>
       <span class="field-error" id="citizenNameError" aria-live="polite" hidden>Please enter your name.</span>
       <label for="email">Email address <span class="required-mark" aria-hidden="true">*</span></label>
-      <input id="email" name="email" type="email" autocomplete="off" placeholder="name@example.com" aria-describedby="emailError" required>
+      <input id="email" name="email" type="email" autocomplete="off" placeholder="you@domain.com" aria-describedby="emailError" required>
       <span class="field-error" id="emailError" aria-live="polite" hidden>Please enter a valid email address.</span>
       <label for="mobile">Mobile number <span class="required-mark" aria-hidden="true">*</span></label>
       <input id="mobile" name="mobile" type="tel" inputmode="tel" autocomplete="off" placeholder="10-digit mobile number" pattern="(?:\+91[ -]?)?[6-9][0-9]{9}" title="Enter a valid 10-digit Indian mobile number, optionally with +91." aria-describedby="mobileError" required>
       <span class="field-error" id="mobileError" aria-live="polite" hidden>Please enter a valid 10-digit mobile number.</span>
       <label for="region">Region <span class="required-mark" aria-hidden="true">*</span></label>
-      <select id="region" name="region" aria-describedby="regionError" required><option value="">Choose a region</option><option>North Zone</option><option>Central Zone</option><option>West Zone</option><option>South Zone</option></select>
+      <select id="region" name="region" aria-describedby="regionError" required><option value="">Choose a region</option><option>North Zone</option><option>Northeast Zone</option><option>West Zone</option><option>Central Zone</option><option>South Zone</option></select>
       <span class="field-error" id="regionError" aria-live="polite" hidden>Please select your region.</span>
     </fieldset>
     <fieldset>
@@ -106,7 +106,7 @@ subscribeForm.addEventListener('submit', event => {
     return;
   }
   subscribeStatus.className = 'success';
-  subscribeStatus.textContent = 'Subscription successful! Your alert preferences have been confirmed for this demonstration.';
+  subscribeStatus.textContent = `Subscription form completed for ${subscribeForm.querySelector('#region').value}. Your details are not stored, and alerts are not sent from this site.`;
   subscribeStatus.hidden = false;
 });
 
@@ -125,3 +125,5 @@ document.querySelectorAll('nav a').forEach(link => { if (link.getAttribute('href
 </script>
 </body>
 </html>
+
+

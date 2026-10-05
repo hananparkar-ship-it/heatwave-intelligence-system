@@ -29,24 +29,31 @@
                 Heatwave Temperature Analysis
             </h1>
             <p class="page-intro">
-                Enter a location reading and threshold to see the difference and whether the sample temperature meets the heatwave threshold.
+                Enter local temperature and humidity readings to compare them with a heatwave threshold.
             </p>
             <form id="f">
                 <label>
                     Location
-                    <input id="l" value="Mumbai" required>
+                    <input id="l" placeholder="City or town" required>
+                </label>
+                <label>
+                    Region
+                    <select id="r" required>
+                        <option value="">Choose a region</option>
+                        <option>North Zone</option><option>Northeast Zone</option><option>West Zone</option><option>Central Zone</option><option>South Zone</option>
+                    </select>
                 </label>
                 <label>
                     Current temperature °C
-                    <input id="t" type="number" value="39" required>
+                    <input id="t" type="number" step="any" placeholder="Enter temperature" required>
                 </label>
                 <label>
                     Heatwave threshold °C
-                    <input id="h" type="number" value="37" required>
+                    <input id="h" type="number" step="any" placeholder="Enter threshold" required>
                 </label>
                 <label>
                     Humidity %
-                    <input id="u" type="number" value="65" required>
+                    <input id="u" type="number" min="0" max="100" step="any" placeholder="Enter relative humidity" required>
                 </label>
                 <label>
                     Monitoring date
@@ -62,7 +69,9 @@
                 document.querySelector('#d').valueAsDate=new Date;
                 document.querySelector('#f').onsubmit=e=> {
                     e.preventDefault();
-                    let l=document.querySelector('#l').value, t=+document.querySelector('#t').value, h=+document.querySelector('#h').value, u=+document.querySelector('#u').value, d=document.querySelector('#d').value, s=t>=h?'Heatwave Condition Detected':'No Heatwave Condition', m=`Location: ${l}\nCurrent Temperature: ${t}°C\nHeatwave Threshold: ${h}°C\nTemperature Difference: ${t-h}°C\nHumidity: ${u}%\nMonitoring Date: ${d}\n\nStatus: ${s}`;
+                    let l=document.querySelector('#l').value, r=document.querySelector('#r').value, t=+document.querySelector('#t').value, h=+document.querySelector('#h').value, u=+document.querySelector('#u').value, d=document.querySelector('#d').value;
+                    let s=t>=h&&u>=60?'Threshold met; humidity may add to heat stress':t>=h?'Temperature threshold met':'Below the entered temperature threshold';
+                    let m=`Location: ${l}\nRegion: ${r}\nCurrent Temperature: ${t}°C\nHeatwave Threshold: ${h}°C\nTemperature Difference: ${t-h}°C\nRelative Humidity: ${u}%\nMonitoring Date: ${d}\n\nAssessment: ${s}`;
                     document.querySelector('#o').textContent=m;
                     console.log(m);
                     alert(s)

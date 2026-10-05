@@ -7,51 +7,36 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header><main class="page-shell">
-<h1>Heatwave Alert Bulletin</h1>
-<hr>
-<p>
-<strong>Alert:</strong>
-<mark>Severe Heatwave Warning</mark>
-</p>
-<p>
-<strong>Region:</strong>
-<mark>North Zone</mark>
-</p>
-<p>
-Citizens are advised to follow
-<em>heat safety precautions</em>
-and avoid unnecessary outdoor activities.
-</p>
-<p>
-Maximum Temperature :
-46<sup>o</sup>C
-</p>
-<p>
-Bulletin Version :
-2<sup>.1</sup>
-</p>
-<p>
-Example Scenario Date :
-15<sup>th</sup> June 2026
-</p>
-<p>
-<abbr title="Automatic Weather Station">AWS</abbr>,
-<abbr title="India Meteorological Department">IMD</abbr>,
-<abbr title="Heatwave">HW</abbr>,
-<abbr title="Severe Heatwave">SHW</abbr>
-data are used for monitoring.
-</p>
-<h2>How to use this bulletin</h2><p>Check the named region and maximum temperature, then open the hotspot map or regional forecast for more context. Conditions can vary between nearby locations, so follow the latest local announcements when planning outdoor work or travel.</p><h2>Heat safety reminders</h2><p>Drink water regularly, choose shaded or cooler places when possible, and limit strenuous outdoor activity during the hottest part of the day. Check on people who may need extra support, and contact local emergency services if someone appears seriously unwell.</p><p class="notice"><strong>Example bulletin:</strong> This page demonstrates an alert layout. It is not a live government warning.</p>
-<h2>Official resources</h2><p>For current forecasts, warnings and health guidance, use the official sources below:</p><ul><li><a href="https://mausam.imd.gov.in/imd_latest/contents/do%27s.php">India Meteorological Department heat-wave dos and donts</a></li><li><a href="https://www.ncdc.mohfw.gov.in/uploads/pdf/heat2.pdf">National Centre for Disease Control public health advisory on extreme heat</a></li></ul>
-<small>
-Forecast is subject to revision.
-</small>
+<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header>
+<main class="page-shell alert-page">
+    <p class="section-kicker">Public heat information</p>
+    <h1>Heatwave Alert Bulletin</h1>
+    <p class="page-intro">Review practical precautions and use official sources for current warning levels and affected areas.</p>
+
+    <p class="alert-status"><strong>Current warnings:</strong> Check the India Meteorological Department for official updates. This page provides general safety guidance.</p>
+
+    <section class="alert-advisory" aria-labelledby="advisory-title">
+        <h2 id="advisory-title">Advisory</h2>
+        <p>Drink water regularly, use shaded or cooler places when possible, and limit strenuous outdoor activity during the hottest part of the day. Check on people who may need extra support. Seek urgent medical help if someone becomes confused, collapses or appears seriously unwell.</p>
+    </section>
+
+    <h2>How to use this bulletin</h2>
+    <ol class="bulletin-steps">
+        <li>Check the issuing authority, region and bulletin time.</li>
+        <li>Follow the listed precautions and recheck for updated advice.</li>
+        <li>Use local authority guidance for travel, work and emergency decisions.</li>
+    </ol>
+
+    <h2>Official resources</h2>
+    <p>For current forecasts, warnings and health guidance, check:</p>
+    <ul><li><a href="https://mausam.imd.gov.in/imd_latest/contents/do%27s.php">India Meteorological Department heat-wave safety guidance</a></li><li><a href="https://www.ncdc.mohfw.gov.in/uploads/pdf/heat2.pdf">National Centre for Disease Control advisory on extreme heat</a></li></ul>
 </main><footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
 
 <script>const currentPage=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('nav a').forEach(link=>{if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current','page')});</script>
 </body>
 </html>
+
+
 
 
 

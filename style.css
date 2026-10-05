@@ -614,10 +614,6 @@ section[aria-labelledby="lab-title"] .card p {
 }
 
 .gallery-section,
-.price-section {
-    margin: 48px 0;
-}
-
 .gallery {
     max-width: none;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -663,24 +659,6 @@ section[aria-labelledby="lab-title"] .card p {
     background: #fff;
     box-shadow: var(--shadow);
     -webkit-overflow-scrolling: touch;
-}
-
-.price-section table {
-    min-width: 560px;
-    margin: 0;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-.price-section th {
-    padding: 15px 18px;
-    border-bottom: 3px solid var(--gold);
-    background: var(--navy);
-    font-size: .98rem;
-}
-
-.price-section td {
-    padding: 14px 18px;
 }
 
 .info-grid {
@@ -1392,22 +1370,6 @@ body > footer {
     font-size: .96rem;
 }
 
-.home-page .price-section td {
-    padding-block: 16px;
-}
-
-.home-page .price-section tbody tr:nth-child(even) {
-    background: #f4f8f9;
-}
-
-.home-page .price-section td:last-child {
-    color: var(--navy);
-    font-size: 1.05rem;
-    font-weight: 800;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-}
-
 /* Final consistency pass across the existing page templates. */
 .home-header h1 a { color: inherit; text-decoration: none; }
 .home-header h1 a:hover { color: #fff; }
@@ -1670,7 +1632,6 @@ body > footer {
     margin-right: auto;
 }
 
-
 /* Center the subscription page's content column and form. */
 .subscribe-page {
     max-width: 1000px;
@@ -1684,3 +1645,90 @@ body > footer {
     width: min(100%, 760px);
     margin-inline: auto;
 }
+
+/* Shared content polish for the regional guidance and learning pages. */
+.home-page .hero .hero-points {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 24px;
+    max-width: 720px;
+    margin: 22px 0 8px;
+    padding: 0;
+    list-style: none;
+}
+.home-page .hero .hero-points li {
+    position: relative;
+    padding-left: 22px;
+    color: #f0f6f7;
+    line-height: 1.5;
+}
+.home-page .hero .hero-points li::before {
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    content: "✓";
+    font-weight: 800;
+}
+.home-page .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.home-page .hero-actions .button-link { display: inline-flex; align-items: center; justify-content: center; }
+.home-page .hero-actions .button-link-secondary {
+    border: 1px solid rgba(255,255,255,.62);
+    background: rgba(255,255,255,.08);
+    color: #fff !important;
+    box-shadow: none;
+}
+.home-page .hero-actions .button-link-secondary:hover { background: rgba(255,255,255,.16); }
+.home-page .at-a-glance .cards { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.home-page .at-a-glance .card { padding: 19px 17px; }
+.home-page .at-a-glance .card h3 { font-size: 1.06rem; }
+.home-page .at-a-glance .card p { margin: 0; font-size: .93rem; line-height: 1.55; }
+
+.alert-page { max-width: 980px; }
+.alert-page .alert-status {
+    margin: 24px 0;
+    padding: 17px 20px;
+    border-left: 4px solid var(--gold);
+    border-radius: 0 10px 10px 0;
+    background: #fff4e2;
+    color: #283e52;
+}
+.alert-page .alert-advisory { margin: 26px 0 34px; padding: 2px 0 2px 22px; border-left: 3px solid var(--teal); }
+.alert-page .alert-advisory h2 { margin-top: 0; }
+.alert-page .bulletin-steps { max-width: 760px; padding-left: 25px; }
+.alert-page .bulletin-steps li { margin: 10px 0; padding-left: 4px; line-height: 1.6; }
+
+.zone-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; margin: 26px 0; }
+.zone-facts > div { min-width: 0; padding: 3px 18px 8px; border-left: 3px solid var(--gold); }
+.zone-facts h2 { margin: 0 0 9px; font-size: 1.25rem; }
+.zone-facts p { margin: 0; }
+.zone-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 28px 0 16px; padding-top: 15px; border-top: 1px solid var(--line); }
+.zone-links a { min-height: 40px; display: inline-flex; align-items: center; font-weight: 700; }
+.zone-links a[aria-current="page"] { color: var(--navy); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+
+.temperature-analysis-page .reading-form { display: grid; gap: 9px; }
+.temperature-analysis-page .reading-form label { margin: 8px 0 0; }
+.temperature-analysis-page .reading-form textarea { width: 100%; min-height: 118px; padding: 12px 14px; resize: vertical; }
+.temperature-analysis-page .reading-form button { justify-self: start; margin-top: 10px; }
+.temperature-analysis-page .task-feedback { min-height: 1.25em; color: #b42318; line-height: 1.4; }
+.temperature-analysis-page .reading-form .invalid { border-color: #c83e36 !important; box-shadow: 0 0 0 2px rgba(200,62,54,.11); }
+.temperature-analysis-page .task-output { white-space: pre-wrap; line-height: 1.7; }
+.temperature-analysis-page .task-output:empty { display: none; }
+.internal-page-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 34px; padding-left: 20px; }
+.internal-page-list li { padding: 4px 0; }
+.internal-page-list a { display: inline-block; padding: 4px 0; }
+
+@media (max-width: 1000px) {
+    .home-page .at-a-glance .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+    .home-page .hero .hero-points { grid-template-columns: 1fr; gap: 8px; }
+    .home-page .at-a-glance .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .zone-facts { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 520px) {
+    .home-page .at-a-glance .cards, .internal-page-list { grid-template-columns: 1fr; }
+    .home-page .hero-actions { align-items: stretch; flex-direction: column; }
+    .home-page .hero-actions .button-link { width: 100%; }
+    .alert-page .alert-status { padding: 14px 16px; }
+}
+

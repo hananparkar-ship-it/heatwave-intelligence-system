@@ -3,9 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>
-            Climate Monitoring Object
-        </title>
+        <title>Climate Data Explorer</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -25,54 +23,62 @@
             </div>
         </header>
         <main class="page-shell">
-            <h1>
-                Climate Monitoring Object
-            </h1>
-            <p class="page-intro">
-                Explore a climate-monitoring object, its stored properties and the methods used to calculate risk and alert status.
-            </p>
-            <button onclick="data.displayData()">
-                Display information
-            </button>
-            <button onclick="showDifference()">
-                Temperature difference
-            </button>
-            <button onclick="showRisk()">
-                Determine risk
-            </button>
-            <button onclick="updateAlert()">
-                Update alert
-            </button>
-            <pre id="o">
-            </pre>
+            <h1>Climate Data Explorer</h1>
+            <p class="page-intro">Enter weather readings to inspect the stored properties, compare a temperature with its threshold and calculate a risk category.</p>
+            <form id="explorerForm">
+                <label for="region">Region</label>
+                <select id="region" required><option value="">Choose a region</option><option>North Zone</option><option>Northeast Zone</option><option>West Zone</option><option>Central Zone</option><option>South Zone</option></select>
+                <label for="location">Location</label><input id="location" required placeholder="City or town">
+                <label for="temperature">Temperature °C</label><input id="temperature" type="number" step="any" required placeholder="Enter temperature">
+                <label for="humidity">Humidity %</label><input id="humidity" type="number" min="0" max="100" step="any" required placeholder="Enter relative humidity">
+                <label for="windSpeed">Wind speed km/h (optional)</label><input id="windSpeed" type="number" min="0" step="any" placeholder="Enter wind speed">
+                <label for="forecastTemperature">Forecast temperature °C</label><input id="forecastTemperature" type="number" step="any" required placeholder="Enter forecast temperature">
+                <label for="threshold">Heatwave threshold °C</label><input id="threshold" type="number" step="any" required placeholder="Enter threshold">
+                <button type="button" onclick="runAction('display')">Display information</button>
+                <button type="button" onclick="runAction('difference')">Temperature difference</button>
+                <button type="button" onclick="runAction('risk')">Determine risk</button>
+                <button type="button" onclick="runAction('review')">Update local review</button>
+            </form>
+            <pre id="o" aria-live="polite">Enter the readings above, then choose an action.</pre>
             <script>
-                const data= {
-                    location:'Mumbai', city:'Mumbai', temperature:39, humidity:65, windSpeed:12, forecastTemperature:41, threshold:37, riskLevel:'Moderate', alertStatus:'Active', monitoringDate:new Date().toLocaleDateString(), displayData() {
-                        document.querySelector('#o').textContent=`Location: ${this.location}\nCity: ${this.city}\nTemperature: ${this.temperature}°C\nHumidity: ${this.humidity}%\nWind Speed: ${this.windSpeed} km/h\nForecast: ${this.forecastTemperature}°C\nRisk Level: ${this.riskLevel}\nAlert Status: ${this.alertStatus}\nMonitoring Date: ${this.monitoringDate}`
-                    }, temperatureDifference() {
-                        return this.temperature-this.threshold
-                    }, determineRisk() {
-                        if(this.temperature>=40||this.forecastTemperature>=42)return'High';
-                        if(this.temperature>=this.threshold)return'Moderate';
-                        return'Low'
-                    }, displayAlert() {
-                        return`Early-warning status: ${this.alertStatus}`
-                    }, updateAlertStatus(s) {
-                        this.alertStatus=s
-                    }
+                const form = document.querySelector('#explorerForm');
+                const output = document.querySelector('#o');
+                const data = { localReview: 'Not reviewed' };
+
+                function readInputs() {
+                    data.region = form.querySelector('#region').value;
+                    data.location = form.querySelector('#location').value.trim();
+                    data.temperature = Number(form.querySelector('#temperature').value);
+                    data.humidity = Number(form.querySelector('#humidity').value);
+                    data.windSpeed = form.querySelector('#windSpeed').value;
+                    data.forecastTemperature = Number(form.querySelector('#forecastTemperature').value);
+                    data.threshold = Number(form.querySelector('#threshold').value);
+                    return form.reportValidity();
+                }
+
+                data.temperatureDifference = function () { return this.temperature - this.threshold; };
+                data.determineRisk = function () {
+                    if (this.temperature >= 40) return 'Severe';
+                    if (this.temperature >= 38 && this.humidity >= 60) return 'High';
+                    if (this.forecastTemperature >= 40) return 'Early warning';
+                    if (this.temperature >= 35 && this.temperature < 38) return 'Moderate';
+                    return 'Normal';
                 };
-                function showDifference() {
-                    document.querySelector('#o').textContent=`Temperature difference from threshold: ${data.temperatureDifference()}°C`
+
+                function runAction(action) {
+                    if (!readInputs()) return;
+                    if (action === 'review') data.localReview = data.localReview === 'Reviewed locally' ? 'Not reviewed' : 'Reviewed locally';
+                    const risk = data.determineRisk();
+                    const wind = data.windSpeed === '' ? 'Not entered' : `${data.windSpeed} km/h`;
+                    const regionalNote = data.region === 'Northeast Zone' ? '\nRegional context: review humidity and rainfall alongside temperature.' : '';
+                    if (action === 'difference') {
+                        output.textContent = `Temperature difference from threshold: ${data.temperatureDifference().toFixed(1)}°C`;
+                    } else if (action === 'risk') {
+                        output.textContent = `Region: ${data.region}\nRisk level: ${risk}${regionalNote}`;
+                    } else {
+                        output.textContent = `Region: ${data.region}\nLocation: ${data.location}\nTemperature: ${data.temperature}°C\nHumidity: ${data.humidity}%\nWind speed: ${wind}\nForecast temperature: ${data.forecastTemperature}°C\nThreshold difference: ${data.temperatureDifference().toFixed(1)}°C\nRisk level: ${risk}\nLocal review: ${data.localReview}${regionalNote}`;
+                    }
                 }
-                function showRisk() {
-                    data.riskLevel=data.determineRisk();
-                    document.querySelector('#o').textContent=`Risk Level: ${data.riskLevel}\n${data.displayAlert()}`
-                }
-                function updateAlert() {
-                    data.updateAlertStatus(data.alertStatus==='Active'?'Acknowledged':'Active');
-                    document.querySelector('#o').textContent=data.displayAlert()
-                }
-                data.displayData()
             </script>
         </main>
         <footer class="site-footer">

@@ -29,27 +29,34 @@
                 Heatwave Risk and Early Warning
             </h1>
             <p class="page-intro">
-                Adjust the sample temperature, humidity and forecast to see how the demonstration assigns a warning level.
+                Enter regional weather conditions to calculate a warning level from temperature, humidity and forecast values.
             </p>
             <form id="f">
                 <label>
                     Location
-                    <input id="l" value="Pune" required>
+                    <input id="l" placeholder="City or town" required>
+                </label>
+                <label>
+                    Region
+                    <select id="region" required>
+                        <option value="">Choose a region</option>
+                        <option>North Zone</option><option>Northeast Zone</option><option>West Zone</option><option>Central Zone</option><option>South Zone</option>
+                    </select>
                 </label>
                 <label>
                     Temperature °C
-                    <input id="t" type="number" value="39" required>
+                    <input id="t" type="number" step="any" placeholder="Enter temperature" required>
                 </label>
                 <label>
                     Humidity %
-                    <input id="h" type="number" value="65" required>
+                    <input id="h" type="number" min="0" max="100" step="any" placeholder="Enter relative humidity" required>
                 </label>
                 <label>
                     Forecast temperature °C
-                    <input id="fc" type="number" value="41" required>
+                    <input id="fc" type="number" step="any" placeholder="Enter forecast temperature" required>
                 </label>
                 <label>
-                    <input id="hw" type="checkbox" checked>
+                    <input id="hw" type="checkbox">
                     Heatwave condition
                 </label>
                 <label>
@@ -66,6 +73,7 @@
                 document.querySelector('#f').onsubmit=e=> {
                     e.preventDefault();
                     let l=document.querySelector('#l').value;
+                    let region=document.querySelector('#region').value;
                     let t=Number(document.querySelector('#t').value);
                     let h=Number(document.querySelector('#h').value);
                     let f=Number(document.querySelector('#fc').value);
@@ -91,7 +99,8 @@
                         a='Continue Monitoring';
                     }
 
-                    let m=`Location: ${l}\nTemperature: ${t}°C\nHumidity: ${h}%\nForecast: ${f}°C\nHeatwave condition: ${hw ? 'Yes' : 'No'}\nVulnerable population alert: ${v ? 'Yes' : 'No'}\n\nRisk Level: ${r}\nRecommendation: ${a}`;
+                    let regionalContext=region==='Northeast Zone'?'\nRegional context: consider humidity and rainfall alongside temperature.':'';
+                    let m=`Location: ${l}\nRegion: ${region}\nTemperature: ${t}°C\nHumidity: ${h}%\nForecast: ${f}°C\nHeatwave condition: ${hw ? 'Yes' : 'No'}\nVulnerable population alert: ${v ? 'Yes' : 'No'}\n\nRisk Level: ${r}\nRecommendation: ${a}${regionalContext}`;
                     document.querySelector('#o').textContent=m;
                     console.log(m)
                 }
