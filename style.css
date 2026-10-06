@@ -1904,19 +1904,23 @@ body > footer {
 /* Compact information blocks for the final heat-safety and outlook content. */
 .heat-info-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px 34px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
     margin: 18px 0 30px;
 }
 .heat-info-item {
     min-width: 0;
-    padding: 2px 0 4px 18px;
+    padding: 20px 22px;
     border-left: 3px solid var(--gold);
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, .58);
 }
+.heat-info-item:first-child { border-radius: 12px 12px 0 0; }
+.heat-info-item:last-child { border-radius: 0 0 12px 12px; border-bottom: 0; }
 .heat-info-item h3 { margin: 0 0 8px; font-size: 1.12rem; }
-.heat-info-item p { margin: 0 0 9px; }
+.heat-info-item p { margin: 0 0 9px; max-width: 88ch; }
 .criteria-list { margin: 14px 0; }
-.criteria-list > div { padding: 9px 0; border-bottom: 1px solid var(--line); }
+.criteria-list > div { padding: 10px 0; border-bottom: 1px solid var(--line); }
 .criteria-list dt { color: var(--navy); font-weight: 750; }
 .criteria-list dd { margin: 2px 0 0; color: #52667a; }
 .heat-safety-section { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); }
@@ -1978,6 +1982,14 @@ body > footer {
 .media-page .media-gallery .gallery-item img { transition: transform 220ms ease; }
 .media-page .media-gallery .gallery-item:hover img,
 .media-page .media-gallery .gallery-item:focus-within img { transform: scale(1.045); }
+.media-image-trigger { display: block; width: 100%; padding: 0; overflow: hidden; border: 0; border-radius: 0; background: transparent; cursor: zoom-in; }
+.media-image-trigger:hover { background: transparent; }
+.media-image-trigger img { display: block; width: 100%; }
+.image-lightbox { width: min(92vw, 1100px); max-width: none; max-height: 92vh; padding: 18px; overflow: visible; border: 1px solid var(--line); border-radius: 16px; background: white; box-shadow: 0 24px 80px rgba(0,0,0,.35); }
+.image-lightbox::backdrop { background: rgba(10, 26, 42, .82); }
+.image-lightbox img { display: block; width: auto; max-width: 100%; max-height: calc(92vh - 72px); margin: 0 auto; object-fit: contain; }
+.image-lightbox .lightbox-close { display: block; margin: 0 0 12px auto; padding: 7px 12px; background: #18364e; }
+.image-lightbox .lightbox-close:hover { background: #31536c; }
 
 @media (max-width: 760px) {
     .map-meta p:first-child { white-space: normal; }
