@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Climate Data Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
+            <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a><a href="about_website.html">About</a>
+            </nav>
+        </div>
+    </header>
+    <main class="page-shell">
+        <h1>Climate Data Explorer</h1>
+        <p class="page-intro">Enter local conditions to compare an observed maximum temperature with a chosen threshold and review the entered values. Current IMD observations and forecasts are not loaded automatically.</p>
+        <form id="explorerForm">
+            <label for="region">Climate class</label>
+            <select id="region" required>
+                <option value="">Choose a climate class</option>
+                <option>Arid</option><option>Humid Subtropical</option><option>Montane</option><option>Semi Arid</option><option>Tropical Wet</option><option>Tropical Wet &amp; Dry</option>
+            </select>
+            <label for="location">Location</label>
+            <input id="location" required placeholder="City or town">
+            <label for="temperature">Observed maximum temperature °C</label>
+            <input id="temperature" type="number" step="any" required placeholder="Enter a local observed maximum">
+            <label for="humidity">Humidity %</label>
+            <input id="humidity" type="number" min="0" max="100" step="any" required placeholder="Enter relative humidity">
+            <label for="windSpeed">Wind speed km/h (optional)</label>
+            <input id="windSpeed" type="number" min="0" step="any" placeholder="Enter wind speed">
+            <label for="forecastTemperature">Expected maximum temperature °C</label>
+            <input id="forecastTemperature" type="number" step="any" required placeholder="Enter an expected maximum">
+            <label for="threshold">Comparison threshold °C</label>
+            <input id="threshold" type="number" step="any" required placeholder="Enter comparison threshold">
+            <button type="button" onclick="runAction('display')">Display information</button>
+            <button type="button" onclick="runAction('difference')">Temperature difference</button>
+            <button type="button" onclick="runAction('review')">Update local review</button>
+        </form>
+        <pre id="o" aria-live="polite">Enter the readings above, then choose an action.</pre>
+        <script>
+            const form = document.querySelector('#explorerForm');
+            const output = document.querySelector('#o');
+            const data = { localReview: 'Not reviewed' };
+
+            function readInputs() {
+                data.region = form.querySelector('#region').value;
+                data.location = form.querySelector('#location').value.trim();
+                data.temperature = Number(form.querySelector('#temperature').value);
+                data.humidity = Number(form.querySelector('#humidity').value);
+                data.windSpeed = form.querySelector('#windSpeed').value;
+                data.forecastTemperature = Number(form.querySelector('#forecastTemperature').value);
+                data.threshold = Number(form.querySelector('#threshold').value);
+                return form.reportValidity();
+            }
+
+            data.temperatureDifference = function () {
+                return this.temperature - this.threshold;
+            };
+
+            function runAction(action) {
+                if (!readInputs()) return;
+                if (action === 'review') {
+                    data.localReview = data.localReview === 'Reviewed locally' ? 'Not reviewed' : 'Reviewed locally';
+                }
+                const wind = data.windSpeed === '' ? 'Not entered' : data.windSpeed + ' km/h';
+                if (action === 'difference') {
+                    output.textContent = 'Observed maximum temperature difference from threshold: ' + data.temperatureDifference().toFixed(1) + '°C';
+                    return;
+                }
+                output.textContent =
+                    'Climate class: ' + data.region +
+                    '\nLocation: ' + data.location +
+                    '\nObserved maximum temperature: ' + data.temperature + '°C' +
+                    '\nHumidity: ' + data.humidity + '%' +
+                    '\nWind speed: ' + wind +
+                    '\nExpected maximum temperature: ' + data.forecastTemperature + '°C' +
+                    '\nThreshold difference: ' + data.temperatureDifference().toFixed(1) + '°C' +
+                    '\nLocal review flag: ' + data.localReview +
+                    '\n\nValues are entered manually; this page does not load current IMD observations or predictions.';
+            }
+        </script>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">Heatwave Intelligence · Community safety through timely information
+            <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span>
+        </div>
+    </footer>
+    <script>
+        const currentPage = location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('nav a').forEach(link => {
+            if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');
+        });
+    </script>
+</body>
+</html>

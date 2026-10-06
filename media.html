@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Heatwave Media &amp; Guides</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="header-inner">
+        <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
+        <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a><a href="about_website.html">About</a>
+        </nav>
+    </div>
+</header>
+<main class="page-shell media-page">
+    <p class="section-kicker">Public information</p>
+    <h1>Heatwave Media &amp; Guides</h1>
+    <p class="page-intro">Listen to the safety advisory and browse visual guidance for preparing for periods of extreme heat.</p>
+
+    <section class="media-section audio-section" aria-labelledby="audio-title">
+        <h2 id="audio-title">Audio Advisory</h2>
+        <p>Play the short advisory for practical reminders during hot weather.</p>
+        <button class="audio-play-button" id="audioPlayButton" type="button" aria-controls="audioAdvisory">▶ Play audio advisory</button>
+        <audio id="audioAdvisory" controls preload="metadata">
+            <source src="advisory.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio>
+    </section>
+
+    <section class="media-section" aria-labelledby="guides-title">
+        <h2 id="guides-title">Visual Guides</h2>
+        <div class="gallery media-gallery">
+            <figure class="gallery-item"><button class="media-image-trigger" type="button" aria-haspopup="dialog" aria-label="Open larger image: Heatwave conditions"><img src="heatwave1.jpg" alt="Heatwave conditions"></button><figcaption>Heatwave conditions</figcaption></figure>
+            <figure class="gallery-item"><button class="media-image-trigger" type="button" aria-haspopup="dialog" aria-label="Open larger image: Extreme temperatures"><img src="heatwave2.jpg" alt="Extreme temperatures"></button><figcaption>Extreme temperatures</figcaption></figure>
+            <figure class="gallery-item"><button class="media-image-trigger" type="button" aria-haspopup="dialog" aria-label="Open larger image: Hot weather"><img src="heatwave3.jpg" alt="Hot weather"></button><figcaption>Hot weather</figcaption></figure>
+            <figure class="gallery-item"><button class="media-image-trigger" type="button" aria-haspopup="dialog" aria-label="Open larger image: Heat-safety guidance"><img src="heatwave4.jpg" alt="Heat-safety guidance"></button><figcaption>Heat-safety guidance</figcaption></figure>
+        </div>
+        <dialog class="image-lightbox" id="guideLightbox" aria-label="Expanded visual guide">
+            <button class="lightbox-close" type="button">Close</button>
+            <img id="guideLightboxImage" alt="">
+        </dialog>
+        <h3>Heatwave Awareness Video</h3>
+        <video class="media-video" controls preload="metadata" aria-label="Heatwave awareness video">
+            <source src="heatwave.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+
+    <section class="media-section" aria-labelledby="mumbai-map-title">
+        <h2 id="mumbai-map-title">Mumbai Reference Map</h2>
+        <p>This map provides a geographic reference only; it does not show weather readings or heat-risk conditions.</p>
+        <p><a href="https://mausam.imd.gov.in/">Visit the India Meteorological Department for current weather and heatwave updates</a>.</p>
+        <iframe src="https://www.google.com/maps?q=Mumbai&amp;output=embed" title="Map showing Mumbai" loading="lazy"></iframe>
+    </section>
+</main>
+<footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+<script>
+    const audioAdvisory = document.querySelector('#audioAdvisory');
+    const audioPlayButton = document.querySelector('#audioPlayButton');
+    function updateAudioButton() {
+        audioPlayButton.textContent = audioAdvisory.paused ? '▶ Play audio advisory' : '⏸ Pause audio advisory';
+        audioPlayButton.setAttribute('aria-label', audioAdvisory.paused ? 'Play audio advisory' : 'Pause audio advisory');
+    }
+    audioPlayButton.addEventListener('click', async () => {
+        if (audioAdvisory.paused) {
+            try { await audioAdvisory.play(); } catch { audioPlayButton.textContent = 'Audio could not be played'; }
+        } else {
+            audioAdvisory.pause();
+        }
+    });
+    audioAdvisory.addEventListener('play', updateAudioButton);
+    audioAdvisory.addEventListener('pause', updateAudioButton);
+    audioAdvisory.addEventListener('ended', updateAudioButton);
+    const guideLightbox = document.querySelector('#guideLightbox');
+    const guideLightboxImage = document.querySelector('#guideLightboxImage');
+    document.querySelectorAll('.media-image-trigger').forEach(button => {
+        button.addEventListener('click', () => {
+            const image = button.querySelector('img');
+            guideLightboxImage.src = image.src;
+            guideLightboxImage.alt = image.alt;
+            guideLightbox.showModal();
+        });
+    });
+    guideLightbox.querySelector('.lightbox-close').addEventListener('click', () => guideLightbox.close());
+    guideLightbox.addEventListener('click', event => {
+        if (event.target === guideLightbox) guideLightbox.close();
+    });
+    document.querySelectorAll('#main-navigation a').forEach(link => {
+        if (link.getAttribute('href') === 'media.html') link.setAttribute('aria-current', 'page');
+    });
+</script>
+</body>
+</html>

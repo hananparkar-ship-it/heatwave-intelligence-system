@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Regional Heatwave Prediction &amp; Risk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="header-inner">
+        <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
+        <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a><a href="about_website.html">About</a>
+        </nav>
+    </div>
+</header>
+<main class="page-shell forecast-page">
+    <p class="section-kicker">Climate-class outlook</p>
+    <h1>Regional Heatwave Prediction &amp; Risk</h1>
+    <p class="page-intro">Select a climate class to review its general climate context, heatwave-prediction factors and risk guidance. The dated IMD outlook below is location- and region-specific; it is not a class-wide heatwave prediction.</p>
+    <p class="forecast-availability" role="status">The 8 October values below are IMD forecasts for named locations within each climate class. They are examples, not whole-class averages or a heatwave prediction for every place in that class.</p>
+
+    <section class="forecast-outlook official-date-outlook" aria-labelledby="october-outlook-heading">
+        <h2 id="october-outlook-heading">Official outlook for 8 October 2026</h2>
+        <p>Each row follows the six climate classes used elsewhere on this website. Temperatures and conditions come from the named IMD reference locations in that class.</p>
+        <div class="forecast-table-wrap" tabindex="0" role="region" aria-label="8 October IMD reference-location conditions across six climate classes">
+            <table>
+                <caption>Reference-location forecast valid 8 October 2026</caption>
+                <thead><tr><th scope="col">Climate class</th><th scope="col">Maximum temperature</th><th scope="col">Heatwave warning</th><th scope="col">Conditions at reference locations</th></tr></thead>
+                <tbody>
+                    <tr><th scope="row">Arid</th><td>30.5°C (Jaisalmer)</td><td>No heatwave warning shown at this station</td><td>Partly cloudy, with a chance of light rain or a thunderstorm.</td></tr>
+                    <tr><th scope="row">Humid Subtropical</th><td>33–34°C (Patna, Delhi)</td><td>No heatwave warning shown at these stations</td><td>Partly cloudy in Delhi; mainly clear in Patna, turning partly cloudy later.</td></tr>
+                    <tr><th scope="row">Montane</th><td>24–28°C (Shopian, Srinagar)</td><td>No heatwave warning shown at these stations</td><td>Partly cloudy, with a chance of light rain in Srinagar and Shopian.</td></tr>
+                    <tr><th scope="row">Semi Arid</th><td>35–38°C (Pune, Ahmedabad)</td><td>No heatwave warning shown at these stations</td><td>Mainly clear in Ahmedabad; Pune mainly clear, becoming partly cloudy later.</td></tr>
+                    <tr><th scope="row">Tropical Wet</th><td>33°C (Mumbai, Thiruvananthapuram)</td><td>No heatwave warning shown at these stations</td><td>Partly cloudy in Mumbai; a chance of moderate rain or a thunderstorm in Thiruvananthapuram.</td></tr>
+                    <tr><th scope="row">Tropical Wet &amp; Dry</th><td>32–36°C (Bengaluru, Panna, Indore)</td><td>No heatwave warning shown at these stations</td><td>Sunny or clear in Panna and Indore; partly cloudy in Bengaluru.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="source-note">These are forecasts for the listed reference locations, not averages for an entire climate class. City forecast pages were issued on different dates. A station’s “no warning” entry does not guarantee the same conditions throughout its climate class; check current IMD district warnings for your location. Heatwave assessment also depends on local thresholds and departure from normal.</p>
+        <p class="outlook-sources">Sources: <a href="https://city.imd.gov.in/citywx/">IMD city forecasts</a> and <a href="https://mausam.imd.gov.in/responsive/districtWiseHeatwaveWarnings.php">IMD district-wise warnings</a>.</p>
+    </section>
+
+    <div class="forecast-region-picker">
+        <label for="forecastRegion">Select Climate Class</label>
+        <select id="forecastRegion" aria-controls="regionalClimate predictionSummary forecastTable">
+            <option value="arid" selected>Arid</option>
+            <option value="humid-subtropical">Humid Subtropical</option>
+            <option value="montane">Montane</option>
+            <option value="semi-arid">Semi Arid</option>
+            <option value="tropical-wet">Tropical Wet</option>
+            <option value="tropical-wet-dry">Tropical Wet &amp; Dry</option>
+        </select>
+    </div>
+
+    <section id="regionalClimate" class="forecast-summary" aria-labelledby="forecastZoneName" aria-live="polite">
+        <div class="forecast-summary-heading">
+            <div>
+                <p class="section-kicker">General Climate Class</p>
+                <h2 id="forecastZoneName">Arid</h2>
+            </div>
+            <span id="climateCharacter" class="climate-character">Hot &amp; Dry</span>
+        </div>
+        <div class="climate-profile" role="group" aria-label="Typical climate profile">
+            <ul id="climateIndicators" class="climate-indicators">
+                <li>Hot, dry periods</li>
+                <li>Low rainfall</li>
+                <li>Strong daytime heating</li>
+                <li>Persistent seasonal heat</li>
+            </ul>
+                <p class="climate-profile-label">Climate characteristics</p>
+            <p id="regionalCharacteristics" class="climate-description">A dry climate class associated with limited rainfall and hot conditions. This general profile does not describe current weather at a particular location.</p>
+        </div>
+    </section>
+
+    <section class="forecast-outlook" aria-labelledby="outlook-heading">
+        <h2 id="outlook-heading">Heatwave Prediction Outlook</h2>
+        <p class="demo-notice"><strong>Demo data · fictional summer scenario.</strong> These five sample days show how the outlook works for each climate class. Temperatures, signals and heat-stress labels are illustrative, not current forecasts or official warnings.</p>
+        <div class="forecast-table-wrap" tabindex="0" role="region" aria-label="Five-day heatwave prediction outlook table">
+            <table id="forecastTable">
+                <caption id="forecastTableCaption">Five-day demo outlook for Arid — fictional summer scenario</caption>
+                <thead>
+                    <tr><th scope="col">Sample day</th><th scope="col">Predicted Tmax</th><th scope="col">Normal Tmax</th><th scope="col">Departure</th><th scope="col">Demo heatwave signal</th><th scope="col">Demo heat stress</th></tr>
+                </thead>
+                <tbody id="forecastRows"><tr><td colspan="6">Enable JavaScript to view the five-day demo data.</td></tr></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="forecast-factors" aria-labelledby="factorsHeading">
+        <h2 id="factorsHeading">Prediction Factors</h2>
+        <ul>
+            <li>Daily maximum temperature</li>
+            <li>Departure from the local normal</li>
+            <li>Humidity and resulting heat stress</li>
+            <li>Duration and persistence of hot conditions</li>
+            <li>Nighttime minimum temperature and overnight recovery</li>
+            <li>Forecast trend</li>
+            <li>Rainfall, cloud cover and monsoon context where relevant</li>
+        </ul>
+        <p><strong>Climate-class factors to consider:</strong> <span id="regionalFactors">Maximum temperature, departure from normal, persistence and overnight recovery.</span></p>
+    </section>
+
+    <section class="classification-note" aria-labelledby="classification-heading">
+        <h2 id="classification-heading">Heatwave Classification</h2>
+        <p>IMD heatwave classification is based primarily on station maximum temperature and its departure from normal, with different context for plains, hills and coastal stations. Humidity can increase heat stress, but it is not by itself an official heatwave classification criterion. See the <a href="https://mausam.imd.gov.in/imd_latest/contents/pdf/pubbrochures/Heat%20Wave%20Warning%20Services.pdf">IMD criteria</a>.</p>
+    </section>
+
+    <section class="classification-note" aria-labelledby="heat-stress-heading">
+        <h2 id="heat-stress-heading">Heat Stress</h2>
+        <p>How people experience heat can also depend on humidity, duration, wind, sunshine, activity and whether nights provide relief. These factors inform public-health guidance and should be considered alongside—not substituted for—formal heatwave classification.</p>
+    </section>
+
+    <section id="predictionSummary" class="prediction-summary" aria-labelledby="prediction-summary-heading" aria-live="polite">
+        <h2 id="prediction-summary-heading">Prediction Summary · <span id="summaryZone">Arid</span></h2>
+        <dl class="prediction-summary-list">
+            <div><dt>Predicted heat-risk level</dt><dd id="predictedRisk">Not available</dd></div>
+            <div><dt>Risk trend</dt><dd id="riskTrend">Not available</dd></div>
+        </dl>
+        <p><strong>Main drivers to assess:</strong></p>
+        <ul id="mainDrivers">
+            <li>Maximum temperature and departure from normal</li>
+            <li>Duration of heat and overnight recovery</li>
+            <li>Differences between plains, hills and urban locations</li>
+        </ul>
+        <p class="source-note">The risk level and trend summarize the fictional demo scenario above. They are not measured conditions or an official assessment for any location.</p>
+    </section>
+
+    <p class="forecast-note">For current observations, forecast guidance and official heatwave warnings, visit the <a href="https://mausam.imd.gov.in/">India Meteorological Department</a>.</p>
+</main>
+<footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+<script>
+    const regionalClimateData = {
+        arid: {
+            name: 'Arid', climateCharacter: 'Dry climate',
+            indicators: ['Hot, dry periods','Low rainfall','Strong daytime heating','Persistent seasonal heat'],
+            characteristics: 'Arid areas have very limited rainfall and can experience intense summer heat. Conditions still vary by locality and season.',
+            factors: ['Maximum temperature and departure from local normal','Duration of hot, dry conditions','Overnight minimum temperature and recovery','Local observation quality'],
+            drivers: ['Maximum temperature and departure from normal','Persistence of hot, dry conditions','Overnight recovery']
+        },
+        'humid-subtropical': {
+            name: 'Humid Subtropical', climateCharacter: 'Warm & Humid',
+            indicators: ['Hot summer conditions','Humidity','Seasonal rainfall','Monsoon influence'],
+            characteristics: 'Warm summers, humidity and seasonal rainfall shape this climate class. Local heat stress can vary with rainfall and overnight conditions.',
+            factors: ['Maximum temperature and departure from local normal','Humidity and resulting heat stress','Rainfall and monsoon context','Overnight minimum temperatures'],
+            drivers: ['Temperature with humidity','Persistence of hot conditions','Rainfall and overnight recovery']
+        },
+        montane: {
+            name: 'Montane', climateCharacter: 'Elevation-Driven',
+            indicators: ['High-elevation terrain','Local temperature variation','Cooler-night potential','Strong site differences'],
+            characteristics: 'Elevation and terrain shape conditions in montane areas. Nearby locations can differ, so heat assessment needs local observations.',
+            factors: ['Station maximum temperature and local normal','Elevation and site exposure','Duration of heat','Nighttime minimum temperature and recovery'],
+            drivers: ['Local maximum-temperature departure','Terrain and elevation','Duration and overnight recovery']
+        },
+        'semi-arid': {
+            name: 'Semi Arid', climateCharacter: 'Seasonally Dry',
+            indicators: ['Hot seasons','Limited seasonal rainfall','High daytime temperatures','Dry-period persistence'],
+            characteristics: 'Semi-arid areas have limited and variable rainfall, with hot periods that may persist during the dry season.',
+            factors: ['Maximum temperature and departure from local normal','Duration of hot, dry conditions','Rainfall and seasonal context','Nighttime minimum temperature and recovery'],
+            drivers: ['Maximum temperature and departure from normal','Persistence through the dry period','Overnight recovery']
+        },
+        'tropical-wet': {
+            name: 'Tropical Wet', climateCharacter: 'Humid & Rainy',
+            indicators: ['High rainfall influence','Humidity','Warm conditions','Monsoon influence'],
+            characteristics: 'Warm, humid conditions and substantial rainfall characterize this class. Humidity can affect heat stress even when local temperatures differ.',
+            factors: ['Maximum temperature and departure from local normal','Humidity and combined heat stress','Rainfall and cloud cover','Overnight minimum temperatures'],
+            drivers: ['Temperature together with humidity','Duration of humid heat','Rainfall and overnight conditions']
+        },
+        'tropical-wet-dry': {
+            name: 'Tropical Wet & Dry', climateCharacter: 'Seasonal Wet & Dry',
+            indicators: ['Distinct dry season','Seasonal wet period','Hot pre-monsoon conditions','Heat duration matters'],
+            characteristics: 'This class has distinct wet and dry seasons. Heat risk depends on local maximum temperatures, how long heat lasts and seasonal conditions.',
+            factors: ['Maximum temperature and departure from local normal','Seasonal dry-period conditions','Duration of hot conditions','Nighttime minimum temperature and recovery'],
+            drivers: ['Maximum temperature and departure from normal','Persistence of dry-season heat','Overnight recovery']
+        }
+    };
+    // Deliberately fictional summer samples; independent of the dated IMD table.
+    const demoOutlooks = {
+        arid: { normal: 40, temperatures: [43, 45, 46, 44, 42], signals: ['Elevated', 'Strong', 'Strong', 'Elevated', 'Low'], stress: ['High', 'Very high', 'Very high', 'High', 'Moderate'] },
+        'humid-subtropical': { normal: 35, temperatures: [38, 40, 41, 39, 37], signals: ['Elevated', 'Strong', 'Strong', 'Elevated', 'Low'], stress: ['High', 'Very high', 'Very high', 'High', 'High'] },
+        montane: { normal: 25, temperatures: [28, 30, 31, 29, 27], signals: ['Elevated', 'Strong', 'Strong', 'Elevated', 'Low'], stress: ['Moderate', 'High', 'High', 'Moderate', 'Moderate'] },
+        'semi-arid': { normal: 38, temperatures: [41, 43, 44, 42, 40], signals: ['Elevated', 'Strong', 'Strong', 'Elevated', 'Low'], stress: ['High', 'Very high', 'Very high', 'High', 'Moderate'] },
+        'tropical-wet': { normal: 31, temperatures: [33, 34, 35, 34, 32], signals: ['Low', 'Elevated', 'Elevated', 'Elevated', 'Low'], stress: ['High', 'High', 'Very high', 'High', 'Moderate'] },
+        'tropical-wet-dry': { normal: 35, temperatures: [38, 40, 42, 39, 37], signals: ['Elevated', 'Strong', 'Strong', 'Elevated', 'Low'], stress: ['High', 'Very high', 'Very high', 'High', 'Moderate'] }
+    };
+    const regionSelector = document.querySelector('#forecastRegion');
+    function renderRegionalClimate() {
+        const region = regionalClimateData[regionSelector.value];
+        document.querySelector('#forecastZoneName').textContent = region.name;
+        document.querySelector('#climateCharacter').textContent = region.climateCharacter;
+        document.querySelector('#regionalCharacteristics').textContent = region.characteristics;
+        document.querySelector('#climateIndicators').replaceChildren(...region.indicators.map(label => {
+            const item = document.createElement('li');
+            item.textContent = label;
+            return item;
+        }));
+        document.querySelector('#regionalFactors').textContent = region.factors.join('; ');
+        document.querySelector('#summaryZone').textContent = region.name;
+        const demo = demoOutlooks[regionSelector.value];
+        document.querySelector('#forecastTableCaption').textContent = `Five-day demo outlook for ${region.name} — fictional summer scenario`;
+        document.querySelector('#forecastRows').replaceChildren(...demo.temperatures.map((temperature, index) => {
+            const row = document.createElement('tr');
+            const values = [`Day ${index + 1}`, `${temperature.toFixed(1)}°C`, `${demo.normal.toFixed(1)}°C`, `+${(temperature - demo.normal).toFixed(1)}°C`, demo.signals[index], demo.stress[index]];
+            values.forEach((value, column) => {
+                const cell = document.createElement(column === 0 ? 'th' : 'td');
+                if (column === 0) cell.scope = 'row';
+                cell.textContent = value;
+                row.append(cell);
+            });
+            return row;
+        }));
+        document.querySelector('#predictedRisk').textContent = `${demo.stress.includes('Very high') ? 'Very high' : 'High'} at peak (demo)`;
+        document.querySelector('#riskTrend').textContent = 'Peaks on Day 3, then eases (demo)';
+        document.querySelector('#mainDrivers').replaceChildren(...region.drivers.map(driver => {
+            const item = document.createElement('li');
+            item.textContent = driver;
+            return item;
+        }));
+    }
+    regionSelector.addEventListener('change', renderRegionalClimate);
+    renderRegionalClimate();
+    document.querySelectorAll('#main-navigation a').forEach(link => {
+        if (link.getAttribute('href') === 'forecast.html') link.setAttribute('aria-current','page');
+    });
+</script>
+</body>
+</html>

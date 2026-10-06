@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Heatwave Intelligence System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-page">
+<header class="home-header">
+    <h1><a href="index.html">Heatwave Intelligence System</a></h1>
+    <p>Regional heatwave information, public alerts and safety guidance</p>
+</header>
+<header class="site-header">
+    <div class="header-inner">
+        <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
+        <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a><a href="about_website.html">About</a>
+        </nav>
+    </div>
+</header>
+<main class="page-shell">
+    <section class="hero" aria-labelledby="hero-title">
+        <span class="eyebrow">Heatwave prediction and early warning</span>
+        <h2 id="hero-title" style="color:white;margin:8px 0">Understand heat risk. Find practical safety guidance.</h2>
+        <p>Explore regional climate, heatwave risk factors, public advisories and practical ways to stay safe. This website does not generate live readings or its own regional prediction model. Dated IMD outlooks are identified with their issue date and linked to the official source.</p>
+        <ul class="hero-points">
+            <li>Maximum-temperature trends</li>
+            <li>Regional heatwave risk factors</li>
+            <li>Forecast and severity guidance</li>
+            <li>Practical heat-safety information</li>
+        </ul>
+        <div class="hero-actions">
+            <a class="button-link" href="alert_details.html">View heatwave alerts</a>
+            <a class="button-link button-link-secondary" href="hotspot_map.html">Explore Hotspot Map</a>
+        </div>
+    </section>
+
+    <section class="at-a-glance" aria-labelledby="snapshot-title">
+        <p class="section-kicker">Regional coverage</p>
+        <h2 id="snapshot-title">At a Glance</h2>
+        <p>Choose one of the six climate classes shown on the map to review general climate context and heat-risk guidance. These profiles are not current readings or active warning areas.</p>
+        <div class="cards">
+            <a class="card" href="climate_profile.html?class=arid"><h3>Arid</h3><p>Northwestern drylands, including parts of Rajasthan and adjoining areas.</p></a>
+            <a class="card" href="climate_profile.html?class=humid-subtropical"><h3>Humid Subtropical</h3><p>Northern plains and parts of the Northeast with humid, monsoon-influenced conditions.</p></a>
+            <a class="card" href="climate_profile.html?class=montane"><h3>Montane</h3><p>Himalayan and other high-elevation areas where conditions vary with altitude.</p></a>
+            <a class="card" href="climate_profile.html?class=semi-arid"><h3>Semi Arid</h3><p>Dry transitional areas across western and interior parts of the country.</p></a>
+            <a class="card" href="climate_profile.html?class=tropical-wet"><h3>Tropical Wet</h3><p>Humid, high-rainfall areas, including coastal and northeastern regions.</p></a>
+            <a class="card" href="climate_profile.html?class=tropical-wet-dry"><h3>Tropical Wet &amp; Dry</h3><p>Central, eastern and peninsular areas with distinct wet and dry seasons.</p></a>
+        </div>
+    </section>
+
+    <section class="system-monitors" aria-labelledby="monitors-title">
+        <p class="section-kicker">How heat risk is assessed</p>
+        <h2 id="monitors-title">What heatwave prediction considers</h2>
+        <div class="cards monitor-items">
+            <article class="card"><h3>Temperature anomaly</h3><p>Daily maximum temperature compared with the local normal.</p></article>
+            <article class="card"><h3>Humidity &amp; heat stress</h3><p>Moisture in the air can affect how the body handles heat.</p></article>
+            <article class="card"><h3>Forecast persistence</h3><p>How long hot conditions may continue and whether nights allow recovery.</p></article>
+            <article class="card"><h3>Regional climate</h3><p>Coastal, inland, hill and monsoon conditions shape local impacts.</p></article>
+        </div>
+    </section>
+
+    <section class="cards" aria-label="Quick links">
+        <a class="card" href="forecast.html"><h3>Regional Heatwave Prediction</h3><p>Review regional climate context, heatwave indicators and the availability of forecast information.</p></a>
+        <a class="card" href="hotspot_map.html"><h3>Heatwave Hotspot Map</h3><p>Open one of the six climate-class profiles from the interactive map.</p></a>
+        <a class="card" href="subscribe.html"><h3>Alert preferences</h3><p>Review the available alert preferences and registration fields.</p></a>
+    </section>
+
+    <section aria-labelledby="lab-title">
+        <p class="section-kicker">Interactive assessments</p>
+        <h2 id="lab-title">Climate monitoring tools</h2>
+        <div class="cards">
+            <a class="card" href="heatwave_warning.html"><h3>Heat Conditions &amp; Risk</h3><p>Assess locally entered observed and expected maximum temperatures using the page’s rule-based criteria.</p></a>
+            <a class="card" href="climate_object.html"><h3>Climate Data Explorer</h3><p>Inspect manually entered local conditions and compare a maximum temperature with a chosen threshold.</p></a>
+            <a class="card" href="temperature_analysis.html"><h3>Reading Analysis</h3><p>Summarize daily maximum-temperature observations from one location and period.</p></a>
+        </div>
+    </section>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="categories">
+                <h2>Categories</h2>
+                <ul>
+                    <li><a href="#monitoring">Weather Monitoring</a></li>
+                    <li><a href="#alerts">Heatwave Alerts</a></li>
+                    <li><a href="#hotspots">Hotspot Information</a></li>
+                    <li><a href="#safety">Safety Advisory</a></li>
+                    <li><a href="#emergency">Emergency Information</a></li>
+                </ul>
+            </div>
+        </aside>
+        <div class="top-content">
+            <div class="card-container">
+                <div class="card"><h3>Temperature Alert</h3><p>Use the <a href="heatwave_warning.html">combined tool</a> to assess entered conditions, then check official local advisories for current information.</p></div>
+                <div class="card"><h3>Regional Risk</h3><p>Explore the six climate-class profiles and check official warnings for currently affected locations.</p></div>
+                <div class="card"><h3>Safety Tips</h3><p>Stay hydrated, avoid direct sunlight during peak hours and wear light clothing. Take regular breaks when working outdoors.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offer"><strong>HEAT SAFETY</strong>Stay hydrated, seek shade and avoid direct sunlight during peak afternoon hours.</div>
+
+    <section class="gallery-section" aria-labelledby="gallery-title">
+        <h2 id="gallery-title">Heatwave Gallery</h2>
+        <div class="gallery">
+            <figure class="gallery-item"><img src="heatwave1.jpg" alt="Heatwave"><figcaption>Heatwave</figcaption></figure>
+            <figure class="gallery-item"><img src="heatwave2.jpg" alt="Extreme Temperature"><figcaption>Extreme Temperature</figcaption></figure>
+            <figure class="gallery-item"><img src="heatwave3.jpg" alt="Hot Weather"><figcaption>Hot Weather</figcaption></figure>
+            <figure class="gallery-item"><img src="heatwave4.jpg" alt="Heatwave Safety"><figcaption>Heatwave Safety</figcaption></figure>
+        </div>
+    </section>
+
+    <section class="info-grid" aria-label="Heatwave information">
+        <article class="info-card" id="monitoring">
+            <span class="info-icon" aria-hidden="true">01</span>
+            <div><p class="section-kicker">Understand the readings</p><h2>Heatwave Monitoring</h2>
+                <p>Heatwave assessment focuses on daily maximum temperatures, their departure from local normal and how long hot conditions persist.</p>
+                <p>Humidity and warm nights can increase heat stress, while local observations and forecasts help describe conditions for a specific place and period. This website links to official updates and does not display live readings.</p>
+            </div>
+        </article>
+        <article class="info-card" id="alerts">
+            <span class="info-icon" aria-hidden="true">02</span>
+            <div><p class="section-kicker">Know when risk rises</p><h2>Heatwave Alerts</h2>
+                <p>Heatwave warnings help people and local services prepare for prolonged extreme heat and reduce exposure.</p>
+                <p>Use the Alerts page for practical actions and links to current official warnings; this website does not issue alerts.</p>
+            </div>
+        </article>
+        <article class="info-card" id="hotspots">
+            <span class="info-icon" aria-hidden="true">03</span>
+            <div><p class="section-kicker">Explore affected areas</p><h2>Hotspot Information</h2>
+                <p>The hotspot map provides a clear route to climate-class profiles and helps visitors review each classification.</p>
+                <p>For current affected locations, review official warnings before travelling, working outdoors or planning outdoor activities.</p>
+            </div>
+        </article>
+        <article class="info-card" id="safety">
+            <span class="info-icon" aria-hidden="true">04</span>
+            <div><p class="section-kicker">Reduce heat exposure</p><h2>Safety Advisory</h2>
+                <p>During a heatwave, drink plenty of water and avoid unnecessary outdoor activities during peak afternoon hours. Staying indoors or in shaded areas can reduce exposure to extreme heat.</p>
+                <p>Wear light, comfortable clothing, take regular breaks when working outdoors and keep homes properly ventilated during periods of high temperature.</p>
+            </div>
+        </article>
+        <article class="info-card info-card-emergency" id="emergency">
+            <span class="info-icon" aria-hidden="true">05</span>
+            <div><p class="section-kicker">Get help quickly</p><h2>Emergency Information</h2>
+                <p>Seek medical assistance immediately for heat-related illness. Warning signs may include dizziness, weakness, excessive sweating and confusion.</p>
+                <p>Move the person to a cooler location and avoid further exposure to heat. Monitor older adults, children and people working outdoors carefully during extreme heat.</p>
+                <p><a class="emergency-contact" href="tel:1078">Disaster helpline 1078</a></p>
+            </div>
+        </article>
+    </section>
+</main>
+<footer class="site-footer"><div class="footer-inner">© 2026 Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+<script>
+    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('#main-navigation a');
+    navLinks.forEach(link => { if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page'); });
+    if (location.hash) {
+        const sectionLink = document.querySelector(`#main-navigation a[href$="${location.hash}"]`);
+        if (sectionLink) { navLinks.forEach(link => link.removeAttribute('aria-current')); sectionLink.setAttribute('aria-current', 'location'); }
+    }
+</script>
+</body>
+</html>
+

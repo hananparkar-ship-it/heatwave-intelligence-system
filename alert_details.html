@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Heatwave Alerts</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="header-inner">
+        <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
+        <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a><a href="about_website.html">About</a>
+        </nav>
+    </div>
+</header>
+<main class="page-shell alert-page">
+    <p class="section-kicker">Public heat information</p>
+    <h1>Heatwave Alerts</h1>
+    <p class="page-intro">Check the latest official warning for your location and follow the precautions recommended for its level and valid period.</p>
+
+    <section class="alert-status" aria-labelledby="bulletin-heading">
+        <p class="section-kicker">IMD outlook for 8 October 2026</p>
+        <h2 id="bulletin-heading">Official weather outlook for 8 October 2026</h2>
+        <dl class="alert-summary-list">
+            <div><dt>Heatwave status at reference locations</dt><dd id="alertHeatwaveStatus" role="status" aria-live="polite">No heatwave warning shown for Jaisalmer in its IMD city forecast. Check the district-wise IMD warning for your exact location.</dd></div>
+            <div><dt><label class="alert-region-label" for="alertRegion">Select a climate class</label></dt><dd><select id="alertRegion" aria-controls="alertRegionStatus alertMaximum"><option value="arid" selected>Arid</option><option value="humid-subtropical">Humid Subtropical</option><option value="montane">Montane</option><option value="semi-arid">Semi Arid</option><option value="tropical-wet">Tropical Wet</option><option value="tropical-wet-dry">Tropical Wet &amp; Dry</option></select></dd></div>
+            <div><dt>Forecast maximum in reference locations</dt><dd id="alertMaximum">31°C at Jaisalmer.</dd></div>
+            <div><dt>Valid date</dt><dd>8 October 2026</dd></div>
+            <div class="alert-advisory-row"><dt>8 October conditions in reference locations</dt><dd id="alertRegionStatus" role="status" aria-live="polite">Partly cloudy, with a possibility of light rain or a thunderstorm in Jaisalmer.</dd></div>
+        </dl>
+        <p class="source-note" id="alertSourceNote">IMD station forecast: <a href="https://city.imd.gov.in/citywx/citywxnew_warnings.php?id=100157">Jaisalmer</a>. This is a reference location in the Arid climate class, not a climate-zone average. Heatwave classification depends on local thresholds and departure from normal; a single station temperature does not establish a heatwave.</p>
+        <p><a class="button-link" href="https://mausam.imd.gov.in/Forecast/marquee_data/Press%20Release%2006-10-2026.pdf">Read the official IMD bulletin</a></p>
+    </section>
+
+    <section aria-labelledby="alert-meaning-heading">
+        <h2 id="alert-meaning-heading">What this alert means</h2>
+        <p>Heatwave classification depends on local station thresholds and temperature departures from normal, not just a regional maximum. The reference-city status is a quick guide; use the <a href="https://mausam.imd.gov.in/responsive/districtWiseHeatwaveWarnings.php">IMD district-wise heatwave warnings</a> for an official warning for your location.</p>
+    </section>
+
+    <section aria-labelledby="alert-actions-heading">
+        <h2 id="alert-actions-heading">What should you do?</h2>
+        <div class="cards alert-action-cards">
+            <article class="card"><h3>Stay cool</h3><p>Use shade or a cooler place and plan outdoor activity for cooler hours.</p></article>
+            <article class="card"><h3>Stay hydrated</h3><p>Drink water regularly and follow advice from your healthcare provider.</p></article>
+            <article class="card"><h3>Limit outdoor exposure</h3><p>Avoid unnecessary time in direct sun and take breaks if you must work outdoors.</p></article>
+            <article class="card"><h3>Check on others</h3><p>Contact older adults, young children and anyone who may need extra support.</p></article>
+        </div>
+    </section>
+
+    <section class="alert-emergency" aria-labelledby="emergency-heading">
+        <p class="section-kicker">Urgent help</p>
+        <h2 id="emergency-heading">Emergency information</h2>
+        <p>Confusion, collapse or severe weakness during extreme heat may require urgent medical care. Move the person to a cooler place and get help.</p>
+        <p><a class="emergency-contact" href="tel:1078">Call Disaster Helpline 1078</a></p>
+    </section>
+
+    <section aria-labelledby="official-alert-resources">
+        <h2 id="official-alert-resources">Official heat and health guidance</h2>
+        <ul>
+            <li><a href="https://mausam.imd.gov.in/imd_latest/contents/do%27s.php">India Meteorological Department heat-safety guidance</a></li>
+            <li><a href="https://ncdc.mohfw.gov.in/uploads/pdf/5.%20Public%20Health%20Advisory_Extreme%20HeatHeatwave.pdf">National Centre for Disease Control 2026 public health advisory on extreme heat and heatwave</a></li>
+        </ul>
+    </section>
+</main>
+<footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+<script>
+    const alertRegion = document.querySelector('#alertRegion');
+    const alertRegionStatus = document.querySelector('#alertRegionStatus');
+    const alertMaximum = document.querySelector('#alertMaximum');
+    const alertHeatwaveStatus = document.querySelector('#alertHeatwaveStatus');
+    const alertSourceNote = document.querySelector('#alertSourceNote');
+    const outlookByRegion = {
+        arid: {
+            outlook: 'Partly cloudy in Jaisalmer, with a possibility of light rain or a thunderstorm.',
+            maximum: '30.5°C at Jaisalmer (about 31°C).',
+            heatwave: 'No heatwave warning shown for Jaisalmer in its listed city forecast.',
+            sources: 'IMD city forecast: <a href="https://city.imd.gov.in/citywx/citywxnew_warnings.php?id=100157">Jaisalmer</a>.'
+        },
+        'humid-subtropical': {
+            outlook: 'Partly cloudy in Delhi; mainly clear in Patna, becoming partly cloudy later.',
+            maximum: '33–34°C across Patna (33°C) and Delhi (34°C).',
+            heatwave: 'No heatwave warning shown for Patna or Delhi in the listed city forecasts.',
+            sources: 'IMD city forecasts: <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=42492">Patna</a> and <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=42182">Delhi-Safdarjung</a>.'
+        },
+        montane: {
+            outlook: 'Partly cloudy conditions with a chance of light rain in Srinagar and Shopian.',
+            maximum: '24–28°C across Shopian (23.9°C) and Srinagar (28°C).',
+            heatwave: 'No heatwave warning shown for Srinagar or Shopian in the listed city forecasts.',
+            sources: 'IMD city forecasts: <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=42027">Srinagar</a> and <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=101355">Shopian</a>.'
+        },
+        'semi-arid': {
+            outlook: 'Mainly clear in Ahmedabad; Pune is mainly clear, becoming partly cloudy later.',
+            maximum: '35–38°C across Pune (35°C) and Ahmedabad (38°C).',
+            heatwave: 'No heatwave warning shown for Pune or Ahmedabad in the listed city forecasts.',
+            sources: 'IMD city forecasts: <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=43063">Pune</a> and <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=42647">Ahmedabad</a>.'
+        },
+        'tropical-wet': {
+            outlook: 'Partly cloudy in Mumbai; partly cloudy with a possibility of moderate rain or a thunderstorm in Thiruvananthapuram.',
+            maximum: '33°C at both Mumbai and Thiruvananthapuram.',
+            heatwave: 'No heatwave warning shown for Mumbai or Thiruvananthapuram in the listed city forecasts.',
+            sources: 'IMD city forecasts: <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=43057">Mumbai</a> and <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=43371">Thiruvananthapuram</a>.'
+        },
+        'tropical-wet-dry': {
+            outlook: 'Sunny or clear conditions in Panna and Indore; partly cloudy in Bengaluru.',
+            maximum: '32–36°C across Bengaluru (32°C), Panna (32.7°C) and Indore (36°C).',
+            heatwave: 'No heatwave warning shown for Bengaluru, Panna or Indore in the listed city forecasts.',
+            sources: 'IMD city forecasts: <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=43295">Bengaluru</a>, <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=101413">Panna</a> and <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=42754">Indore</a>.'
+        }
+    };
+    alertRegion.addEventListener('change', () => {
+        const outlook = outlookByRegion[alertRegion.value];
+        alertRegionStatus.textContent = outlook.outlook;
+        alertMaximum.textContent = outlook.maximum;
+        alertHeatwaveStatus.textContent = outlook.heatwave + ' Check the IMD district-wise warning for your exact location.';
+        alertSourceNote.innerHTML = outlook.sources + ' These 8 October station forecasts are reference locations in the selected climate class, not a climate-zone average. Heatwave classification also depends on local thresholds and departures from normal; the temperature alone does not establish a heatwave.';
+    });
+    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('#main-navigation a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');
+    });
+</script>
+</body>
+</html>

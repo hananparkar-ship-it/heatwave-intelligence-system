@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Daily Maximum Temperature Analysis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
+            <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a><a href="about_website.html">About</a>
+            </nav>
+        </div>
+    </header>
+    <main class="page-shell temperature-analysis-page">
+        <h1>Daily Maximum Temperature Analysis</h1>
+        <p class="page-intro">Enter daily maximum-temperature observations from one location and period to summarize their range and compare them with a threshold. The tool analyzes values you enter; it does not load IMD records or predict future conditions.</p>
+        <form id="readingForm" class="reading-form" novalidate>
+            <label for="readings">Daily maximum-temperature readings (°C) <span class="required-mark" aria-hidden="true">*</span></label>
+            <textarea id="readings" name="readings" rows="4" placeholder="Enter readings separated by commas or spaces" required aria-describedby="readingsError"></textarea>
+            <small class="task-feedback" id="readingsError" aria-live="polite"></small>
+            <label for="threshold">Comparison threshold (°C) <span class="required-mark" aria-hidden="true">*</span></label>
+            <input id="threshold" name="threshold" type="number" step="any" placeholder="Enter a threshold" required aria-describedby="thresholdError">
+            <small class="task-feedback" id="thresholdError" aria-live="polite"></small>
+            <button type="submit">Analyze readings</button>
+        </form>
+        <pre id="analysisOutput" class="task-output" aria-live="polite"></pre>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div>
+    </footer>
+    <script>
+        const currentPage = location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('#main-navigation a').forEach(link => {
+            if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');
+        });
+        const readingForm = document.querySelector('#readingForm');
+        const readingsField = document.querySelector('#readings');
+        const thresholdField = document.querySelector('#threshold');
+        const analysisOutput = document.querySelector('#analysisOutput');
+
+        function showFieldError(field, message) {
+            const error = document.getElementById(`${field.id}Error`);
+            field.classList.toggle('invalid', Boolean(message));
+            field.setAttribute('aria-invalid', String(Boolean(message)));
+            error.textContent = message;
+        }
+
+        readingForm.addEventListener('submit', event => {
+            event.preventDefault();
+            const rawValues = readingsField.value.trim().split(/[\s,;]+/).filter(Boolean);
+            const readings = rawValues.map(Number);
+            const readingsValid = rawValues.length > 0 && readings.every(Number.isFinite);
+            const threshold = Number(thresholdField.value);
+            const thresholdValid = thresholdField.value.trim() !== '' && Number.isFinite(threshold);
+            showFieldError(readingsField, readingsValid ? '' : 'Enter one or more valid numbers.');
+            showFieldError(thresholdField, thresholdValid ? '' : 'Enter a valid threshold.');
+            if (!readingsValid || !thresholdValid) {
+                analysisOutput.textContent = '';
+                return;
+            }
+
+            const minimum = Math.min(...readings);
+            const maximum = Math.max(...readings);
+            const average = readings.reduce((total, value) => total + value, 0) / readings.length;
+            const atOrAbove = readings.filter(value => value >= threshold).length;
+            analysisOutput.textContent = [
+                `Daily maximum-temperature values analyzed: ${readings.length}`,
+                `Minimum: ${minimum}°C`,
+                `Maximum: ${maximum}°C`,
+                `Average: ${average.toFixed(1)}°C`,
+                `Readings at or above ${threshold}°C: ${atOrAbove}`
+            ].join('\n');
+        });
+
+        [readingsField, thresholdField].forEach(field => {
+            field.addEventListener('input', () => {
+                if (field.getAttribute('aria-invalid') === 'true') showFieldError(field, '');
+            });
+        });
+    </script>
+</body>
+</html>

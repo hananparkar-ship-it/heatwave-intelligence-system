@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Heatwave Hotspot Map</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a><a href="about_website.html">About</a></nav></div></header><main class="page-shell">
+    <h1>Heatwave Hotspot Map</h1>
+    <p class="page-intro">
+        Click an area on the map to explore its climate profile and heatwave context. These profiles describe broad climate patterns, not current weather.
+    </p>
+    <div class="map-meta" aria-label="Climate classes shown on the map"><p><strong>Climate classes:</strong> Arid · Humid Subtropical · Montane · Semi Arid · Tropical Wet · Tropical Wet &amp; Dry</p></div>
+    <section class="hotspot-map-layout" aria-label="Interactive climate-class map of India">
+        <div class="hotspot-map-visual">
+            <img class="hotspot-map-image" src="india_map.jpg"
+                 alt="Interactive map of India with clickable Arid, Humid Subtropical, Montane, Semi Arid, Tropical Wet and Tropical Wet &amp; Dry climate regions."
+                 usemap="#heatmap" width="740" height="493">
+            <map name="heatmap" id="heatmap">
+                <!-- Climate-class hotspots are approximated on the unchanged political map. -->
+                <area shape="poly" coords="240,30,268,28,298,35,326,43,338,55,334,71,323,88,336,104,350,119,361,136,378,147,391,157,389,168,372,168,355,160,341,151,326,142,309,136,293,132,278,125,264,116,252,104,244,89,238,71" href="climate_profile.html?class=montane" alt="Montane climate — Himalayan mountain region; opens the Montane profile" title="Montane climate">
+                <area shape="poly" coords="474,138,502,138,529,143,558,151,551,164,531,170,512,172,493,179,476,188,461,194,449,188,456,174" href="climate_profile.html?class=montane" alt="Montane climate — northeastern Himalayan and hill region; opens the Montane profile" title="Montane climate">
+
+                <area shape="poly" coords="190,166,212,161,235,162,257,168,274,178,275,191,263,204,250,216,238,231,220,235,204,227,191,215,185,196" href="climate_profile.html?class=arid" alt="Arid climate — Rajasthan and adjoining northwestern drylands; opens the Arid profile" title="Arid climate">
+
+                <area shape="poly" coords="257,128,279,129,301,133,322,141,344,147,364,151,382,158,400,168,417,181,432,195,430,207,411,213,391,212,371,205,350,201,330,195,310,192,294,199,278,204,265,196,271,183,276,172,263,160" href="climate_profile.html?class=humid-subtropical" alt="Humid Subtropical climate — northern plains; opens the Humid Subtropical profile" title="Humid Subtropical climate">
+                <area shape="poly" coords="438,176,456,168,477,169,495,175,515,178,529,188,526,201,513,211,497,218,479,222,462,218,447,211,434,201" href="climate_profile.html?class=humid-subtropical" alt="Humid Subtropical climate — northeastern plains and valleys; opens the Humid Subtropical profile" title="Humid Subtropical climate">
+
+                <area shape="poly" coords="178,218,195,223,211,233,230,236,246,225,262,207,280,203,295,208,308,220,309,238,300,254,290,271,277,286,261,297,245,292,228,281,212,269,197,258,184,244" href="climate_profile.html?class=semi-arid" alt="Semi Arid climate — western transitional belt; opens the Semi Arid profile" title="Semi Arid climate">
+                <area shape="poly" coords="263,287,280,276,297,260,311,252,325,260,331,276,325,294,316,312,306,331,292,346,279,337,271,319" href="climate_profile.html?class=semi-arid" alt="Semi Arid climate — western Deccan transitional belt; opens the Semi Arid profile" title="Semi Arid climate">
+
+                <area shape="poly" coords="226,276,239,285,246,307,251,330,260,353,272,376,283,399,295,423,304,446,300,458,286,449,274,430,264,407,253,386,245,364,238,341,231,318,225,297" href="climate_profile.html?class=tropical-wet" alt="Tropical Wet climate — southwestern coastal belt; opens the Tropical Wet profile" title="Tropical Wet climate">
+                <area shape="poly" coords="444,205,457,211,469,220,480,229,474,242,462,247,452,239,445,226" href="climate_profile.html?class=tropical-wet" alt="Tropical Wet climate — northeastern humid belt; opens the Tropical Wet profile" title="Tropical Wet climate">
+
+                <area shape="poly" coords="284,338,301,327,315,308,325,290,338,278,349,288,356,306,366,323,365,342,354,363,340,382,332,404,320,426,309,445,301,420,290,396,280,373,274,352" href="climate_profile.html?class=tropical-wet-dry" alt="Tropical Wet &amp; Dry climate — southern peninsula; opens the Tropical Wet &amp; Dry profile" title="Tropical Wet &amp; Dry climate">
+                <area shape="default" href="climate_profile.html?class=tropical-wet-dry" alt="Tropical Wet &amp; Dry climate — central and eastern regions; opens the Tropical Wet &amp; Dry profile" title="Tropical Wet &amp; Dry climate">
+            </map>
+        </div>
+    </section>
+    <nav class="map-region-links" aria-label="Climate class profiles">
+        <span>Climate profiles:</span>
+        <a href="climate_profile.html?class=arid">Arid</a>
+        <a href="climate_profile.html?class=humid-subtropical">Humid Subtropical</a>
+        <a href="climate_profile.html?class=montane">Montane</a>
+        <a href="climate_profile.html?class=semi-arid">Semi Arid</a>
+        <a href="climate_profile.html?class=tropical-wet">Tropical Wet</a>
+        <a href="climate_profile.html?class=tropical-wet-dry">Tropical Wet &amp; Dry</a>
+    </nav>
+</main><footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+
+<script>const currentPage=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('nav a').forEach(link=>{if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current','page')});</script>
+<script>const image=document.querySelector('img[usemap]');const areas=[...document.querySelectorAll('map area')];function resizeMapAreas(){if(!image||!image.naturalWidth)return;const scale=image.clientWidth/image.naturalWidth;areas.forEach(area=>{if(area.shape==='default')return;if(!area.dataset.originalCoords)area.dataset.originalCoords=area.coords;area.coords=area.dataset.originalCoords.split(',').map(value=>Math.round(Number(value)*scale)).join(',')})}image.addEventListener('load',resizeMapAreas);window.addEventListener('resize',resizeMapAreas);resizeMapAreas();</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

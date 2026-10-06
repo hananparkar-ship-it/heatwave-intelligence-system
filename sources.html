@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resources</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="header-inner">
+        <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
+        <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a><a href="about_website.html">About</a>
+        </nav>
+    </div>
+</header>
+<main class="page-shell resources-page">
+    <p class="section-kicker">Reference and guidance</p>
+    <h1>Resources</h1>
+    <p class="page-intro">Use trusted meteorological and public-health sources to understand heat conditions, official warnings and recommended precautions. This website provides reference information; it does not collect weather readings or issue forecasts.</p>
+
+    <section class="resource-section" aria-labelledby="data-sources-heading">
+        <h2 id="data-sources-heading">Data Sources</h2>
+        <ul>
+            <li>Historical IMD maximum-temperature records support regional and seasonal heatwave analysis. The <a href="https://imdpune.gov.in/lrfindex.php">IMD Pune repository</a> is a source for climate data; this website does not republish its records.</li>
+            <li>Official weather observations and IMD forecasts help describe local conditions and provide the basis for current weather and heatwave updates.</li>
+            <li>Satellite observations can add broad spatial context to weather and climate analysis.</li>
+        </ul>
+    </section>
+
+    <section class="resource-section" aria-labelledby="workflow-heading">
+        <h2 id="workflow-heading">System Workflow</h2>
+        <p>A public heatwave information service can organize its work into these steps:</p>
+        <ol class="workflow-list">
+            <li>Access weather information from official sources.</li>
+            <li>Analyze maximum-temperature records by location, time, region and season.</li>
+            <li>Assess heatwave indicators using maximum temperature and departure from normal.</li>
+            <li>Review forecast information and warning criteria.</li>
+            <li>Share clear public-safety advice for the affected place and valid period.</li>
+        </ol>
+    </section>
+
+    <section class="resource-section" aria-labelledby="stakeholders-heading">
+        <h2 id="stakeholders-heading">Stakeholders</h2>
+        <div class="stakeholder-list">
+            <section class="stakeholder-role">
+                <h3>Meteorologists</h3>
+                <ul><li>Monitor weather conditions</li><li>Generate and review forecasts</li></ul>
+            </section>
+            <section class="stakeholder-role">
+                <h3>Disaster Management Officers</h3>
+                <ul><li>Issue authorized alerts</li><li>Coordinate emergency response</li></ul>
+            </section>
+            <section class="stakeholder-role">
+                <h3>Citizens</h3>
+                <ul><li>View local advisories</li><li>Follow recommended safety measures</li></ul>
+            </section>
+        </div>
+    </section>
+
+    <section class="resource-section official-updates" aria-labelledby="official-updates-heading">
+        <h2 id="official-updates-heading">Official Resources</h2>
+        <ul>
+            <li><a href="https://mausam.imd.gov.in/">India Meteorological Department forecasts, observations and warnings</a></li>
+            <li><a href="https://www.ncdc.mohfw.gov.in/">National Centre for Disease Control public-health advisories</a></li>
+        </ul>
+    </section>
+</main>
+<footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
+<script>
+    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('#main-navigation a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');
+    });
+</script>
+</body>
+</html>
