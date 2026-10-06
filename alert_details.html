@@ -11,7 +11,7 @@
     <div class="header-inner">
         <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
         <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
-            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
+            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="about_website.html">About</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
         </nav>
     </div>
 </header>
@@ -25,12 +25,12 @@
         <h2 id="bulletin-heading">No verified regional bulletin is available on this page</h2>
         <dl class="alert-summary-list">
             <div><dt>Alert level</dt><dd>Not available</dd></div>
-            <div><dt>Region</dt><dd><label class="alert-region-label" for="alertRegion">Select a region</label><select id="alertRegion" aria-controls="alertRegionStatus"><option value="">Choose a region</option><option>North Zone</option><option>Northeast Zone</option><option>West Zone</option><option>Central Zone</option><option>South Zone</option></select></dd></div>
+            <div><dt>Climate class</dt><dd><label class="alert-region-label" for="alertRegion">Select a climate class</label><select id="alertRegion" aria-controls="alertRegionStatus"><option value="">Choose a climate class</option><option>Arid</option><option>Humid Subtropical</option><option>Montane</option><option>Semi Arid</option><option>Tropical Wet</option><option>Tropical Wet &amp; Dry</option></select></dd></div>
             <div><dt>Maximum temperature</dt><dd>Not available</dd></div>
             <div><dt>Date</dt><dd>Not available</dd></div>
             <div class="alert-advisory-row"><dt>Advisory</dt><dd>Check the official IMD bulletin for current conditions, affected areas and validity.</dd></div>
         </dl>
-        <p id="alertRegionStatus" class="source-note" role="status" aria-live="polite">Select a region to view its bulletin availability.</p>
+        <p id="alertRegionStatus" class="source-note" role="status" aria-live="polite">Select a climate class to view bulletin availability.</p>
         <p><a class="button-link" href="https://mausam.imd.gov.in/">Check official IMD updates</a></p>
     </section>
 
@@ -71,7 +71,7 @@
     alertRegion.addEventListener('change', () => {
         alertRegionStatus.textContent = alertRegion.value
             ? `No verified bulletin is available for ${alertRegion.value} on this page.`
-            : 'Select a region to view its bulletin availability.';
+            : 'Select a climate class to view bulletin availability.';
     });
     const currentPage = location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('#main-navigation a').forEach(link => {

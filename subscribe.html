@@ -7,11 +7,11 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header>
+<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="about_website.html">About</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header>
 <main class="page-shell subscribe-page">
   <p class="section-kicker">Stay informed</p>
   <h1>Set alert preferences</h1>
-  <p>Choose a region and review alert preferences. This website does not store your details or send alerts; use official weather updates for current warnings.</p>
+  <p>Choose a climate class and review alert preferences. This website does not store your details or send alerts; use official weather updates for current warnings.</p>
   <form id="subscribeForm" autocomplete="off" novalidate>
     <p class="required-note"><span aria-hidden="true">*</span> Required fields</p>
     <fieldset>
@@ -25,18 +25,12 @@
       <label for="mobile">Mobile number <span class="required-mark" aria-hidden="true">*</span></label>
       <input id="mobile" name="mobile" type="tel" inputmode="tel" autocomplete="off" placeholder="10-digit mobile number" pattern="(?:\+91[ -]?)?[6-9][0-9]{9}" title="Enter a valid 10-digit Indian mobile number, optionally with +91." aria-describedby="mobileError" required>
       <span class="field-error" id="mobileError" aria-live="polite" hidden>Please enter a valid 10-digit mobile number.</span>
-      <label for="region">Region <span class="required-mark" aria-hidden="true">*</span></label>
-      <select id="region" name="region" aria-describedby="regionError" required><option value="">Choose a region</option><option>North Zone</option><option>Northeast Zone</option><option>West Zone</option><option>Central Zone</option><option>South Zone</option></select>
-      <span class="field-error" id="regionError" aria-live="polite" hidden>Please select your region.</span>
+      <label for="region">Climate class <span class="required-mark" aria-hidden="true">*</span></label>
+      <select id="region" name="region" aria-describedby="regionError" required><option value="">Choose a climate class</option><option>Arid</option><option>Humid Subtropical</option><option>Montane</option><option>Semi Arid</option><option>Tropical Wet</option><option>Tropical Wet &amp; Dry</option></select>
+      <span class="field-error" id="regionError" aria-live="polite" hidden>Please select your climate class.</span>
     </fieldset>
     <fieldset>
       <legend>Alert Preferences</legend>
-      <div class="choice-group" id="languageGroup" role="group" aria-labelledby="languageLabel" aria-describedby="languageError">
-        <p id="languageLabel">Preferred language <span class="required-mark" aria-hidden="true">*</span></p>
-        <label><input type="radio" name="language" value="English"> English</label>
-        <label><input type="radio" name="language" value="Hindi"> Hindi</label>
-        <span class="field-error" id="languageError" aria-live="polite" hidden>Please select a language.</span>
-      </div>
       <div class="choice-group" id="alertsGroup" role="group" aria-labelledby="alertsLabel" aria-describedby="alertsError">
         <p id="alertsLabel">Alerts to receive <span class="required-mark" aria-hidden="true">*</span></p>
         <label><input type="checkbox" name="alerts" value="Heatwave"> Heatwave alerts</label>
@@ -60,7 +54,7 @@ function fieldMessage(field) {
   if (field.id === 'citizenName') return value ? '' : 'Please enter your name.';
   if (field.id === 'email') return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Please enter a valid email address.';
   if (field.id === 'mobile') return /^(?:\+91[ -]?)?[6-9][0-9]{9}$/.test(value) ? '' : 'Please enter a valid 10-digit mobile number.';
-  if (field.id === 'region') return value ? '' : 'Please select your region.';
+  if (field.id === 'region') return value ? '' : 'Please select your climate class.';
   return '';
 }
 
@@ -91,9 +85,8 @@ function validateChoices(groupId, errorId, isValid, message) {
 function validateForm() {
   const fields = [...subscribeForm.querySelectorAll('#citizenName, #email, #mobile, #region')];
   const fieldsValid = fields.map(validateField).every(Boolean);
-  const languageValid = validateChoices('languageGroup', 'languageError', Boolean(subscribeForm.querySelector('input[name="language"]:checked')), 'Please select a language.');
   const alertsValid = validateChoices('alertsGroup', 'alertsError', Boolean(subscribeForm.querySelector('input[name="alerts"]:checked')), 'Please select at least one alert.');
-  return fieldsValid && languageValid && alertsValid;
+  return fieldsValid && alertsValid;
 }
 
 subscribeForm.addEventListener('submit', event => {
@@ -114,9 +107,6 @@ subscribeForm.querySelectorAll('#citizenName, #email, #mobile, #region').forEach
   field.addEventListener('input', () => { if (validationStarted) validateField(field); });
   field.addEventListener('change', () => { if (validationStarted) validateField(field); });
 });
-subscribeForm.querySelectorAll('input[name="language"]').forEach(field => field.addEventListener('change', () => {
-  if (validationStarted) validateChoices('languageGroup', 'languageError', true, '');
-}));
 subscribeForm.querySelectorAll('input[name="alerts"]').forEach(field => field.addEventListener('change', () => {
   if (validationStarted) validateChoices('alertsGroup', 'alertsError', Boolean(subscribeForm.querySelector('input[name="alerts"]:checked')), 'Please select at least one alert.');
 }));

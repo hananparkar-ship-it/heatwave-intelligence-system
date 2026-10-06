@@ -11,57 +11,58 @@
     <div class="header-inner">
         <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
         <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
-            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
+            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="about_website.html">About</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
         </nav>
     </div>
 </header>
 <main class="page-shell forecast-page">
-    <p class="section-kicker">Regional outlook</p>
+    <p class="section-kicker">Climate-class outlook</p>
     <h1>Regional Heatwave Prediction &amp; Risk</h1>
-    <p class="page-intro">Select a region to review its typical climate, heatwave-prediction factors and regional risk guidance. Verified forecast readings are not provided on this website.</p>
+    <p class="page-intro">Select a climate class to review its general climate context, heatwave-prediction factors and risk guidance. Verified forecast readings are not provided on this website.</p>
     <p class="forecast-availability" role="status">No verified multi-day forecast values are provided on this website. Check the India Meteorological Department for current official outlooks and warnings.</p>
 
     <div class="forecast-region-picker">
-        <label for="forecastRegion">Select Region</label>
+        <label for="forecastRegion">Select Climate Class</label>
         <select id="forecastRegion" aria-controls="regionalClimate predictionSummary forecastTable">
-            <option value="north" selected>North Zone</option>
-            <option value="northeast">Northeast Zone</option>
-            <option value="west">West Zone</option>
-            <option value="central">Central Zone</option>
-            <option value="south">South Zone</option>
+            <option value="arid" selected>Arid</option>
+            <option value="humid-subtropical">Humid Subtropical</option>
+            <option value="montane">Montane</option>
+            <option value="semi-arid">Semi Arid</option>
+            <option value="tropical-wet">Tropical Wet</option>
+            <option value="tropical-wet-dry">Tropical Wet &amp; Dry</option>
         </select>
     </div>
 
     <section id="regionalClimate" class="forecast-summary" aria-labelledby="forecastZoneName" aria-live="polite">
         <div class="forecast-summary-heading">
             <div>
-                <p class="section-kicker">General Regional Climate</p>
-                <h2 id="forecastZoneName">North Zone</h2>
+                <p class="section-kicker">General Climate Class</p>
+                <h2 id="forecastZoneName">Arid</h2>
             </div>
             <span id="climateCharacter" class="climate-character">Hot &amp; Dry</span>
         </div>
         <div class="climate-profile" role="group" aria-label="Typical climate profile">
             <ul id="climateIndicators" class="climate-indicators">
-                <li><span aria-hidden="true">☀️</span> Hot summers</li>
-                <li><span aria-hidden="true">💧</span> Low–moderate humidity</li>
-                <li><span aria-hidden="true">🌡️</span> Large day/night temperature variation</li>
-                <li><span aria-hidden="true">🔥</span> Prolonged summer heat</li>
+                <li><span aria-hidden="true">☀️</span> Hot, dry periods</li>
+                <li><span aria-hidden="true">🌵</span> Low rainfall</li>
+                <li><span aria-hidden="true">🌡️</span> Strong daytime heating</li>
+                <li><span aria-hidden="true">🔥</span> Persistent seasonal heat</li>
             </ul>
-            <p class="climate-profile-label">Regional characteristics</p>
-            <p id="regionalCharacteristics" class="climate-description">Known for intense summer heat, generally drier conditions and significant differences between daytime and nighttime temperatures.</p>
+                <p class="climate-profile-label">Climate characteristics</p>
+            <p id="regionalCharacteristics" class="climate-description">A dry climate class associated with limited rainfall and hot conditions. This general profile does not describe current weather at a particular location.</p>
         </div>
     </section>
 
     <section class="forecast-outlook" aria-labelledby="outlook-heading">
         <h2 id="outlook-heading">Heatwave Prediction Outlook</h2>
-        <p>A five-day view requires verified forecast and normal-temperature data for the selected region. No such values are loaded here.</p>
+        <p>A five-day view requires verified forecast and normal-temperature data for the selected class and a specific location. No such values are loaded here.</p>
         <div class="forecast-table-wrap" tabindex="0" role="region" aria-label="Five-day heatwave prediction outlook table">
             <table id="forecastTable">
-                <caption id="forecastTableCaption">Five-day outlook for North Zone — forecast data unavailable</caption>
+                <caption id="forecastTableCaption">Five-day outlook for Arid climate areas — forecast data unavailable</caption>
                 <thead>
                     <tr><th scope="col">Date</th><th scope="col">Predicted Tmax</th><th scope="col">Normal Tmax</th><th scope="col">Departure</th><th scope="col">Heatwave signal</th><th scope="col">Heat stress</th></tr>
                 </thead>
-                <tbody><tr><td colspan="6" id="forecastEmptyState">No verified five-day forecast is available for North Zone.</td></tr></tbody>
+                <tbody><tr><td colspan="6" id="forecastEmptyState">No verified five-day forecast is available for Arid climate areas.</td></tr></tbody>
             </table>
         </div>
     </section>
@@ -77,7 +78,7 @@
             <li>Forecast trend</li>
             <li>Rainfall, cloud cover and monsoon context where relevant</li>
         </ul>
-        <p><strong>Regional factors to consider:</strong> <span id="regionalFactors">Maximum temperature, departure from normal, persistence and overnight recovery.</span></p>
+        <p><strong>Climate-class factors to consider:</strong> <span id="regionalFactors">Maximum temperature, departure from normal, persistence and overnight recovery.</span></p>
     </section>
 
     <section class="classification-note" aria-labelledby="classification-heading">
@@ -91,7 +92,7 @@
     </section>
 
     <section id="predictionSummary" class="prediction-summary" aria-labelledby="prediction-summary-heading" aria-live="polite">
-        <h2 id="prediction-summary-heading">Prediction Summary · <span id="summaryZone">North Zone</span></h2>
+        <h2 id="prediction-summary-heading">Prediction Summary · <span id="summaryZone">Arid</span></h2>
         <dl class="prediction-summary-list">
             <div><dt>Predicted heat-risk level</dt><dd id="predictedRisk">Not available</dd></div>
             <div><dt>Risk trend</dt><dd id="riskTrend">Not available</dd></div>
@@ -110,40 +111,47 @@
 <footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
 <script>
     const regionalClimateData = {
-        north: {
-            name: 'North Zone', climateCharacter: 'Hot & Dry',
-            indicators: [['☀️','Hot summers'],['💧','Low–moderate humidity'],['🌡️','Large day/night temperature variation'],['🔥','Prolonged summer heat']],
-            characteristics: 'Known for intense summer heat, generally drier conditions and significant differences between daytime and nighttime temperatures.',
-            factors: ['Maximum temperature and departure from normal','Persistence of high summer temperatures','Overnight recovery and minimum temperature','Differences between plains, hills and urban locations'],
-            drivers: ['Maximum temperature and departure from normal','Duration of heat and overnight recovery','Differences between plains, hills and urban locations']
+        arid: {
+            name: 'Arid', climateCharacter: 'Dry climate',
+            indicators: [['☀️','Hot, dry periods'],['🌵','Low rainfall'],['🌡️','Strong daytime heating'],['🔥','Persistent seasonal heat']],
+            characteristics: 'Arid areas have very limited rainfall and can experience intense summer heat. Conditions still vary by locality and season.',
+            factors: ['Maximum temperature and departure from local normal','Duration of hot, dry conditions','Overnight minimum temperature and recovery','Local observation quality'],
+            drivers: ['Maximum temperature and departure from normal','Persistence of hot, dry conditions','Overnight recovery']
         },
-        northeast: {
-            name: 'Northeast Zone', climateCharacter: 'Humid & Rainy',
-            indicators: [['🌧️','Heavy rainfall influence'],['💧','High humidity'],['🌡️','Warm conditions'],['☁️','Strong monsoon influence']],
-            characteristics: 'Heat conditions are strongly influenced by humidity, rainfall and monsoon patterns, so heat stress may differ from the drier northern regions.',
-            factors: ['Maximum temperature and departure from normal','Higher humidity and combined heat stress','Rainfall, cloud and monsoon influence','Overnight minimum temperatures','Differences between hill and valley locations'],
-            drivers: ['Temperature together with humidity','Rainfall and monsoon conditions','Overnight conditions across hill and valley locations']
+        'humid-subtropical': {
+            name: 'Humid Subtropical', climateCharacter: 'Warm & Humid',
+            indicators: [['🌡️','Hot summer conditions'],['💧','Humidity'],['🌧️','Seasonal rainfall'],['☁️','Monsoon influence']],
+            characteristics: 'Warm summers, humidity and seasonal rainfall shape this climate class. Local heat stress can vary with rainfall and overnight conditions.',
+            factors: ['Maximum temperature and departure from local normal','Humidity and resulting heat stress','Rainfall and monsoon context','Overnight minimum temperatures'],
+            drivers: ['Temperature with humidity','Persistence of hot conditions','Rainfall and overnight recovery']
         },
-        west: {
-            name: 'West Zone', climateCharacter: 'Coastal & Dry',
-            indicators: [['☀️','Hot inland areas'],['🌊','Coastal influence'],['💧','Higher coastal humidity'],['🌡️','Strong regional variation']],
-            characteristics: 'Conditions vary considerably between hot, drier inland areas and more humid coastal locations.',
-            factors: ['Maximum temperature and departure from normal','Humidity and persistence of hot conditions','Coastal versus inland conditions','Forecast trend and overnight recovery'],
-            drivers: ['Temperature and humidity','Coastal versus inland variation','Duration of heat and overnight recovery']
+        montane: {
+            name: 'Montane', climateCharacter: 'Elevation-Driven',
+            indicators: [['🏔️','High-elevation terrain'],['🌡️','Local temperature variation'],['🌙','Cooler-night potential'],['📍','Strong site differences']],
+            characteristics: 'Elevation and terrain shape conditions in montane areas. Nearby locations can differ, so heat assessment needs local observations.',
+            factors: ['Station maximum temperature and local normal','Elevation and site exposure','Duration of heat','Nighttime minimum temperature and recovery'],
+            drivers: ['Local maximum-temperature departure','Terrain and elevation','Duration and overnight recovery']
         },
-        central: {
-            name: 'Central Zone', climateCharacter: 'Intense Summer Heat',
-            indicators: [['🔥','Very hot summers'],['☀️','Predominantly dry heat'],['🌡️','High daytime temperatures'],['⏱️','Prolonged heat periods']],
-            characteristics: 'Central regions can experience prolonged periods of intense summer heat, particularly during the pre-monsoon season.',
-            factors: ['High daytime maximum temperature and departure from normal','Duration of prolonged heat','Nighttime minimum temperature and recovery','Forecast trend and local variation'],
-            drivers: ['Intense daytime heat and departure from normal','Persistence over consecutive days','Overnight recovery']
+        'semi-arid': {
+            name: 'Semi Arid', climateCharacter: 'Seasonally Dry',
+            indicators: [['☀️','Hot seasons'],['🌤️','Limited seasonal rainfall'],['🌡️','High daytime temperatures'],['🔥','Dry-period persistence']],
+            characteristics: 'Semi-arid areas have limited and variable rainfall, with hot periods that may persist during the dry season.',
+            factors: ['Maximum temperature and departure from local normal','Duration of hot, dry conditions','Rainfall and seasonal context','Nighttime minimum temperature and recovery'],
+            drivers: ['Maximum temperature and departure from normal','Persistence through the dry period','Overnight recovery']
         },
-        south: {
-            name: 'South Zone', climateCharacter: 'Warm & Humid',
-            indicators: [['🌡️','Warm conditions'],['💧','Higher humidity'],['🌧️','Monsoon influence'],['🌊','Coastal influence in many areas']],
-            characteristics: 'Heat conditions are often shaped by humidity, coastal influence and seasonal monsoon patterns.',
-            factors: ['Maximum temperature and departure from normal','Humidity and combined heat stress','Coastal versus inland conditions','Monsoon and seasonal rainfall','Duration of heat and overnight recovery'],
-            drivers: ['Temperature and humidity','Coastal influence','Monsoon conditions and overnight recovery']
+        'tropical-wet': {
+            name: 'Tropical Wet', climateCharacter: 'Humid & Rainy',
+            indicators: [['🌧️','High rainfall influence'],['💧','Humidity'],['🌡️','Warm conditions'],['☁️','Monsoon influence']],
+            characteristics: 'Warm, humid conditions and substantial rainfall characterize this class. Humidity can affect heat stress even when local temperatures differ.',
+            factors: ['Maximum temperature and departure from local normal','Humidity and combined heat stress','Rainfall and cloud cover','Overnight minimum temperatures'],
+            drivers: ['Temperature together with humidity','Duration of humid heat','Rainfall and overnight conditions']
+        },
+        'tropical-wet-dry': {
+            name: 'Tropical Wet & Dry', climateCharacter: 'Seasonal Wet & Dry',
+            indicators: [['☀️','Distinct dry season'],['🌧️','Seasonal wet period'],['🌡️','Hot pre-monsoon conditions'],['⏱️','Heat duration matters']],
+            characteristics: 'This class has distinct wet and dry seasons. Heat risk depends on local maximum temperatures, how long heat lasts and seasonal conditions.',
+            factors: ['Maximum temperature and departure from local normal','Seasonal dry-period conditions','Duration of hot conditions','Nighttime minimum temperature and recovery'],
+            drivers: ['Maximum temperature and departure from normal','Persistence of dry-season heat','Overnight recovery']
         }
     };
     const regionSelector = document.querySelector('#forecastRegion');

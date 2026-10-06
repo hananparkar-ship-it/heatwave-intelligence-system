@@ -11,17 +11,18 @@
         <div class="header-inner">
             <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
             <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
-                <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
+                <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="about_website.html">About</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
             </nav>
         </div>
     </header>
     <main class="page-shell">
         <h1>Heatwave Intelligence Portal</h1>
-        <p>Explore heatwave information, official alert guidance, regional summaries and public-safety resources.</p>
+        <p>Explore heatwave information, official alert guidance, climate-class profiles and public-safety resources.</p>
         <h2>Site pages</h2>
         <ul class="internal-page-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="about_system.html">Heatwave information</a></li>
+            <li><a href="about_website.html">About this website</a></li>
             <li><a href="alert_details.html">Alerts</a></li>
             <li><a href="forecast.html">Regional heatwave prediction context</a></li>
             <li><a href="hotspot_map.html">Hotspot map</a></li>
@@ -29,13 +30,14 @@
             <li><a href="subscribe.html">Subscribe</a></li>
             <li><a href="media.html">Media</a></li>
         </ul>
-        <h2>Regional summaries</h2>
+        <h2>Climate class profiles</h2>
         <ul class="internal-page-list region-directory">
-            <li><a href="north_zone.html">North Zone</a></li>
-            <li><a href="northeast_zone.html">Northeast Zone</a></li>
-            <li><a href="west_zone.html">West Zone</a></li>
-            <li><a href="central_zone.html">Central Zone</a></li>
-            <li><a href="south_zone.html">South Zone</a></li>
+            <li><a href="climate_profile.html?class=arid">Arid</a></li>
+            <li><a href="climate_profile.html?class=humid-subtropical">Humid Subtropical</a></li>
+            <li><a href="climate_profile.html?class=montane">Montane</a></li>
+            <li><a href="climate_profile.html?class=semi-arid">Semi Arid</a></li>
+            <li><a href="climate_profile.html?class=tropical-wet">Tropical Wet</a></li>
+            <li><a href="climate_profile.html?class=tropical-wet-dry">Tropical Wet &amp; Dry</a></li>
         </ul>
         <h2>Official links</h2>
         <p><a href="https://mausam.imd.gov.in/">India Meteorological Department heatwave observations and warnings</a></p>

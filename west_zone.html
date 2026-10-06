@@ -1,29 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>West Zone | Heatwave Intelligence</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="0; url=hotspot_map.html">
+    <title>Climate Profiles | Heatwave Intelligence</title>
     <link rel="stylesheet" href="style.css">
+    <script>location.replace('hotspot_map.html');</script>
 </head>
 <body>
-<header class="site-header"><div class="header-inner"><button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a></nav></div></header>
 <main class="page-shell">
-    <p class="section-kicker">Regional profile</p>
-    <h1>West Zone</h1>
-    <p class="page-intro">This regional grouping covers Rajasthan, Gujarat, Maharashtra and Goa.</p>
-    <div class="zone-facts">
-        <div><h2>Heat-risk context</h2><p>Compare daily maximum-temperature patterns across inland, desert, urban and coastal locations, and examine how heat changes by season and persists over time. Humidity and local observations add context when assessing heat stress; this broad zone should not be treated as one measurement.</p></div>
-        <div><h2>Safety guidance</h2><p>Stay hydrated, seek shade or a cooler place during peak heat and follow local advisories for outdoor work and travel.</p></div>
-    </div>
-    <p>This map summary does not show a current reading or fixed risk level. Conditions vary substantially between inland and coastal locations; check official IMD updates for current observations and warnings.</p>
-    <p>For current observations, heatwave predictions and official warnings, check the India Meteorological Department.</p>
-    <nav class="zone-links" aria-label="Regional summaries">
-        <a href="north_zone.html">North</a><a href="northeast_zone.html">Northeast</a><a href="west_zone.html" aria-current="page">West</a><a href="central_zone.html">Central</a><a href="south_zone.html">South</a>
-    </nav>
-    <p><a href="hotspot_map.html">Back to Hotspot Map</a></p>
+    <h1>Climate profiles have been updated</h1>
+    <p class="page-intro">Choose one of the six climate classes on the <a href="hotspot_map.html">Hotspot Map</a>.</p>
 </main>
-<footer class="site-footer"><div class="footer-inner">Heatwave Intelligence · Community safety through timely information <span><a href="https://mausam.imd.gov.in/">India Meteorological Department</a> · <a href="tel:1078">Disaster helpline 1078</a></span></div></footer>
-<script>const currentPage=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('nav a').forEach(link=>{if(link.getAttribute('href')===currentPage)link.setAttribute('aria-current','page')});</script>
 </body>
 </html>

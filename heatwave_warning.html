@@ -11,7 +11,7 @@
     <body class="warning-page">
         <header class="site-header">
             <div class="header-inner">
-                <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">
+                <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button><nav id="main-navigation" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="about_website.html">About</a><a href="alert_details.html">
                         Alerts
                     </a><a href="forecast.html">
                         Forecast
@@ -37,10 +37,10 @@
                     <input id="l" placeholder="City or town" required>
                 </label>
                 <label>
-                    Region
+                    Climate class
                     <select id="region" required>
-                        <option value="">Choose a region</option>
-                        <option>North Zone</option><option>Northeast Zone</option><option>West Zone</option><option>Central Zone</option><option>South Zone</option>
+                        <option value="">Choose a climate class</option>
+                        <option>Arid</option><option>Humid Subtropical</option><option>Montane</option><option>Semi Arid</option><option>Tropical Wet</option><option>Tropical Wet &amp; Dry</option>
                     </select>
                 </label>
                 <label>
@@ -100,14 +100,15 @@
                     }
 
                     let regionalContext = {
-                        'North Zone': 'Regional context: review heat duration and overnight recovery across plains and hill areas.',
-                        'Northeast Zone': 'Regional context: consider humidity, rainfall and monsoon conditions alongside temperature.',
-                        'West Zone': 'Regional context: account for temperature and humidity differences between inland and coastal areas.',
-                        'Central Zone': 'Regional context: review daytime heat, overnight conditions and forecast changes.',
-                        'South Zone': 'Regional context: consider temperature, humidity and local coastal or inland conditions.'
+                        'Arid': 'Climate context: consider prolonged dry heat alongside local observations and the location-specific normal.',
+                        'Humid Subtropical': 'Climate context: consider humidity and monsoon rainfall alongside local temperature observations.',
+                        'Montane': 'Climate context: elevation and terrain can produce sharp differences between nearby locations.',
+                        'Semi Arid': 'Climate context: consider persistent seasonal heat and local rainfall patterns.',
+                        'Tropical Wet': 'Climate context: humidity and rainfall can affect heat stress; assess the specific locality.',
+                        'Tropical Wet & Dry': 'Climate context: seasonal dry-period heat and its duration can influence local risk.'
                     }[region] || '';
                     regionalContext = regionalContext ? '\n' + regionalContext : '';
-                    let m=`Location: ${l}\nRegion: ${region}\nObserved maximum temperature: ${t}°C\nHumidity: ${h}%\nExpected maximum temperature: ${f}°C\nUser-indicated heatwave condition: ${hw ? 'Yes' : 'No'}\nVulnerable population alert: ${v ? 'Yes' : 'No'}\n\nCalculated risk level (rule-based): ${r}\nRecommendation: ${a}${regionalContext}\n\nThis assessment uses the values entered here; it is not an official warning.`;
+                    let m=`Location: ${l}\nClimate class: ${region}\nObserved maximum temperature: ${t}°C\nHumidity: ${h}%\nExpected maximum temperature: ${f}°C\nUser-indicated heatwave condition: ${hw ? 'Yes' : 'No'}\nVulnerable population alert: ${v ? 'Yes' : 'No'}\n\nCalculated risk level (rule-based): ${r}\nRecommendation: ${a}${regionalContext}\n\nThis assessment uses the values entered here; it is not an official warning.`;
                     document.querySelector('#o').textContent=m;
                     console.log(m)
                 }

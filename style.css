@@ -1499,7 +1499,7 @@ body > footer {
 }
 
 .map-region-links span {
-    color: #5a6c7e;
+    color: #e0eaf0;
     font-size: .92rem;
     font-weight: 650;
 }
@@ -1678,7 +1678,8 @@ body > footer {
     box-shadow: none;
 }
 .home-page .hero-actions .button-link-secondary:hover { background: rgba(255,255,255,.16); }
-.home-page .at-a-glance .cards { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.home-page .at-a-glance .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.home-page .system-monitors .monitor-items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .home-page .at-a-glance .card { padding: 19px 17px; }
 .home-page .at-a-glance .card h3 { font-size: 1.06rem; }
 .home-page .at-a-glance .card p { margin: 0; font-size: .93rem; line-height: 1.55; }
@@ -1703,7 +1704,7 @@ body > footer {
 .zone-facts p { margin: 0; }
 .zone-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 28px 0 16px; padding-top: 15px; border-top: 1px solid var(--line); }
 .zone-links a { min-height: 40px; display: inline-flex; align-items: center; font-weight: 700; }
-.zone-links a[aria-current="page"] { color: var(--navy); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.zone-links a[aria-current="page"] { color: #fff; background: #31536c; border-radius: 8px; padding-inline: 12px; text-decoration-thickness: 2px; text-underline-offset: 4px; }
 
 .temperature-analysis-page .reading-form { display: grid; gap: 9px; }
 .temperature-analysis-page .reading-form label { margin: 8px 0 0; }
@@ -1723,6 +1724,7 @@ body > footer {
 @media (max-width: 760px) {
     .home-page .hero .hero-points { grid-template-columns: 1fr; gap: 8px; }
     .home-page .at-a-glance .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .home-page .system-monitors .monitor-items { grid-template-columns: 1fr; }
     .zone-facts { grid-template-columns: 1fr; gap: 20px; }
 }
 @media (max-width: 520px) {
@@ -1970,4 +1972,19 @@ body > footer {
     .heat-info-grid, .heat-safety-list { grid-template-columns: 1fr; }
     .alert-summary-list, .prediction-summary-list { grid-template-columns: 1fr; }
     .alert-summary-list .alert-advisory-row { grid-column: auto; }
+}
+
+.map-meta p:first-child { white-space: nowrap; }
+.media-page .media-gallery .gallery-item img { transition: transform 220ms ease; }
+.media-page .media-gallery .gallery-item:hover img,
+.media-page .media-gallery .gallery-item:focus-within img { transform: scale(1.045); }
+
+@media (max-width: 760px) {
+    .map-meta p:first-child { white-space: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .media-page .media-gallery .gallery-item img { transition: none; }
+    .media-page .media-gallery .gallery-item:hover img,
+    .media-page .media-gallery .gallery-item:focus-within img { transform: none; }
 }

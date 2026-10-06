@@ -11,7 +11,7 @@
         <div class="header-inner">
             <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
             <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
-                <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
+                <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="about_website.html">About</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
             </nav>
         </div>
     </header>
@@ -19,10 +19,10 @@
         <h1>Climate Data Explorer</h1>
         <p class="page-intro">Enter local conditions to compare an observed maximum temperature with a chosen threshold and review the entered values. Current IMD observations and forecasts are not loaded automatically.</p>
         <form id="explorerForm">
-            <label for="region">Region</label>
+            <label for="region">Climate class</label>
             <select id="region" required>
-                <option value="">Choose a region</option>
-                <option>North Zone</option><option>Northeast Zone</option><option>West Zone</option><option>Central Zone</option><option>South Zone</option>
+                <option value="">Choose a climate class</option>
+                <option>Arid</option><option>Humid Subtropical</option><option>Montane</option><option>Semi Arid</option><option>Tropical Wet</option><option>Tropical Wet &amp; Dry</option>
             </select>
             <label for="location">Location</label>
             <input id="location" required placeholder="City or town">
@@ -72,7 +72,7 @@
                     return;
                 }
                 output.textContent =
-                    'Region: ' + data.region +
+                    'Climate class: ' + data.region +
                     '\nLocation: ' + data.location +
                     '\nObserved maximum temperature: ' + data.temperature + '°C' +
                     '\nHumidity: ' + data.humidity + '%' +

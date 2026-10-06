@@ -15,7 +15,7 @@
     <div class="header-inner">
         <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation" onclick="const n=document.getElementById('main-navigation');const open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!open));this.setAttribute('aria-label',open?'Open navigation':'Close navigation');n.classList.toggle('is-open',!open);">Menu</button>
         <nav id="main-navigation" class="site-nav" aria-label="Main navigation">
-            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
+            <a href="index.html">Home</a><a href="about_system.html">Heatwave info</a><a href="about_website.html">About</a><a href="alert_details.html">Alerts</a><a href="forecast.html">Forecast</a><a href="hotspot_map.html">Hotspot map</a><a href="sources.html">Resources</a><a href="subscribe.html">Subscribe</a><a href="media.html">Media</a>
         </nav>
     </div>
 </header>
@@ -39,13 +39,14 @@
     <section class="at-a-glance" aria-labelledby="snapshot-title">
         <p class="section-kicker">Regional coverage</p>
         <h2 id="snapshot-title">At a Glance</h2>
-        <p>Choose one of five broad website zones to review its regional climate and heat-risk guidance. The zone summaries are not current readings or active warning areas.</p>
+        <p>Choose one of the six climate classes shown on the map to review general climate context and heat-risk guidance. These profiles are not current readings or active warning areas.</p>
         <div class="cards">
-            <a class="card" href="north_zone.html"><h3>North Zone</h3><p>Jammu and Kashmir, Ladakh, Himachal Pradesh, Punjab, Haryana, Uttarakhand, Delhi and Uttar Pradesh</p></a>
-            <a class="card" href="northeast_zone.html"><h3>Northeast Zone</h3><p>Sikkim and the seven northeastern states</p></a>
-            <a class="card" href="west_zone.html"><h3>West Zone</h3><p>Rajasthan, Gujarat, Maharashtra and Goa</p></a>
-            <a class="card" href="central_zone.html"><h3>Central Zone</h3><p>Madhya Pradesh, Chhattisgarh, Bihar, Jharkhand, Odisha and West Bengal</p></a>
-            <a class="card" href="south_zone.html"><h3>South Zone</h3><p>Andhra Pradesh, Telangana, Karnataka, Kerala and Tamil Nadu</p></a>
+            <a class="card" href="climate_profile.html?class=arid"><h3>Arid</h3><p>Northwestern drylands, including parts of Rajasthan and adjoining areas.</p></a>
+            <a class="card" href="climate_profile.html?class=humid-subtropical"><h3>Humid Subtropical</h3><p>Northern plains and parts of the Northeast with humid, monsoon-influenced conditions.</p></a>
+            <a class="card" href="climate_profile.html?class=montane"><h3>Montane</h3><p>Himalayan and other high-elevation areas where conditions vary with altitude.</p></a>
+            <a class="card" href="climate_profile.html?class=semi-arid"><h3>Semi Arid</h3><p>Dry transitional areas across western and interior parts of the country.</p></a>
+            <a class="card" href="climate_profile.html?class=tropical-wet"><h3>Tropical Wet</h3><p>Humid, high-rainfall areas, including coastal and northeastern regions.</p></a>
+            <a class="card" href="climate_profile.html?class=tropical-wet-dry"><h3>Tropical Wet &amp; Dry</h3><p>Central, eastern and peninsular areas with distinct wet and dry seasons.</p></a>
         </div>
     </section>
 
@@ -62,7 +63,7 @@
 
     <section class="cards" aria-label="Quick links">
         <a class="card" href="forecast.html"><h3>Regional Heatwave Prediction</h3><p>Review regional climate context, heatwave indicators and the availability of forecast information.</p></a>
-        <a class="card" href="hotspot_map.html"><h3>Heatwave Hotspot Map</h3><p>Open one of the five regional summaries from the interactive map.</p></a>
+        <a class="card" href="hotspot_map.html"><h3>Heatwave Hotspot Map</h3><p>Open one of the six climate-class profiles from the interactive map.</p></a>
         <a class="card" href="subscribe.html"><h3>Alert preferences</h3><p>Review the available alert preferences and registration fields.</p></a>
     </section>
 
@@ -92,7 +93,7 @@
         <div class="top-content">
             <div class="card-container">
                 <div class="card"><h3>Temperature Alert</h3><p>Use the <a href="heatwave_warning.html">combined tool</a> to assess entered conditions, then check official local advisories for current information.</p></div>
-                <div class="card"><h3>Regional Risk</h3><p>Explore the five regional summaries and check official warnings for currently affected locations.</p></div>
+                <div class="card"><h3>Regional Risk</h3><p>Explore the six climate-class profiles and check official warnings for currently affected locations.</p></div>
                 <div class="card"><h3>Safety Tips</h3><p>Stay hydrated, avoid direct sunlight during peak hours and wear light clothing. Take regular breaks when working outdoors.</p></div>
             </div>
         </div>
@@ -128,7 +129,7 @@
         <article class="info-card" id="hotspots">
             <span class="info-icon" aria-hidden="true">03</span>
             <div><p class="section-kicker">Explore affected areas</p><h2>Hotspot Information</h2>
-                <p>The hotspot map provides a clear route to regional summaries and helps visitors locate the relevant zone.</p>
+                <p>The hotspot map provides a clear route to climate-class profiles and helps visitors review each classification.</p>
                 <p>For current affected locations, review official warnings before travelling, working outdoors or planning outdoor activities.</p>
             </div>
         </article>
