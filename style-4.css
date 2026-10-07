@@ -1,0 +1,260 @@
+/* Shared website styles, part 4 of 4. Load in this order. */
+.forecast-note {
+    max-width: 850px; padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+
+.resource-section { padding-block: 20px; border-top: 1px solid var(--line); }
+
+.resource-section h2 { margin: 0 0 12px; }
+
+.resource-section ul, .resource-section ol { padding-left: 24px; line-height: 1.8; }
+
+.workflow-list li, .resource-section > ul > li { margin-block: 5px; }
+
+.stakeholder-role + .stakeholder-role {
+    margin-top: 16px; padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+
+.stakeholder-role h3 { margin: 0 0 4px; font-size: 1.12rem; }
+
+.stakeholder-role ul { margin-block: 4px 0; }
+
+.resource-section.official-updates { border-bottom: 1px solid var(--line); }
+
+@media (max-width: 600px) {
+    .forecast-summary { padding: 18px; }
+    .forecast-summary-heading {
+        align-items: flex-start; flex-direction: column;
+        gap: 8px;
+    }
+    .climate-character { margin-top: 0; }
+    .climate-indicators { gap: 7px; }
+    .climate-indicators li { max-width: 100%; border-radius: 12px; }
+    .forecast-factors ul { columns: 1; }
+}
+
+.heat-info-grid {
+    display: grid; grid-template-columns: minmax(0, 1fr);
+    gap: 0; margin: 18px 0 30px;
+}
+
+.heat-info-item {
+    min-width: 0; padding: 20px 22px;
+    border-left: 3px solid var(--gold); border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, .58);
+}
+
+.heat-info-item:first-child { border-radius: 12px 12px 0 0; }
+
+.heat-info-item:last-child { border-radius: 0 0 12px 12px; border-bottom: 0; }
+
+.heat-info-item h3 { margin: 0 0 8px; font-size: 1.12rem; }
+
+.heat-info-item p { margin: 0 0 9px; max-width: 88ch; }
+
+.criteria-list { margin: 14px 0; }
+
+.criteria-list > div { padding: 10px 0; border-bottom: 1px solid var(--line); }
+
+.criteria-list dt { color: var(--navy); font-weight: 750; }
+
+.criteria-list dd { margin: 2px 0 0; color: #52667a; }
+
+.heat-safety-section {
+    margin-top: 30px; padding-top: 18px;
+    border-top: 1px solid var(--line);
+}
+
+.heat-safety-list {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 32px; padding-left: 22px;
+}
+
+.heat-safety-list li { padding: 4px 0 7px 3px; }
+
+.source-note { color: #5a6c7e; font-size: .92rem; }
+
+.alert-summary-list {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 28px; margin: 12px 0 18px;
+}
+
+.alert-summary-list > div { padding: 9px 0; border-bottom: 1px solid rgba(16,36,58,.12); }
+
+.alert-summary-list dt {
+    color: #52667a; font-size: .92rem;
+    font-weight: 700;
+}
+
+.alert-summary-list dd {
+    margin: 2px 0 0; color: var(--navy);
+    font-weight: 750;
+}
+
+.alert-summary-list .alert-advisory-row { grid-column: 1 / -1; }
+
+.alert-page #alert-meaning-heading + p {
+    width: 100%; max-width: none;
+    text-align: left;
+}
+
+.alert-page .alert-action-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.alert-emergency {
+    margin: 30px 0; padding: 20px 22px;
+    border: 1px solid #f2c7b9; border-left: 4px solid var(--gold);
+    border-radius: 12px; background: #fff6ed;
+}
+
+.alert-emergency h2 { margin: 0 0 8px; }
+
+.alert-emergency p:last-child { margin-bottom: 0; }
+
+.forecast-availability {
+    max-width: 900px; margin: 18px 0;
+    padding: 13px 16px; border-left: 4px solid var(--gold);
+    border-radius: 0 9px 9px 0; background: #fff4e2;
+    color: #354b61;
+}
+
+.forecast-outlook { margin: 28px 0; }
+
+.forecast-table-wrap { overflow-x: auto; overscroll-behavior-inline: contain; }
+
+.forecast-table-wrap:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+.forecast-table-wrap table { min-width: 720px; }
+
+.official-date-outlook .source-note, .official-date-outlook .outlook-sources {
+    width: 100%; max-width: none;
+    text-align: left;
+}
+
+.prediction-summary {
+    max-width: 900px; margin: 32px 0;
+    padding: 2px 0 2px 20px; border-left: 3px solid var(--gold);
+}
+
+.prediction-summary h2 { margin-top: 0; }
+
+.prediction-summary-list {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 28px; margin: 14px 0;
+}
+
+.prediction-summary-list dt { color: #52667a; font-weight: 700; }
+
+.prediction-summary-list dd {
+    margin: 2px 0 0; color: var(--navy);
+    font-weight: 750;
+}
+
+.classification-note {
+    max-width: 900px; margin: 28px 0;
+    padding-left: 18px; border-left: 3px solid var(--teal);
+}
+
+.classification-note h2 { margin-top: 0; }
+
+.audio-play-button {
+    display: inline-flex; align-items: center;
+    gap: 8px; margin: 8px 0 12px;
+}
+
+.media-video { max-width: 760px; }
+
+@media (max-width: 680px) {
+    .heat-info-grid, .heat-safety-list { grid-template-columns: 1fr; }
+    .alert-summary-list, .prediction-summary-list { grid-template-columns: 1fr; }
+    .alert-summary-list .alert-advisory-row { grid-column: auto; }
+}
+
+@media (max-width: 900px) {
+    .alert-page .alert-action-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 520px) {
+    .alert-page .alert-action-cards { grid-template-columns: 1fr; }
+}
+
+.map-meta p:first-child { white-space: nowrap; }
+
+.media-page .media-gallery .gallery-item img { transition: transform 220ms ease; }
+
+.media-page .media-gallery .gallery-item:hover img, .media-page .media-gallery .gallery-item:focus-within img { transform: scale(1.045); }
+
+.media-image-trigger {
+    display: block; width: 100%;
+    padding: 0; overflow: hidden;
+    border: 0; border-radius: 0;
+    background: transparent; cursor: zoom-in;
+}
+
+.media-image-trigger:hover { background: transparent; }
+
+.media-image-trigger img { display: block; width: 100%; }
+
+.image-lightbox {
+    width: min(92vw, 1100px); max-width: none;
+    max-height: 92vh; padding: 18px;
+    overflow: visible; border: 1px solid var(--line);
+    border-radius: 16px; background: white;
+    box-shadow: 0 24px 80px rgba(0,0,0,.35);
+}
+
+.image-lightbox::backdrop { background: rgba(10, 26, 42, .82); }
+
+.image-lightbox img {
+    display: block; width: auto;
+    max-width: 100%; max-height: calc(92vh - 72px);
+    margin: 0 auto; object-fit: contain;
+}
+
+.image-lightbox .lightbox-close {
+    display: block; margin: 0 0 12px auto;
+    padding: 7px 12px; background: #18364e;
+}
+
+.image-lightbox .lightbox-close:hover { background: #31536c; }
+
+@media (max-width: 760px) {
+    .map-meta p:first-child { white-space: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .media-page .media-gallery .gallery-item img { transition: none; }
+    .media-page .media-gallery .gallery-item:hover img, .media-page .media-gallery .gallery-item:focus-within img { transform: none; }
+}
+
+:root { --content-width: 1100px; --page-gutter: clamp(18px, 3vw, 32px); }
+
+body > .site-header, body > .site-footer { padding-inline: 0; }
+
+main.page-shell, .site-header .header-inner, .site-footer .footer-inner {
+    width: 100%; max-width: var(--content-width);
+    margin-inline: auto; padding-inline: var(--page-gutter);
+    min-width: 0;
+}
+
+body > .home-header { padding-inline: max(var(--page-gutter), calc((100% - var(--content-width)) / 2 + var(--page-gutter))); }
+
+main.page-shell > p, main.page-shell > section > p { max-width: none; }
+
+main.page-shell > .layout {
+    width: 100%; max-width: none;
+    padding-inline: 0;
+}
+
+.page-shell > .forecast-factors, .page-shell > .classification-note, .page-shell > .prediction-summary { max-width: none; }
+
+main.page-shell.subscribe-page, main.page-shell.temperature-analysis-page, .warning-page main.page-shell { max-width: calc(760px + 2 * var(--page-gutter)); }
+
+.subscribe-page > p { margin-inline: auto; }
+
+.page-shell > *, .layout > * { min-width: 0; }
+
+.forecast-table-wrap { max-width: 100%; }
+
+.forecast-table-wrap table { display: table; white-space: normal; }
