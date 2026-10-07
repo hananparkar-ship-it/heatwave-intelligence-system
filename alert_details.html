@@ -5,6 +5,948 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Heatwave Alerts</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Page styles: kept here so shared CSS stays short and readable. -->
+    <style>
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width:780px) {
+            .site-header .header-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+                padding: 14px 18px;
+            }
+
+            .site-nav {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                width: 100%;
+            }
+
+            body>header {
+                padding: 22px 18px;
+            }
+
+            nav ul {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 6px 18px;
+            }
+
+            .page-shell {
+                margin: 24px auto 38px;
+                padding: 0 18px;
+            }
+
+            form {
+                margin: 20px 0;
+                padding: 18px;
+            }
+
+            th, td {
+                padding: 10px 9px;
+                font-size: .92rem;
+            }
+        }
+
+        @media (max-width:480px) {
+            body {
+                font-size: 15px;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        .page-shell div[style] {
+            background: #fff !important;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin: 16px 0 !important;
+            box-shadow: var(--shadow);
+        }
+
+        .page-shell div[style] h2 {
+            margin-top: 0;
+        }
+
+        .section-kicker {
+            color: var(--coral);
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            font-size: .75rem;
+            font-weight: 750;
+        }
+
+        iframe {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+        }
+
+        .site-header .header-inner {
+            flex-wrap: wrap;
+        }
+
+        .site-nav {
+            min-width: 0;
+            flex: 1 1 auto;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .site-nav a {
+            flex: 0 0 auto;
+        }
+
+        .page-intro {
+            max-width: 780px;
+            font-size: 1.05rem;
+            color: #40536a;
+        }
+
+        @media (min-width:781px) {
+            .site-nav {
+                justify-content: center;
+            }
+        }
+
+        .button-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 11px 17px;
+            border-radius: 9px;
+            background: #f0b75c;
+            color: #142b3f !important;
+            text-decoration: none;
+            font-weight: 750;
+        }
+
+        .button-link:hover {
+            color: #142b3f !important;
+        }
+
+        .button-link:focus-visible {
+            outline: 3px solid white;
+            outline-offset: 3px;
+        }
+
+        section[aria-labelledby="lab-title"]>.section-kicker {
+            font-size: .95rem;
+        }
+
+        section[aria-labelledby="lab-title"]>h2 {
+            font-size: clamp(1.8rem,3vw,2.2rem);
+            margin-bottom: 18px;
+        }
+
+        section[aria-labelledby="lab-title"] .card h3 {
+            font-size: 1.3rem;
+            line-height: 1.3;
+        }
+
+        section[aria-labelledby="lab-title"] .card p {
+            font-size: 1.08rem;
+            line-height: 1.65;
+        }
+
+        :root {
+            --paper: #f5f8fa;
+            --line: #d6e1e7;
+            --shadow: 0 12px 32px rgba(16, 36, 58, 0.08);
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-size: 17px;
+        }
+
+        main.page-shell {
+            flex: 1 0 auto;
+            width: min(100%, 1150px);
+            margin-block: 38px 56px;
+        }
+
+        .page-shell h1 {
+            margin: 0 0 14px;
+            font-size: clamp(2.15rem, 4vw, 3.2rem);
+            text-wrap: balance;
+        }
+
+        .page-intro, .page-shell > p:first-of-type {
+            max-width: 800px;
+            font-size: 1.06rem;
+            line-height: 1.75;
+        }
+
+        .site-header {
+            position: relative;
+            z-index: 2;
+        }
+
+        .site-header .header-inner {
+            width: min(100%, 1200px);
+            min-height: 72px;
+            padding: 14px 28px;
+            gap: 22px;
+        }
+
+        .site-nav {
+            gap: 6px;
+        }
+
+        .site-nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 11px;
+            font-size: 14px;
+        }
+
+        form {
+            width: min(100%, 760px);
+            padding: clamp(20px, 3vw, 30px);
+        }
+
+        fieldset {
+            padding: clamp(16px, 2.5vw, 22px);
+        }
+
+        label {
+            margin: 18px 0 8px;
+            line-height: 1.45;
+        }
+
+        input:not([type="radio"]):not([type="checkbox"]), select, textarea {
+            max-width: 100%;
+            min-height: 48px;
+            margin-top: 8px;
+            border-color: #b9cbd5;
+            transition: border-color 160ms ease, box-shadow 160ms ease;
+        }
+
+        input:not([type="radio"]):not([type="checkbox"]):focus, select:focus, textarea:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(23, 107, 120, 0.14);
+        }
+
+        button, input[type="submit"], .button-link {
+            min-height: 46px;
+            transition: background-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        button:hover, input[type="submit"]:hover, .button-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(16, 36, 58, 0.14);
+        }
+
+        button:active, input[type="submit"]:active, .button-link:active {
+            transform: translateY(0);
+        }
+
+        .cards {
+            gap: 18px;
+        }
+
+        .card {
+            height: 100%;
+            border-color: var(--line);
+            transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+        }
+
+        a.card:hover, a.card:focus-visible {
+            border-color: #a9c4cf;
+            box-shadow: 0 16px 34px rgba(16, 36, 58, 0.12);
+        }
+
+        a.card:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 3px;
+        }
+
+        section[aria-labelledby] {
+            margin-block: 34px;
+        }
+
+        section[aria-labelledby="lab-title"] .card {
+            min-height: 190px;
+        }
+
+        section[aria-labelledby="lab-title"] .card h3 {
+            margin-top: 0;
+        }
+
+        @media (max-width: 780px) {
+            body {
+                font-size: 16px;
+            }
+
+            main.page-shell {
+                padding-inline: 22px;
+                margin-block: 28px 42px;
+            }
+
+            .site-header .header-inner {
+                padding-inline: 20px;
+            }
+
+            .site-nav {
+                justify-content: flex-start;
+                gap: 5px;
+                padding-bottom: 4px;
+            }
+
+            .site-nav a {
+                font-size: 14px;
+                padding-inline: 12px;
+            }
+
+            form {
+                margin-inline: auto;
+            }
+        }
+
+        @media (max-width: 520px) {
+            main.page-shell {
+                margin-block: 24px 34px;
+            }
+
+            .site-header .header-inner {
+                padding: 12px 16px;
+                gap: 8px;
+            }
+
+            .site-nav {
+                margin-inline: -4px;
+                width: calc(100% + 8px);
+                scrollbar-width: thin;
+            }
+
+            .site-nav a {
+                min-height: 44px;
+            }
+
+            form {
+                padding: 18px;
+                border-radius: 14px;
+            }
+
+            fieldset {
+                padding: 14px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
+
+        .cards > .card {
+            min-width: 0;
+        }
+
+        @media (max-width: 850px) {
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 620px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        :root {
+            --navy: #10243a;
+            --ink: #18283b;
+            --teal: #176b78;
+            --paper: #f6f8f9;
+            --line: #d9e2e7;
+            --coral: #c94f36;
+            --gold: #efbd65;
+            --shadow: 0 10px 28px rgba(16, 36, 58, 0.07);
+        }
+
+        body {
+            color: var(--ink);
+            background: var(--paper);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .nav-toggle {
+            display: none;
+        }
+
+        .site-header {
+            background: var(--navy);
+        }
+
+        .site-header .header-inner {
+            gap: 18px;
+        }
+
+        .site-nav {
+            gap: 3px;
+        }
+
+        .site-nav a {
+            min-height: 42px;
+            padding: 8px 10px;
+            color: #e0eaf0;
+            font-size: 13.5px;
+            font-weight: 650;
+            white-space: nowrap;
+        }
+
+        .site-nav a:hover, .site-nav a[aria-current="page"] {
+            background: #29465d;
+            color: #fff;
+        }
+
+        main.page-shell {
+            width: min(100%, 1160px);
+            padding-inline: 28px;
+            margin: 38px auto 56px;
+        }
+
+        h1, h2, h3 {
+            color: var(--navy);
+            line-height: 1.2;
+            letter-spacing: -0.025em;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 3.1rem);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: clamp(1.5rem, 2.6vw, 2rem);
+        }
+
+        p {
+            max-width: 76ch;
+            line-height: 1.75;
+        }
+
+        .button-link {
+            background: var(--gold);
+            color: #173149 !important;
+            box-shadow: 0 5px 14px rgba(8, 26, 40, .16);
+        }
+
+        .button-link:hover {
+            background: #ffd584;
+            color: #173149 !important;
+        }
+
+        .cards {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            align-items: stretch;
+            gap: 18px;
+        }
+
+        .card {
+            min-width: 0;
+            height: 100%;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: #fff;
+            box-shadow: 0 5px 18px rgba(16,36,58,.045);
+            transition: transform 170ms ease, box-shadow 170ms ease, border-color 170ms ease;
+        }
+
+        a.card:hover, a.card:focus-visible {
+            transform: translateY(-3px);
+            border-color: #a8c3cf;
+            box-shadow: 0 14px 30px rgba(16,36,58,.11);
+        }
+
+        a.card:focus-visible, button:focus-visible, a:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 3px;
+        }
+
+        section[aria-labelledby] {
+            margin-block: 38px;
+        }
+
+        section[aria-labelledby] > h2 {
+            margin-bottom: 18px;
+        }
+
+        section[aria-labelledby="lab-title"] .card {
+            min-height: 188px;
+            padding: 24px;
+        }
+
+        section[aria-labelledby="lab-title"] .card h3 {
+            margin: 0 0 12px;
+            font-size: 1.28rem;
+        }
+
+        section[aria-labelledby="lab-title"] .card p {
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+
+        .site-footer, body > footer {
+            width: 100%;
+            margin-top: auto;
+            padding: 30px max(24px, calc((100vw - 1100px) / 2));
+        }
+
+        .footer-inner {
+            align-items: flex-start;
+            gap: 14px 28px;
+            font-size: .92rem;
+            line-height: 1.6;
+        }
+
+        .footer-inner span {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 12px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 900px) {
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            .site-header .header-inner {
+                align-items: center;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px 14px;
+                padding: 12px 18px;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 42px;
+                padding: 8px 14px;
+                border: 1px solid rgba(255,255,255,.22);
+                border-radius: 9px;
+                background: #21415a;
+                color: #fff;
+            }
+
+            .nav-toggle:hover {
+                background: #31536c;
+            }
+
+            .site-header .site-nav {
+                display: none;
+                flex: 1 0 100%;
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                padding: 8px;
+                overflow: visible;
+                border: 1px solid rgba(255,255,255,.11);
+                border-radius: 12px;
+                background: #18364e;
+            }
+
+            .site-header .site-nav.is-open {
+                display: flex;
+            }
+
+            .site-header .site-nav a {
+                justify-content: flex-start;
+                min-height: 44px;
+                padding-inline: 14px;
+            }
+
+            main.page-shell {
+                padding-inline: 22px;
+                margin-block: 28px 42px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            body {
+                font-size: 16px;
+            }
+
+            main.page-shell {
+                padding-inline: 16px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            section[aria-labelledby="lab-title"] .card {
+                min-height: 0;
+            }
+
+            .footer-inner, .footer-inner span {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+            }
+        }
+
+        .emergency-contact {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            margin-top: 4px;
+            padding: 8px 14px;
+            border: 1px solid #ebc3ae;
+            border-radius: 9px;
+            background: #fbe9df;
+            color: #873821;
+            font-weight: 750;
+            text-decoration: none;
+        }
+
+        .emergency-contact:hover {
+            background: #f5d8c8;
+            color: #702b1b;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .site-nav {
+            gap: 7px;
+        }
+
+        .site-nav a {
+            padding-inline: 12px;
+            font-size: 14.5px;
+        }
+
+        .site-nav a[aria-current="page"], .site-nav a[aria-current="location"] {
+            background: #31536c;
+            color: #fff;
+            box-shadow: inset 0 -2px 0 var(--gold);
+        }
+
+        .site-nav a {
+            font-size: 14px;
+        }
+
+        .footer-inner {
+            font-size: 1rem;
+            gap: 12px 28px;
+        }
+
+        .footer-inner span {
+            gap: 8px 16px;
+        }
+
+        @media (max-width: 480px) {
+            main.page-shell {
+                padding-inline: 18px;
+                margin-block: 24px 36px;
+            }
+        }
+
+        .footer-inner {
+            font-size: .97rem;
+            gap: 16px 32px;
+        }
+
+        .footer-inner span {
+            gap: 10px 16px;
+        }
+
+        .footer-inner {
+            font-size: 1rem;
+            line-height: 1.55;
+            gap: 12px 28px;
+        }
+
+        .footer-inner span {
+            gap: 8px 16px;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .site-header .header-inner {
+            min-height: 76px;
+        }
+
+        .site-nav a[aria-current="page"], .site-nav a[aria-current="location"] {
+            background: #31536c;
+            color: #fff;
+            box-shadow: inset 0 -2px 0 var(--gold);
+        }
+
+        .page-shell {
+            scroll-margin-top: 92px;
+        }
+
+        @media (max-width: 1000px) {
+            .site-header .header-inner {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 10px 16px;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 40px;
+                padding: 7px 13px;
+            }
+
+            .site-header .site-nav {
+                display: none;
+                grid-column: 1 / -1;
+                width: 100%;
+                flex-wrap: wrap;
+                overflow: visible;
+                justify-content: flex-start;
+                padding: 8px 0 2px;
+            }
+
+            .site-header .site-nav.is-open {
+                display: flex;
+            }
+
+            .site-header .site-nav a {
+                flex: 1 1 auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .site-header .header-inner {
+                padding-inline: 16px;
+            }
+
+            .footer-inner {
+                font-size: .95rem;
+            }
+        }
+
+        .site-header {
+            padding-block: 0;
+        }
+
+        .site-header .header-inner {
+            min-height: 56px;
+            padding-block: 6px;
+            justify-content: center;
+        }
+
+        .site-header .site-nav {
+            justify-content: center;
+        }
+
+        @media (max-width: 1000px) {
+            .site-header .header-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .site-header .nav-toggle {
+                justify-self: end;
+            }
+        }
+
+        .alert-page {
+            max-width: 980px;
+        }
+
+        .alert-page .alert-status {
+            margin: 24px 0;
+            padding: 17px 20px;
+            border-left: 4px solid var(--gold);
+            border-radius: 0 10px 10px 0;
+            background: #fff4e2;
+            color: #283e52;
+        }
+
+        .alert-page .alert-advisory {
+            margin: 26px 0 34px;
+            padding: 2px 0 2px 22px;
+            border-left: 3px solid var(--teal);
+        }
+
+        .alert-page .alert-advisory h2 {
+            margin-top: 0;
+        }
+
+        @media (max-width: 520px) {
+            .alert-page .alert-status {
+                padding: 14px 16px;
+            }
+        }
+
+        .source-note {
+            color: #5a6c7e;
+            font-size: .92rem;
+        }
+
+        .alert-summary-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0 28px;
+            margin: 12px 0 18px;
+        }
+
+        .alert-summary-list > div {
+            padding: 9px 0;
+            border-bottom: 1px solid rgba(16,36,58,.12);
+        }
+
+        .alert-summary-list dt {
+            color: #52667a;
+            font-size: .92rem;
+            font-weight: 700;
+        }
+
+        .alert-summary-list dd {
+            margin: 2px 0 0;
+            color: var(--navy);
+            font-weight: 750;
+        }
+
+        .alert-summary-list .alert-advisory-row {
+            grid-column: 1 / -1;
+        }
+
+        .alert-page #alert-meaning-heading + p {
+            width: 100%;
+            max-width: none;
+            text-align: left;
+        }
+
+        .alert-page .alert-action-cards {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .alert-emergency {
+            margin: 30px 0;
+            padding: 20px 22px;
+            border: 1px solid #f2c7b9;
+            border-left: 4px solid var(--gold);
+            border-radius: 12px;
+            background: #fff6ed;
+        }
+
+        .alert-emergency h2 {
+            margin: 0 0 8px;
+        }
+
+        .alert-emergency p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 680px) {
+            .alert-summary-list {
+                grid-template-columns: 1fr;
+            }
+
+            .alert-summary-list .alert-advisory-row {
+                grid-column: auto;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .alert-page .alert-action-cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 520px) {
+            .alert-page .alert-action-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        :root {
+            --content-width: 1100px;
+            --page-gutter: clamp(18px, 3vw, 32px);
+        }
+
+        body > .site-header, body > .site-footer {
+            padding-inline: 0;
+        }
+
+        main.page-shell, .site-header .header-inner, .site-footer .footer-inner {
+            width: 100%;
+            max-width: var(--content-width);
+            margin-inline: auto;
+            padding-inline: var(--page-gutter);
+            min-width: 0;
+        }
+
+        main.page-shell > p, main.page-shell > section > p {
+            max-width: none;
+        }
+
+        .page-shell > * {
+            min-width: 0;
+        }
+    </style>
 </head>
 <body>
 <header class="site-header">
@@ -21,22 +963,22 @@
     <p class="page-intro">Check the latest official warning for your location and follow the precautions recommended for its level and valid period.</p>
 
     <section class="alert-status" aria-labelledby="bulletin-heading">
-        <p class="section-kicker">IMD outlook for 8 October 2026</p>
-        <h2 id="bulletin-heading">Official weather outlook for 8 October 2026</h2>
+        <p class="section-kicker">Sample climate-zone outlook for 8 October 2026</p>
+        <h2 id="bulletin-heading">Sample regional weather outlook for 8 October 2026</h2>
         <dl class="alert-summary-list">
-            <div><dt>Heatwave status at reference locations</dt><dd id="alertHeatwaveStatus" role="status" aria-live="polite">No heatwave warning shown for Jaisalmer in its IMD city forecast. Check the district-wise IMD warning for your exact location.</dd></div>
+            <div><dt>Heatwave status for selected climate zone</dt><dd id="alertHeatwaveStatus" role="status" aria-live="polite">Severe heatwave risk in the Arid zone (sample).</dd></div>
             <div><dt><label class="alert-region-label" for="alertRegion">Select a climate class</label></dt><dd><select id="alertRegion" aria-controls="alertRegionStatus alertMaximum"><option value="arid" selected>Arid</option><option value="humid-subtropical">Humid Subtropical</option><option value="montane">Montane</option><option value="semi-arid">Semi Arid</option><option value="tropical-wet">Tropical Wet</option><option value="tropical-wet-dry">Tropical Wet &amp; Dry</option></select></dd></div>
-            <div><dt>Forecast maximum in reference locations</dt><dd id="alertMaximum">31°C at Jaisalmer.</dd></div>
-            <div><dt>Valid date</dt><dd>8 October 2026</dd></div>
-            <div class="alert-advisory-row"><dt>8 October conditions in reference locations</dt><dd id="alertRegionStatus" role="status" aria-live="polite">Partly cloudy, with a possibility of light rain or a thunderstorm in Jaisalmer.</dd></div>
+            <div><dt>Forecast maximum for selected climate zone</dt><dd id="alertMaximum">Arid: 42°C (sample regional maximum).</dd></div>
+            <div><dt>Sample date</dt><dd>8 October 2026</dd></div>
+            <div class="alert-advisory-row"><dt>8 October conditions for selected climate zone</dt><dd id="alertRegionStatus" role="status" aria-live="polite">Hot and dry, with prolonged daytime heat across the Arid zone.</dd></div>
         </dl>
-        <p class="source-note" id="alertSourceNote">IMD station forecast: <a href="https://city.imd.gov.in/citywx/citywxnew_warnings.php?id=100157">Jaisalmer</a>. This is a reference location in the Arid climate class, not a climate-zone average. Heatwave classification depends on local thresholds and departure from normal; a single station temperature does not establish a heatwave.</p>
+        <p class="source-note" id="alertSourceNote">Dummy data for demonstration only. These regional temperatures and conditions are illustrative, not official IMD forecasts.</p>
         <p><a class="button-link" href="https://mausam.imd.gov.in/Forecast/marquee_data/Press%20Release%2006-10-2026.pdf">Read the official IMD bulletin</a></p>
     </section>
 
     <section aria-labelledby="alert-meaning-heading">
         <h2 id="alert-meaning-heading">What this alert means</h2>
-        <p>Heatwave classification depends on local station thresholds and temperature departures from normal, not just a regional maximum. The reference-city status is a quick guide; use the <a href="https://mausam.imd.gov.in/responsive/districtWiseHeatwaveWarnings.php">IMD district-wise heatwave warnings</a> for an official warning for your location.</p>
+        <p>Heatwave classification depends on local station thresholds and temperature departures from normal, not just a regional maximum. The sample regional outlook illustrates climate-zone conditions; use the <a href="https://mausam.imd.gov.in/responsive/districtWiseHeatwaveWarnings.php">IMD district-wise heatwave warnings</a> for an official warning for your location.</p>
     </section>
 
     <section aria-labelledby="alert-actions-heading">
@@ -71,51 +1013,24 @@
     const alertMaximum = document.querySelector('#alertMaximum');
     const alertHeatwaveStatus = document.querySelector('#alertHeatwaveStatus');
     const alertSourceNote = document.querySelector('#alertSourceNote');
-    const outlookByRegion = {
-        arid: {
-            outlook: 'Partly cloudy in Jaisalmer, with a possibility of light rain or a thunderstorm.',
-            maximum: '30.5°C at Jaisalmer (about 31°C).',
-            heatwave: 'No heatwave warning shown for Jaisalmer in its listed city forecast.',
-            sources: 'IMD city forecast: <a href="https://city.imd.gov.in/citywx/citywxnew_warnings.php?id=100157">Jaisalmer</a>.'
-        },
-        'humid-subtropical': {
-            outlook: 'Partly cloudy in Delhi; mainly clear in Patna, becoming partly cloudy later.',
-            maximum: '33–34°C across Patna (33°C) and Delhi (34°C).',
-            heatwave: 'No heatwave warning shown for Patna or Delhi in the listed city forecasts.',
-            sources: 'IMD city forecasts: <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=42492">Patna</a> and <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=42182">Delhi-Safdarjung</a>.'
-        },
-        montane: {
-            outlook: 'Partly cloudy conditions with a chance of light rain in Srinagar and Shopian.',
-            maximum: '24–28°C across Shopian (23.9°C) and Srinagar (28°C).',
-            heatwave: 'No heatwave warning shown for Srinagar or Shopian in the listed city forecasts.',
-            sources: 'IMD city forecasts: <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=42027">Srinagar</a> and <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=101355">Shopian</a>.'
-        },
-        'semi-arid': {
-            outlook: 'Mainly clear in Ahmedabad; Pune is mainly clear, becoming partly cloudy later.',
-            maximum: '35–38°C across Pune (35°C) and Ahmedabad (38°C).',
-            heatwave: 'No heatwave warning shown for Pune or Ahmedabad in the listed city forecasts.',
-            sources: 'IMD city forecasts: <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=43063">Pune</a> and <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=42647">Ahmedabad</a>.'
-        },
-        'tropical-wet': {
-            outlook: 'Partly cloudy in Mumbai; partly cloudy with a possibility of moderate rain or a thunderstorm in Thiruvananthapuram.',
-            maximum: '33°C at both Mumbai and Thiruvananthapuram.',
-            heatwave: 'No heatwave warning shown for Mumbai or Thiruvananthapuram in the listed city forecasts.',
-            sources: 'IMD city forecasts: <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=43057">Mumbai</a> and <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=43371">Thiruvananthapuram</a>.'
-        },
-        'tropical-wet-dry': {
-            outlook: 'Sunny or clear conditions in Panna and Indore; partly cloudy in Bengaluru.',
-            maximum: '32–36°C across Bengaluru (32°C), Panna (32.7°C) and Indore (36°C).',
-            heatwave: 'No heatwave warning shown for Bengaluru, Panna or Indore in the listed city forecasts.',
-            sources: 'IMD city forecasts: <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=43295">Bengaluru</a>, <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=101413">Panna</a> and <a href="https://city.imd.gov.in/citywx/city_weather_test_try_warnings.php?id=42754">Indore</a>.'
-        }
+    const sampleZoneOutlooks = {
+        arid: { maximum: 42, heatwave: 'Severe heatwave risk', conditions: 'Hot and dry, with prolonged daytime heat across the Arid zone.' },
+        'humid-subtropical': { maximum: 39, heatwave: 'High heat risk', conditions: 'Hot and humid, with warm nights across the Humid Subtropical zone.' },
+        montane: { maximum: 28, heatwave: 'Normal — continue monitoring', conditions: 'Mild daytime conditions and cooler nights across the Montane zone.' },
+        'semi-arid': { maximum: 40, heatwave: 'Severe heatwave risk', conditions: 'Dry heat and mainly clear skies across the Semi Arid zone.' },
+        'tropical-wet': { maximum: 35, heatwave: 'Moderate heat risk', conditions: 'Humid conditions with scattered showers across the Tropical Wet zone.' },
+        'tropical-wet-dry': { maximum: 38, heatwave: 'Moderate heat risk', conditions: 'Hot daytime conditions with isolated clouds across the Tropical Wet & Dry zone.' }
     };
-    alertRegion.addEventListener('change', () => {
-        const outlook = outlookByRegion[alertRegion.value];
-        alertRegionStatus.textContent = outlook.outlook;
-        alertMaximum.textContent = outlook.maximum;
-        alertHeatwaveStatus.textContent = outlook.heatwave + ' Check the IMD district-wise warning for your exact location.';
-        alertSourceNote.innerHTML = outlook.sources + ' These 8 October station forecasts are reference locations in the selected climate class, not a climate-zone average. Heatwave classification also depends on local thresholds and departures from normal; the temperature alone does not establish a heatwave.';
-    });
+    function renderZoneOutlook() {
+        const zone = alertRegion.options[alertRegion.selectedIndex].text;
+        const sample = sampleZoneOutlooks[alertRegion.value];
+        alertMaximum.textContent = `${zone}: ${sample.maximum}°C (sample regional maximum).`;
+        alertHeatwaveStatus.textContent = `${sample.heatwave} in the ${zone} zone (sample).`;
+        alertRegionStatus.textContent = sample.conditions;
+        alertSourceNote.textContent = 'Dummy data for demonstration only. These regional temperatures and conditions are illustrative, not official IMD forecasts.';
+    }
+    alertRegion.addEventListener('change', renderZoneOutlook);
+    renderZoneOutlook();
     const currentPage = location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('#main-navigation a').forEach(link => {
         if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');

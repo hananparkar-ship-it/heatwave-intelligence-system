@@ -4,9 +4,658 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>
-            Heat Conditions &amp; Risk
+            Heatwave Temperature Analysis &amp; Warning
         </title>
         <link rel="stylesheet" href="style.css">
+    <!-- Page styles: kept here so shared CSS stays short and readable. -->
+    <style>
+        @media (max-width:780px) {
+            .site-header .header-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+                padding: 14px 18px;
+            }
+
+            .site-nav {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                width: 100%;
+            }
+
+            body>header {
+                padding: 22px 18px;
+            }
+
+            nav ul {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 6px 18px;
+            }
+
+            .page-shell {
+                margin: 24px auto 38px;
+                padding: 0 18px;
+            }
+
+            form {
+                margin: 20px 0;
+                padding: 18px;
+            }
+
+            th, td {
+                padding: 10px 9px;
+                font-size: .92rem;
+            }
+        }
+
+        @media (max-width:480px) {
+            body {
+                font-size: 15px;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        .page-shell div[style] {
+            background: #fff !important;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin: 16px 0 !important;
+            box-shadow: var(--shadow);
+        }
+
+        .page-shell div[style] h2 {
+            margin-top: 0;
+        }
+
+        iframe {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+        }
+
+        .site-header .header-inner {
+            flex-wrap: wrap;
+        }
+
+        .site-nav {
+            min-width: 0;
+            flex: 1 1 auto;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .site-nav a {
+            flex: 0 0 auto;
+        }
+
+        .page-intro {
+            max-width: 780px;
+            font-size: 1.05rem;
+            color: #40536a;
+        }
+
+        @media (min-width:781px) {
+            .site-nav {
+                justify-content: center;
+            }
+        }
+
+        section[aria-labelledby="lab-title"]>h2 {
+            font-size: clamp(1.8rem,3vw,2.2rem);
+            margin-bottom: 18px;
+        }
+
+        :root {
+            --paper: #f5f8fa;
+            --line: #d6e1e7;
+            --shadow: 0 12px 32px rgba(16, 36, 58, 0.08);
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-size: 17px;
+        }
+
+        main.page-shell {
+            flex: 1 0 auto;
+            width: min(100%, 1150px);
+            margin-block: 38px 56px;
+        }
+
+        .page-shell h1 {
+            margin: 0 0 14px;
+            font-size: clamp(2.15rem, 4vw, 3.2rem);
+            text-wrap: balance;
+        }
+
+        .page-intro, .page-shell > p:first-of-type {
+            max-width: 800px;
+            font-size: 1.06rem;
+            line-height: 1.75;
+        }
+
+        .site-header {
+            position: relative;
+            z-index: 2;
+        }
+
+        .site-header .header-inner {
+            width: min(100%, 1200px);
+            min-height: 72px;
+            padding: 14px 28px;
+            gap: 22px;
+        }
+
+        .site-nav {
+            gap: 6px;
+        }
+
+        .site-nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 11px;
+            font-size: 14px;
+        }
+
+        form {
+            width: min(100%, 760px);
+            padding: clamp(20px, 3vw, 30px);
+        }
+
+        fieldset {
+            padding: clamp(16px, 2.5vw, 22px);
+        }
+
+        label {
+            margin: 18px 0 8px;
+            line-height: 1.45;
+        }
+
+        input:not([type="radio"]):not([type="checkbox"]), select, textarea {
+            max-width: 100%;
+            min-height: 48px;
+            margin-top: 8px;
+            border-color: #b9cbd5;
+            transition: border-color 160ms ease, box-shadow 160ms ease;
+        }
+
+        input:not([type="radio"]):not([type="checkbox"]):focus, select:focus, textarea:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(23, 107, 120, 0.14);
+        }
+
+        button, input[type="submit"] {
+            min-height: 46px;
+            transition: background-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(16, 36, 58, 0.14);
+        }
+
+        button:active, input[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        section[aria-labelledby] {
+            margin-block: 34px;
+        }
+
+        @media (max-width: 780px) {
+            body {
+                font-size: 16px;
+            }
+
+            main.page-shell {
+                padding-inline: 22px;
+                margin-block: 28px 42px;
+            }
+
+            .site-header .header-inner {
+                padding-inline: 20px;
+            }
+
+            .site-nav {
+                justify-content: flex-start;
+                gap: 5px;
+                padding-bottom: 4px;
+            }
+
+            .site-nav a {
+                font-size: 14px;
+                padding-inline: 12px;
+            }
+
+            form {
+                margin-inline: auto;
+            }
+        }
+
+        @media (max-width: 520px) {
+            main.page-shell {
+                margin-block: 24px 34px;
+            }
+
+            .site-header .header-inner {
+                padding: 12px 16px;
+                gap: 8px;
+            }
+
+            .site-nav {
+                margin-inline: -4px;
+                width: calc(100% + 8px);
+                scrollbar-width: thin;
+            }
+
+            .site-nav a {
+                min-height: 44px;
+            }
+
+            form {
+                padding: 18px;
+                border-radius: 14px;
+            }
+
+            fieldset {
+                padding: 14px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
+
+        :root {
+            --navy: #10243a;
+            --ink: #18283b;
+            --teal: #176b78;
+            --paper: #f6f8f9;
+            --line: #d9e2e7;
+            --coral: #c94f36;
+            --gold: #efbd65;
+            --shadow: 0 10px 28px rgba(16, 36, 58, 0.07);
+        }
+
+        body {
+            color: var(--ink);
+            background: var(--paper);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .nav-toggle {
+            display: none;
+        }
+
+        .site-header {
+            background: var(--navy);
+        }
+
+        .site-header .header-inner {
+            gap: 18px;
+        }
+
+        .site-nav {
+            gap: 3px;
+        }
+
+        .site-nav a {
+            min-height: 42px;
+            padding: 8px 10px;
+            color: #e0eaf0;
+            font-size: 13.5px;
+            font-weight: 650;
+            white-space: nowrap;
+        }
+
+        .site-nav a:hover, .site-nav a[aria-current="page"] {
+            background: #29465d;
+            color: #fff;
+        }
+
+        main.page-shell {
+            width: min(100%, 1160px);
+            padding-inline: 28px;
+            margin: 38px auto 56px;
+        }
+
+        h1, h2, h3 {
+            color: var(--navy);
+            line-height: 1.2;
+            letter-spacing: -0.025em;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 3.1rem);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: clamp(1.5rem, 2.6vw, 2rem);
+        }
+
+        p {
+            max-width: 76ch;
+            line-height: 1.75;
+        }
+
+         button:focus-visible, a:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 3px;
+        }
+
+        section[aria-labelledby] {
+            margin-block: 38px;
+        }
+
+        section[aria-labelledby] > h2 {
+            margin-bottom: 18px;
+        }
+
+        .site-footer, body > footer {
+            width: 100%;
+            margin-top: auto;
+            padding: 30px max(24px, calc((100vw - 1100px) / 2));
+        }
+
+        .footer-inner {
+            align-items: flex-start;
+            gap: 14px 28px;
+            font-size: .92rem;
+            line-height: 1.6;
+        }
+
+        .footer-inner span {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 12px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 760px) {
+            .site-header .header-inner {
+                align-items: center;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px 14px;
+                padding: 12px 18px;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 42px;
+                padding: 8px 14px;
+                border: 1px solid rgba(255,255,255,.22);
+                border-radius: 9px;
+                background: #21415a;
+                color: #fff;
+            }
+
+            .nav-toggle:hover {
+                background: #31536c;
+            }
+
+            .site-header .site-nav {
+                display: none;
+                flex: 1 0 100%;
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                padding: 8px;
+                overflow: visible;
+                border: 1px solid rgba(255,255,255,.11);
+                border-radius: 12px;
+                background: #18364e;
+            }
+
+            .site-header .site-nav.is-open {
+                display: flex;
+            }
+
+            .site-header .site-nav a {
+                justify-content: flex-start;
+                min-height: 44px;
+                padding-inline: 14px;
+            }
+
+            main.page-shell {
+                padding-inline: 22px;
+                margin-block: 28px 42px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            body {
+                font-size: 16px;
+            }
+
+            main.page-shell {
+                padding-inline: 16px;
+            }
+
+            .footer-inner, .footer-inner span {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+            }
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .site-nav {
+            gap: 7px;
+        }
+
+        .site-nav a {
+            padding-inline: 12px;
+            font-size: 14.5px;
+        }
+
+        .site-nav a[aria-current="page"], .site-nav a[aria-current="location"] {
+            background: #31536c;
+            color: #fff;
+            box-shadow: inset 0 -2px 0 var(--gold);
+        }
+
+        .site-nav a {
+            font-size: 14px;
+        }
+
+        .footer-inner {
+            font-size: 1rem;
+            gap: 12px 28px;
+        }
+
+        .footer-inner span {
+            gap: 8px 16px;
+        }
+
+        @media (max-width: 480px) {
+            main.page-shell {
+                padding-inline: 18px;
+                margin-block: 24px 36px;
+            }
+        }
+
+        .footer-inner {
+            font-size: .97rem;
+            gap: 16px 32px;
+        }
+
+        .footer-inner span {
+            gap: 10px 16px;
+        }
+
+        .footer-inner {
+            font-size: 1rem;
+            line-height: 1.55;
+            gap: 12px 28px;
+        }
+
+        .footer-inner span {
+            gap: 8px 16px;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .site-header .header-inner {
+            min-height: 76px;
+        }
+
+        .site-nav a[aria-current="page"], .site-nav a[aria-current="location"] {
+            background: #31536c;
+            color: #fff;
+            box-shadow: inset 0 -2px 0 var(--gold);
+        }
+
+        .page-shell {
+            scroll-margin-top: 92px;
+        }
+
+        @media (max-width: 1000px) {
+            .site-header .header-inner {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 10px 16px;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 40px;
+                padding: 7px 13px;
+            }
+
+            .site-header .site-nav {
+                display: none;
+                grid-column: 1 / -1;
+                width: 100%;
+                flex-wrap: wrap;
+                overflow: visible;
+                justify-content: flex-start;
+                padding: 8px 0 2px;
+            }
+
+            .site-header .site-nav.is-open {
+                display: flex;
+            }
+
+            .site-header .site-nav a {
+                flex: 1 1 auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .site-header .header-inner {
+                padding-inline: 16px;
+            }
+
+            .footer-inner {
+                font-size: .95rem;
+            }
+        }
+
+        .site-header {
+            padding-block: 0;
+        }
+
+        .site-header .header-inner {
+            min-height: 56px;
+            padding-block: 6px;
+            justify-content: center;
+        }
+
+        .site-header .site-nav {
+            justify-content: center;
+        }
+
+        @media (max-width: 1000px) {
+            .site-header .header-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .site-header .nav-toggle {
+                justify-self: end;
+            }
+        }
+
+        .warning-page main.page-shell > h1, .warning-page main.page-shell > .page-intro, .warning-page main.page-shell > form, .warning-page main.page-shell > pre {
+            width: min(100%, 760px);
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        :root {
+            --content-width: 1100px;
+            --page-gutter: clamp(18px, 3vw, 32px);
+        }
+
+        body > .site-header, body > .site-footer {
+            padding-inline: 0;
+        }
+
+        main.page-shell, .site-header .header-inner, .site-footer .footer-inner {
+            width: 100%;
+            max-width: var(--content-width);
+            margin-inline: auto;
+            padding-inline: var(--page-gutter);
+            min-width: 0;
+        }
+
+        main.page-shell > p, main.page-shell > section > p {
+            max-width: none;
+        }
+
+         .warning-page main.page-shell {
+            max-width: calc(760px + 2 * var(--page-gutter));
+        }
+
+        .page-shell > * {
+            min-width: 0;
+        }
+    </style>
     </head>
     <body class="warning-page">
         <header class="site-header">
@@ -26,92 +675,106 @@
         </header>
         <main class="page-shell">
             <h1>
-                Heat Conditions &amp; Risk
+                Heatwave Temperature Analysis &amp; Warning
             </h1>
             <p class="page-intro">
-                Enter observations and an expected maximum temperature for a specific location to assess heat-risk conditions. The result uses this page’s rule-based criteria and is not an official IMD warning.
+                Enter the location, current temperature, heatwave threshold, humidity, monitoring date and forecast temperature to calculate the heatwave status and warning recommendation.
             </p>
             <form id="f">
-                <label>
-                    Location
-                    <input id="l" placeholder="City or town" required>
-                </label>
-                <label>
-                    Climate class
-                    <select id="region" required>
-                        <option value="">Choose a climate class</option>
-                        <option>Arid</option><option>Humid Subtropical</option><option>Montane</option><option>Semi Arid</option><option>Tropical Wet</option><option>Tropical Wet &amp; Dry</option>
-                    </select>
-                </label>
-                <label>
-                    Observed maximum temperature °C
-                    <input id="t" type="number" step="any" placeholder="Enter a local observed maximum" required>
-                </label>
-                <label>
-                    Humidity %
-                    <input id="h" type="number" min="0" max="100" step="any" placeholder="Enter relative humidity" required>
-                </label>
-                <label>
-                    Expected maximum temperature °C
-                    <input id="fc" type="number" step="any" placeholder="Enter an expected maximum" required>
-                </label>
-                <label>
-                    <input id="hw" type="checkbox">
-                    Heatwave condition
-                </label>
-                <label>
-                    <input id="vp" type="checkbox">
-                    Vulnerable population alert
-                </label>
-                <button>
-                    Get recommendation
-                </button>
+                <label for="l">Location name</label>
+                <input id="l" name="location" placeholder="City or town" required>
+                <label for="t">Current temperature (°C)</label>
+                <input id="t" name="temperature" type="number" step="any" required>
+                <label for="threshold">Heatwave threshold temperature (°C)</label>
+                <input id="threshold" name="threshold" type="number" step="any" required>
+                <label for="h">Humidity (%)</label>
+                <input id="h" name="humidity" type="number" min="0" max="100" step="any" required>
+                <label for="monitoringDate">Monitoring date</label>
+                <input id="monitoringDate" name="monitoringDate" type="date" required>
+                <label for="fc">Forecast temperature (°C)</label>
+                <input id="fc" name="forecast" type="number" step="any" required>
+                <label><input id="hw" name="heatwaveCondition" type="checkbox"> Heatwave condition</label>
+                <label><input id="vp" name="vulnerableAlert" type="checkbox"> Vulnerable population alert required</label>
+                <button type="submit">Analyze temperature &amp; get recommendation</button>
             </form>
-            <pre id="o">
-            </pre>
+            <pre id="o" aria-live="polite"></pre>
             <script>
-                document.querySelector('#f').onsubmit=e=> {
-                    e.preventDefault();
-                    let l=document.querySelector('#l').value;
-                    let region=document.querySelector('#region').value;
-                    let t=Number(document.querySelector('#t').value);
-                    let h=Number(document.querySelector('#h').value);
-                    let f=Number(document.querySelector('#fc').value);
-                    let hw=document.querySelector('#hw').checked;
-                    let v=document.querySelector('#vp').checked;
-                    let r, a;
+                const form = document.querySelector('#f');
+                const dateField = document.querySelector('#monitoringDate');
+                const today = new Date();
+                dateField.value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
-                    // Apply the rule-based decision criteria from highest priority to lowest.
-                    if (t >= 40) {
-                        r='SEVERE';
-                        a='Severe Heatwave Warning';
-                    } else if (t >= 38 && h >= 60) {
-                        r='HIGH';
-                        a='Issue Heatwave Warning';
-                    } else if (f >= 40) {
-                        r='EARLY WARNING';
-                        a='Prepare for Heatwave';
-                    } else if (t >= 35 && t < 38) {
-                        r='MODERATE';
-                        a='Monitor Conditions';
-                    } else {
-                        r='NORMAL';
-                        a='Continue Monitoring';
+                form.onsubmit = event => {
+                    event.preventDefault();
+                    if (!form.reportValidity()) return;
+                    const locationName = document.querySelector('#l').value.trim();
+                    const currentTemperature = Number(document.querySelector('#t').value);
+                    const thresholdTemperature = Number(document.querySelector('#threshold').value);
+                    const humidity = Number(document.querySelector('#h').value);
+                    const monitoringDate = dateField.value;
+                    const forecastTemperature = Number(document.querySelector('#fc').value);
+                    const reportedHeatwaveCondition = document.querySelector('#hw').checked;
+                    const vulnerablePopulationAlert = document.querySelector('#vp').checked;
+                    if (!locationName || ![currentTemperature, thresholdTemperature, humidity, forecastTemperature].every(Number.isFinite)) {
+                        alert('Enter a location name and valid climate values.');
+                        return;
                     }
-
-                    let regionalContext = {
-                        'Arid': 'Climate context: consider prolonged dry heat alongside local observations and the location-specific normal.',
-                        'Humid Subtropical': 'Climate context: consider humidity and monsoon rainfall alongside local temperature observations.',
-                        'Montane': 'Climate context: elevation and terrain can produce sharp differences between nearby locations.',
-                        'Semi Arid': 'Climate context: consider persistent seasonal heat and local rainfall patterns.',
-                        'Tropical Wet': 'Climate context: humidity and rainfall can affect heat stress; assess the specific locality.',
-                        'Tropical Wet & Dry': 'Climate context: seasonal dry-period heat and its duration can influence local risk.'
-                    }[region] || '';
-                    regionalContext = regionalContext ? '\n' + regionalContext : '';
-                    let m=`Location: ${l}\nClimate class: ${region}\nObserved maximum temperature: ${t}°C\nHumidity: ${h}%\nExpected maximum temperature: ${f}°C\nUser-indicated heatwave condition: ${hw ? 'Yes' : 'No'}\nVulnerable population alert: ${v ? 'Yes' : 'No'}\n\nCalculated risk level (rule-based): ${r}\nRecommendation: ${a}${regionalContext}\n\nThis assessment uses the values entered here; it is not an official warning.`;
-                    document.querySelector('#o').textContent=m;
-                    console.log(m)
-                }
+                    const temperatureDifference = currentTemperature - thresholdTemperature;
+                    const thresholdCrossed = currentTemperature > thresholdTemperature;
+                    const heatwaveCondition = thresholdCrossed || reportedHeatwaveCondition;
+                    let riskLevel, recommendation;
+                    // Apply the supplied decision rules in their listed order.
+                    if (currentTemperature >= 40) {
+                        riskLevel = 'SEVERE';
+                        recommendation = 'Severe Heatwave Warning';
+                    } else if (currentTemperature >= 38 && humidity >= 60) {
+                        riskLevel = 'HIGH';
+                        recommendation = 'High Heat Risk – Issue Warning';
+                    } else if (currentTemperature >= 35 && currentTemperature <= 38) {
+                        riskLevel = 'MODERATE';
+                        recommendation = 'Moderate Heat Risk – Monitor Conditions';
+                    } else if (forecastTemperature >= 40) {
+                        riskLevel = 'EARLY WARNING';
+                        recommendation = 'Early Warning – Prepare for Heatwave';
+                    } else if (currentTemperature < 35) {
+                        riskLevel = 'NORMAL';
+                        recommendation = 'Normal – Continue Monitoring';
+                    } else {
+                        riskLevel = 'NO MATCHING RULE';
+                        recommendation = 'Continue monitoring; these inputs are outside the supplied warning rules.';
+                    }
+                    const earlyWarning = forecastTemperature >= 40
+                        ? 'Early Warning – Prepare for Heatwave'
+                        : 'Continue monitoring forecast conditions';
+                    const vulnerableAdvice = vulnerablePopulationAlert
+                        ? (heatwaveCondition || currentTemperature >= 35 || forecastTemperature >= 40
+                            ? 'Issue a vulnerable population alert and take heat-safety precautions.'
+                            : 'Vulnerable population alert requested — continue monitoring and take precautions.')
+                        : 'Vulnerable population alert not requested';
+                    const output = [
+                        'Heatwave Temperature Analysis',
+                        `Location: ${locationName}`,
+                        `Monitoring Date: ${monitoringDate}`,
+                        `Current Temperature: ${currentTemperature}°C`,
+                        `Heatwave Threshold: ${thresholdTemperature}°C`,
+                        `Temperature Difference: ${temperatureDifference}°C`,
+                        `Humidity: ${humidity}%`,
+                        `Status: ${thresholdCrossed ? 'Heatwave Condition Detected' : 'Threshold Not Crossed'}`,
+                        '',
+                        'Heatwave Warning Recommendation',
+                        `Forecast Temperature: ${forecastTemperature}°C`,
+                        `Heatwave Condition: ${heatwaveCondition ? 'Yes' : 'No'}`,
+                        `Risk Level: ${riskLevel}`,
+                        `Recommendation: ${recommendation}`,
+                        `Early-warning Recommendation: ${earlyWarning}`,
+                        vulnerableAdvice,
+                        '',
+                        'This result uses entered values and the supplied rules; it is not an official IMD warning.'
+                    ].join('\n');
+                    document.querySelector('#o').textContent = output;
+                    console.log(output);
+                    alert(output);
+                };
             </script>
         </main>
         <footer class="site-footer">
